@@ -1,8 +1,8 @@
 .SILENT :
 
-run: 	serverContainers.o
-		echo Compilation de run
-		gcc -Wall -o run serverContainers.o -lnsl -lsocket
+main: 	serverContainers.o
+		echo Compilation de main
+		gcc -Wall -o main serverContainers.o -lnsl -lsocket -lpthread
 
 serverContainers.o: serverContainers.c
 		echo Compilation de server_containers
