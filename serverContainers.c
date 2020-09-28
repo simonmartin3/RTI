@@ -9,7 +9,7 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
-#include <libraryServer.h>
+#include "socketLib.h"
 
 #define PORT 50000
 #define MAXSTRING 100
@@ -27,36 +27,7 @@ int main ()
 	char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	int nbreRecv;
 
-/* 1. Création de la socket */
-	hSocketEcoute= socket(AF_INET, SOCK_STREAM, 0);
-	if (hSocketEcoute== -1)
-	{
-		printf("Erreur de creation de la socket %d\n", errno);
-		exit(1);
-	}
-	else 
-		printf("Creation de la socket OK\n");
-
-/* 2. Acquisition des informations sur l'ordinateur local */
-	if ( (infosHost = gethostbyname("solaris11DM2017"))==0)
-	{
-		printf("Erreur d'acquisition d'infos sur le host %d\n", errno);
-		exit(1);
-	}
-	else 
-		printf("Acquisition infos host OK\n");
-	
-	memcpy(&adresseIP, infosHost->h_addr, infosHost->h_length);
-	printf("Adresse IP = %s\n",inet_ntoa(adresseIP));
-	/* Conversion de l'adresse contenue dans le structure in_addr
-	en une chaine comprehensible */
-
-/* 3. Préparation de la structure sockaddr_in */
-	memset(&adresseSocket, 0, sizeof(struct sockaddr_in));
-	adresseSocket.sin_family = AF_INET; /* Domaine */
-	adresseSocket.sin_port = htons(PORT);
-	/* conversion numéro de port au format réseau _*/
-	memcpy(&adresseSocket.sin_addr, infosHost->h_addr,infosHost->h_length);
+	hSocketEcoute = SocketInit(&adresseSocket, "solaris11DM2017", PORT);
 
 /* 4. Le système prend connaissance de l'adresse et du port de la socket */
 	if (bind(hSocketEcoute, (struct sockaddr *)&adresseSocket,

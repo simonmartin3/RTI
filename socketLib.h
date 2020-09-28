@@ -1,5 +1,5 @@
 //---------------------------------
-// libraryServer.h
+// socketLib.h
 //---------------------------------
 // MARTIN Simon
 //---------------------------------
@@ -22,8 +22,7 @@
 #include <time.h>
 #include <pthread.h>
 
-#define PORT 5000
-
+#define PORT 50000
 
 int SocketInit(struct sockaddr_in* , char* , unsigned long );
 int SocketInitWithIpAddr(struct sockaddr_in*, char*, unsigned long, char* );

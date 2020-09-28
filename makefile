@@ -1,14 +1,14 @@
 .SILENT :
 
-RTI: serverContainers.o appliContainers.o Serveur Client
+RTI:	socketLib.o Serveur Client
 
 Serveur: 	serverContainers.c socketLib.o
 			echo Compilation de serveur...
-			gcc -Wall -o Ser serverContainers.o -lnsl -lsocket
+			gcc -Wall -o Ser serverContainers.c socketLib.o -lnsl -lsocket
 
-Client: 	appliContainers.o socketLib.o
+Client: 	appliContainers.c socketLib.o
 			echo Compilation de client...
-			gcc -Wall -o Cli appliContainers.o -lnsl -lsocket
+			gcc -Wall -o Cli appliContainers.c socketLib.o -lnsl -lsocket
 
 socketLib.o: 	socketLib.c
 				echo Compilation de la librairie...
