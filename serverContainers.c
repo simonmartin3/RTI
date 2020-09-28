@@ -70,7 +70,7 @@ int main ()
     do
     {
 
-    ListenAccept(&hSocketService, &hSocketEcoute, &adresseSocket)
+    ListenAccept(&hSocketService, &hSocketEcoute, &adresseSocket);
 
     /* 9. Recherche d'une socket connectee libre */
         printf("Recherche d'une socket connecteee libre ...\n");
