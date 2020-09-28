@@ -8,11 +8,11 @@ mainA: 	appliContainers.o
 		echo Compilation de mainA
 		gcc -Wall -o mainA appliContainers.o -lnsl -lsocket -lpthread
 
-serverContainers.o: serverContainers.c
+serverContainers.o: serverContainers.c libraryServer.h
 		echo Compilation de serverContainers
 		gcc -Wall -c serverContainers.c
 
-appliContainers.o: appliContainers.c
+appliContainers.o: appliContainers.c libraryServer.h
 		echo Compilation de appliContainers
 		gcc -Wall -c appliContainers.c
 

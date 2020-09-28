@@ -12,6 +12,7 @@
 #include <netinet/in.h> /* conversions adresse reseau-format dot et local/ reseau */
 #include <netinet/tcp.h> /* pour la conversion adresse reseau-format dot */
 #include <arpa/inet.h> /* pour la conversion adresse reseau-format dot */
+#include <libraryServer.h>
 
 #define PORT 50000 /* Port d'ecoute de la socket serveur */
 #define MAXSTRING 100 /* Longeur des messages */

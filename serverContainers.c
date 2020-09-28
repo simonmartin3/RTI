@@ -9,6 +9,7 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
+#include <libraryServer.h>
 
 #define PORT 50000
 #define MAXSTRING 100
