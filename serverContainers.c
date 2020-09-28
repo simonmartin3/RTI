@@ -17,6 +17,7 @@
 #define PORT 50000 /* Port d'ecoute de la socket serveur */
 #define MAXSTRING 100 /* Longueur des messages */
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
+#define FILELOG "login.csv"
 
 pthread_mutex_t mutexIndiceCourant;
 pthread_cond_t condIndiceCourant;
@@ -25,6 +26,7 @@ pthread_t threadHandle[NB_MAX_CLIENTS]; /* Threads pour clients*/
 void * fctThread(void * param);
 char * getThreadIdentity();
 void pressEnter(void);
+void fctFile(void);
 int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 
 int main ()
@@ -39,6 +41,9 @@ int main ()
 	//int ret, * retThread;
 	int ret;
     char msgServeur[MAXSTRING];
+
+/* Ouverture et/ou création du fichier login.csv */
+	fctFile();
 
 /* 1. Initialisations */
     puts("* Thread principal serveur demarre *");
@@ -209,3 +214,63 @@ int main ()
 		printf("Press enter to continue...");
 		getchar();
 	}
+
+/*----------------------------------------------------------------*/
+/*             	               fctFile()    	                  */
+/*----------------------------------------------------------------*/
+
+	void fctFile()
+	{
+		FILE *loginFile;
+		char login[100] = "";
+		int len;
+
+		struct login {
+			char user[30];
+			char pass[30];
+		};
+		
+		loginFile = fopen(FILELOG, "a+");
+
+		if(login != NULL)
+		{
+			puts("Fichier ouvert");
+	
+			fseek(loginFile, 0, SEEK_END);			
+
+			len = ftell(loginFile);
+			if(len == 0)
+			{
+				struct login root = {"root", "root"};
+				
+				strcpy(login, root.user);
+				strcat(login, ",");
+				strcat(login, root.pass);
+				strcat(login, "\n");
+
+				//Ajout login dans fichier
+				fputs(login, loginFile);
+			}
+/*			else {*/
+/*				fseek(loginFile, 0, SEEK_SET);*/
+/*				//Lecture fichier*/
+/*				fgets(login, 100, loginFile);*/
+/*				char* token = strtok(login, ",");*/
+/*				struct login test;*/
+/*					*/
+/*				strcpy(test.user,token);*/
+/*				token = strtok(NULL, login);*/
+/*				strcpy(test.pass,token);*/
+/*				*/
+/*				printf("%s-%s", test.user, test.pass);*/
+/*				*/
+/*			}*/
+			fclose(loginFile);
+		}
+		else {
+			puts("Impossible d'ouvrir le fichier login");
+			exit(1);	
+		}
+	}
+
+
