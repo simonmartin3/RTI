@@ -9,9 +9,9 @@
 #include <sys/socket.h> /* pour les types de socket */
 #include <netdb.h> /* pour la structure hostent */
 #include <errno.h>
-#include <netinet/in.h> /* conversions adresse reseau->format dot et local/ reseau */
-#include <netinet/tcp.h> /* pour la conversion adresse reseau->format dot */
-#include <arpa/inet.h> /* pour la conversion adresse reseau->format dot */
+#include <netinet/in.h> /* conversions adresse reseau-format dot et local/ reseau */
+#include <netinet/tcp.h> /* pour la conversion adresse reseau-format dot */
+#include <arpa/inet.h> /* pour la conversion adresse reseau-format dot */
 
 #define PORT 50000 /* Port d'ecoute de la socket serveur */
 #define MAXSTRING 100 /* Longeur des messages */
@@ -38,7 +38,7 @@ int main()
     printf("Creation de la socket OK\n");
 
 /* 2. Acquisition des informations sur l'ordinateur distant */
-    if ( (infosHost = gethostbyname("sunray2v440"))==0)
+    if ( (infosHost = gethostbyname("solaris11DM2017"))==0)
     {
         printf("Erreur d'acquisition d'infos sur le host distant %d\n", errno);
         exit(1);
@@ -94,7 +94,8 @@ int main()
     printf("Message recu en ACK = %s\n", msgServeur);
 
 /* 7.Envoi d'un deuxième message client */
-    printf("Message a envoyer : ");gets(msgClient);
+    printf("Message a envoyer : ");
+	gets(msgClient);
     
     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
     {
