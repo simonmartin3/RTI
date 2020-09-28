@@ -96,7 +96,7 @@ int main()
 
 /* 7.Envoi d'un deuxième message client */
     printf("Message a envoyer : ");
-	gets(msgClient);
+	fgets(msgClient, sizeof(msgClient), stdin);
     
     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
     {

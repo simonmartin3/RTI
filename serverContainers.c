@@ -30,12 +30,14 @@ int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 int main ()
 {
 	int hSocketEcoute, hSocketService;
-	int i,j, retRecv;
-	struct hostent * infosHost;
-	struct in_addr adresseIP;
+	//int i,j,retRecv;
+	int i,j;
+	//struct hostent * infosHost;
+	//struct in_addr adresseIP;
 	struct sockaddr_in adresseSocket;
-	int tailleSockaddr_in;
-	int ret, * retThread;
+	//int tailleSockaddr_in;
+	//int ret, * retThread;
+	int ret;
     char msgServeur[MAXSTRING];
 
 /* 1. Initialisations */
@@ -61,7 +63,8 @@ int main ()
 /* 6. Lancement des threads */
     for (i=0; i<NB_MAX_CLIENTS; i++)
     {
-        ret = pthread_create(&threadHandle[i],NULL,fctThread, (void*)i);
+/*        ret = pthread_create(&threadHandle[i],NULL,fctThread, (void*)i);*/
+        ret = pthread_create(&threadHandle[i],NULL,fctThread, &i);
         printf("Thread secondaire %d lance !\n", i);
         ret = pthread_detach(threadHandle[i]);
     }
@@ -70,7 +73,7 @@ int main ()
     do
     {
 
-    ListenAccept(&hSocketService, &hSocketEcoute, &adresseSocket);
+    ListenAccept(&hSocketService, &hSocketEcoute, (struct sockaddr *)&adresseSocket);
 
     /* 9. Recherche d'une socket connectee libre */
         printf("Recherche d'une socket connecteee libre ...\n");
@@ -115,10 +118,10 @@ int main ()
 /*----------------------------------------------------------------*/
     void * fctThread (void *param)
     {
-        char * nomCli, *buf = (char*)malloc(100);
+        char *buf = (char*)malloc(100);
         char msgClient[MAXSTRING], msgServeur[MAXSTRING];
-        int vr = (int)(param), finDialogue=0, i, iCliTraite;
-        int temps, retRecv;
+        int vr = (int)(param), finDialogue=0, iCliTraite;
+        int retRecv;
         char * numThr = getThreadIdentity();
         int hSocketServ;
 
@@ -192,7 +195,7 @@ int main ()
         char *buf = (char *)malloc(30);
         //numSequence = pthread_getsequence_np( pthread_self( ) );
 		numSequence = 2;
-        sprintf(buf, "%d.%u", getpid(), numSequence);
+        sprintf(buf, "%d.%lu", getpid(), numSequence);
         return buf;
     }
 
