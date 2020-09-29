@@ -1,22 +1,27 @@
 .SILENT :
 
-mainS: 	serverContainers.o
-		echo Compilation de mainS
-		gcc -Wall -o mainS serverContainers.o -lnsl -lsocket -lpthread
+RTI: serverContainers.o appliContainers.o Serveur Client
 
-mainA: 	appliContainers.o
-		echo Compilation de mainA
-		gcc -Wall -o mainA appliContainers.o -lnsl -lsocket -lpthread
+Serveur: 	serverContainers.c socketLib.o
+			echo Compilation de serveur...
+			gcc -Wall -o Ser serverContainers.o -lnsl -lsocket
 
-serverContainers.o: serverContainers.c libraryServer.h
-		echo Compilation de serverContainers
-		gcc -Wall -c serverContainers.c
+Client: 	appliContainers.o socketLib.o
+			echo Compilation de client...
+			gcc -Wall -o Cli appliContainers.o -lnsl -lsocket
 
-appliContainers.o: appliContainers.c libraryServer.h
-		echo Compilation de appliContainers
-		gcc -Wall -c appliContainers.c
+socketLib.o: 	socketLib.c
+				echo Compilation de la librairie...
+				gcc -Wall -c socketLib.c -lnsl -lsocket -lpthread -D SUN -m64
+
+# appliContainers.o: 	appliContainers.c libraryServer.h
+					# echo Compilation de appliContainers
+					# gcc -Wall -c appliContainers.c -lnsl -lsocket -lpthread -D SUN -m64
 
 clean : 
-	rm -rf *.o mainA mainS
+	rm -rf *.o
+
+kill:
+	kill -9 *
 
 
