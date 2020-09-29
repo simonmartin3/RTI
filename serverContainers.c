@@ -134,7 +134,8 @@ int main ()
             iCliTraite = indiceCourant; indiceCourant=-1;
             hSocketServ = hSocketConnectee[iCliTraite];
             pthread_mutex_unlock(&mutexIndiceCourant);
-            sprintf(buf,"Je m'occupe du numero %d ...", iCliTraite);affThread(numThr, buf);
+            sprintf(buf,"Je m'occupe du numero %d ...", iCliTraite);
+			affThread(numThr, buf);
         
         /* 2. Dialogue thread-client */
             finDialogue=0;
