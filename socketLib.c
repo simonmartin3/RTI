@@ -29,7 +29,7 @@ int SocketInit(struct sockaddr_in* si, char* hostname, unsigned long port)
 	}
 
 	memcpy(&adresseIP, infosHost->h_addr, infosHost->h_length);
-	inet_aton("192.168.29.131", &adresseIP);
+	//inet_aton("192.168.29.131", &adresseIP);
 	printf("adresseIP = %s\n", inet_ntoa(adresseIP));
 
 	/* Préparation de la sockaddre_in*/
