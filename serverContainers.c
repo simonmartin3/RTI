@@ -39,25 +39,7 @@ int main ()
 	else 
 		printf("Bind adresse et port socket OK\n");
 
-/* 5. Mise a l'ecoute d'une requete de connexion */
-	if (listen(hSocketEcoute,SOMAXCONN) == -1)
-	{
-		printf("Erreur sur lel isten de la socket %d\n", errno);
-		close(hSocketEcoute); /* Fermeture de la socket */
-		exit(1);
-	}
-	else 
-		printf("Listen socket OK\n");
-
-/* 6. Acceptation d'une connexion */
-	tailleSockaddr_in = sizeof(struct sockaddr_in);
-	if ( (hSocketService =	accept(hSocketEcoute, (struct sockaddr *)&adresseSocket, &tailleSockaddr_in) ) == -1)
-	{
-		printf("Erreur sur l'accept de la socket %d\n", errno);
-		close(hSocketEcoute); exit(1);
-	}
-	else 
-		printf("Accept socket OK\n");
+	ListenAccept(&hSocketService, &hSocketEcoute, &adresseSocket);
 
 /* 7.Reception d'un message client */
 	if ((nbreRecv = recv(hSocketService, msgClient, MAXSTRING, 0)) == -1) /* pas message urgent */
