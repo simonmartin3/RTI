@@ -26,7 +26,8 @@ pthread_t threadHandle[NB_MAX_CLIENTS]; /* Threads pour clients*/
 void * fctThread(void * param);
 char * getThreadIdentity();
 void pressEnter(void);
-int fctFile(char *nomFile);
+int fctFile(char *nomFile); // My fct
+void createLogin(); // My fct
 int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 
 int main ()
@@ -43,10 +44,11 @@ int main ()
     char msgServeur[MAXSTRING];
 
 /* Ouverture et/ou création du fichier login.csv */
-	ret = fctFile("login.csv");
+	ret = fctFile(FILELOG);
 	if(ret != 0)
 	{
-		puts("Création du fichier\n");
+		puts("Création du fichier");
+		createLogin();
 	}
 
 /* 1. Initialisations */
@@ -292,4 +294,31 @@ int main ()
 		} */
 	}
 
+/*----------------------------------------------------------------*/
+/*             	            createLogin()    	                  */
+/*----------------------------------------------------------------*/
+
+	void createLogin()
+	{
+		FILE *loginFile;
+		
+		struct login {
+			char user[30];
+			char pass[30];
+		};
+		loginFile = fopen(FILELOG, "a");
+		
+		struct login root = {"root", "root"};
+				
+		strcpy(login, root.user);
+		strcat(login, ";");
+		strcat(login, root.pass);
+		strcat(login, "\n");
+
+		//Ajout login dans fichier
+		fwrite(login, 1, sizeof(struct login), loginFile);
+		
+		fclose(loginFile);
+
+	}
 
