@@ -44,7 +44,10 @@ int main ()
 
 /* Ouverture et/ou création du fichier login.csv */
 	ret = fctFile("login.csv");
-	puts(ret);
+	if(ret != 0)
+	{
+		puts("Création du fichier\n");
+	}
 
 /* 1. Initialisations */
     puts("* Thread principal serveur demarre *");
