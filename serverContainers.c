@@ -301,24 +301,12 @@ int main ()
 	void createLogin()
 	{
 		FILE *loginFile;
-		
-		struct login {
-			char user[30];
-			char pass[30];
-		};
+		char log[] = "root;root";
 		loginFile = fopen(FILELOG, "a");
-		
-		struct login root = {"root", "root"};
-				
-		strcpy(login, root.user);
-		strcat(login, ";");
-		strcat(login, root.pass);
-		strcat(login, "\n");
 
 		//Ajout login dans fichier
-		fwrite(login, 1, sizeof(struct login), loginFile);
+		fputs(login, loginFile);
 		
 		fclose(loginFile);
-
 	}
 
