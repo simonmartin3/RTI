@@ -26,13 +26,12 @@ pthread_t threadHandle[NB_MAX_CLIENTS]; /* Threads pour clients*/
 void * fctThread(void * param);
 char * getThreadIdentity();
 void pressEnter(void);
-bool fctFile(char *nomFile);
+int fctFile(char *nomFile);
 int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 
 int main ()
 {
 	int hSocketEcoute, hSocketService;
-	bool file;
 	//int i,j,retRecv;
 	int i,j;
 	//struct hostent * infosHost;
@@ -44,8 +43,8 @@ int main ()
     char msgServeur[MAXSTRING];
 
 /* Ouverture et/ou création du fichier login.csv */
-	file = fctFile("login.csv");
-	puts(file);
+	ret = fctFile("login.csv");
+	puts(ret);
 
 /* 1. Initialisations */
     puts("* Thread principal serveur demarre *");
@@ -221,7 +220,7 @@ int main ()
 /*             	               fctFile()    	                  */
 /*----------------------------------------------------------------*/
 
-	bool fctFile(char *nomFile)
+	int fctFile(char *nomFile)
 	{
 		FILE *fp;
 		
@@ -230,8 +229,12 @@ int main ()
 		if(fp == (FILE*) NULL)
 		{
 			printf("Le fichier %s n'existe pas.\n", nomFile);
-			return false;
+			return 1;
 		}
+		else {
+			return 0;
+		}
+		
 		
 
 		/*FILE *loginFile;
