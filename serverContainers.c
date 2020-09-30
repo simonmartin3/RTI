@@ -220,13 +220,17 @@ int main ()
 /*             	               fctFile()    	                  */
 /*----------------------------------------------------------------*/
 
-	int fctFile(char *nomFile)
+	void fctFile(char *nomFile)
 	{
 		FILE *fp;
 		
 		fp = fopen(nomFile, "r");
 		
-		return fp;
+		if(fp == (FILE*) NULL)
+		{
+			printf("Le fichier %s n'existe pas.", nomFile);
+		}
+		
 
 		/*FILE *loginFile;
 		char login[100] = "";
