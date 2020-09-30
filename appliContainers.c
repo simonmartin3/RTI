@@ -29,9 +29,9 @@ int main()
     int ret; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	
-	typedef struct Login Login
+	typedef struct Login Login;
 	struct Login{
-		int type = LOGIN;
+		int type;
 		char user[30];
 		char pass[30];
 	};
@@ -81,11 +81,13 @@ int main()
 
 /* 5.Envoi d'un message client */
     
+	log.type=LOGIN;
+	
 	puts("Entrer l'user :");
-	scanf("%s", log.user);
+	scanf("%s", log->user);
 		
 	puts("Entrer le password :");
-	scanf("%s", log.pass);
+	scanf("%s", log->pass);
 	
 	strcpy(msgClient, log.type);
 	strcat(msgClient, "#");
