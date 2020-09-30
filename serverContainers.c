@@ -26,7 +26,7 @@ pthread_t threadHandle[NB_MAX_CLIENTS]; /* Threads pour clients*/
 void * fctThread(void * param);
 char * getThreadIdentity();
 void pressEnter(void);
-void fctFile(void);
+void fctFile(char *nomFile);
 int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 
 int main ()
