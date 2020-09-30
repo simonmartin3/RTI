@@ -18,6 +18,7 @@
 #define MAXSTRING 100 /* Longueur des messages */
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
 #define FILELOG "login.csv"
+#define FILEPARC "FICH_PARC"
 
 pthread_mutex_t mutexIndiceCourant;
 pthread_cond_t condIndiceCourant;
@@ -26,9 +27,12 @@ pthread_t threadHandle[NB_MAX_CLIENTS]; /* Threads pour clients*/
 void * fctThread(void * param);
 char * getThreadIdentity();
 void pressEnter(void);
-int fctFile(char *nomFile); // My fct
-void createLogin(); // My fct
 int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
+
+/* My function */
+int fctFile(char *nomFile);
+void createLogin();
+void createFichParc();
 
 int main ()
 {
@@ -47,8 +51,15 @@ int main ()
 	ret = fctFile(FILELOG);
 	if(ret != 0)
 	{
-		puts("Création du fichier");
+		puts("Création du fichier.");
 		createLogin();
+	}
+	
+	ret = fctFile(FILEPARC);
+	if(ret != 0)
+	{
+		puts("Création du fichier.");
+		createFichParc();
 	}
 
 /* 1. Initialisations */
@@ -308,5 +319,18 @@ int main ()
 		fputs(log, loginFile);
 		
 		fclose(loginFile);
+	}
+
+/*----------------------------------------------------------------*/
+/*             	            createLogin()    	                  */
+/*----------------------------------------------------------------*/
+
+	void createFichParc()
+	{
+		FILE *fichParcFile;
+
+		fichParcFile = fopen(FILEPARC, "a");
+		
+		fclose(FILEPARC);
 	}
 
