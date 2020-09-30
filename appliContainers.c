@@ -25,7 +25,7 @@ int main()
     struct sockaddr_in adresseSocket; /* Structure de type sockaddr - ici, cas de TCP */
     unsigned int tailleSockaddr_in;
     int ret; /* valeur de retour */
-    char msgClient[MAXSTRING], msgServeur[MAXSTRING];
+    char msgClient[MAXSTRING], msgServeur[MAXSTRING], user[30], pass[30];
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -70,7 +70,19 @@ int main()
         printf("Connect socket OK\n");
 
 /* 5.Envoi d'un message client */
-    strcpy(msgClient,"Bonjour ! Nous nous connaissons ?");
+    
+	puts("Entrer l'user :");
+	fgets(user, sizeof(user), stdin);
+		
+	puts("Entrer le password :");
+	fgets(pass, sizeof(pass), stdin);
+	
+	strcpy(msgClient, user);
+	strcat(msgClient, "-");
+	strcat(msgClient, pass);
+	
+	
+	//strcpy(msgClient,"Bonjour ! Nous nous connaissons ?");
 
     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
     {
