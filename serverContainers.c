@@ -43,8 +43,7 @@ int main ()
     char msgServeur[MAXSTRING];
 
 /* Ouverture et/ou création du fichier login.csv */
-	ret = fctFile("login.csv");
-	puts(ret);
+	fctFile("login.csv");
 
 /* 1. Initialisations */
     puts("* Thread principal serveur demarre *");
