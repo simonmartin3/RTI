@@ -305,7 +305,7 @@ int main ()
 		loginFile = fopen(FILELOG, "a");
 
 		//Ajout login dans fichier
-		fputs(login, loginFile);
+		fputs(log, loginFile);
 		
 		fclose(loginFile);
 	}
