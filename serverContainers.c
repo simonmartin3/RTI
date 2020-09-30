@@ -301,7 +301,7 @@ int main ()
 	void createLogin()
 	{
 		FILE *loginFile;
-		char log[] = "root;root";
+		char log[] = "root;root\r\n";
 		loginFile = fopen(FILELOG, "a");
 
 		//Ajout login dans fichier
