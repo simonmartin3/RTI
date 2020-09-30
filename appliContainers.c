@@ -72,10 +72,10 @@ int main()
 /* 5.Envoi d'un message client */
     
 	puts("Entrer l'user :");
-	fgets(user, sizeof(user), stdin);
+	scanf("%s", user);
 		
 	puts("Entrer le password :");
-	fgets(pass, sizeof(pass), stdin);
+	scanf("%s", pass);
 	
 	strcpy(msgClient, user);
 	strcat(msgClient, "-");
