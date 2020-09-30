@@ -331,6 +331,6 @@ int main ()
 
 		fichParcFile = fopen(FILEPARC, "a");
 		
-		fclose(FILEPARC);
+		fclose(fichParcFile);
 	}
 
