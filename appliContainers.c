@@ -30,11 +30,11 @@ int main()
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	
 	typedef struct Login Login
-	struct Login Login{
+	struct Login{
 		int type = LOGIN;
 		char user[30];
 		char pass[30];
-	}
+	};
 	Login log;
 
 /* 1. Création de la socket */
