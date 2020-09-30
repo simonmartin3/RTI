@@ -17,6 +17,8 @@
 #define PORT 50000 /* Port d'ecoute de la socket serveur */
 #define MAXSTRING 100 /* Longeur des messages */
 
+#define LOGIN 1
+
 int main()
 {
     int hSocket; /* Handle de la socket */
@@ -25,7 +27,15 @@ int main()
     struct sockaddr_in adresseSocket; /* Structure de type sockaddr - ici, cas de TCP */
     unsigned int tailleSockaddr_in;
     int ret; /* valeur de retour */
-    char msgClient[MAXSTRING], msgServeur[MAXSTRING], user[30], pass[30];
+    char msgClient[MAXSTRING], msgServeur[MAXSTRING];
+	
+	typedef struct Login Login
+	struct Login Login{
+		int type = LOGIN;
+		char user[30];
+		char pass[30];
+	}
+	Login log;
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -72,18 +82,17 @@ int main()
 /* 5.Envoi d'un message client */
     
 	puts("Entrer l'user :");
-	scanf("%s", user);
+	scanf("%s", log.user);
 		
 	puts("Entrer le password :");
-	scanf("%s", pass);
+	scanf("%s", log.pass);
 	
-	strcpy(msgClient, user);
+	strcpy(msgClient, log.type);
+	strcat(msgClient, "#");
+	strcat(msgClient, log.user);
 	strcat(msgClient, "-");
-	strcat(msgClient, pass);
+	strcat(msgClient, log.pass);
 	
-	
-	//strcpy(msgClient,"Bonjour ! Nous nous connaissons ?");
-
     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
     {
         printf("Erreur sur le send de la socket %d\n", errno);
