@@ -43,7 +43,8 @@ int main ()
     char msgServeur[MAXSTRING];
 
 /* Ouverture et/ou création du fichier login.csv */
-	fctFile();
+	ret = fctFile("login.csv");
+	puts(ret);
 
 /* 1. Initialisations */
     puts("* Thread principal serveur demarre *");
@@ -219,9 +220,15 @@ int main ()
 /*             	               fctFile()    	                  */
 /*----------------------------------------------------------------*/
 
-	void fctFile()
+	int fctFile(char *nomFile)
 	{
-		FILE *loginFile;
+		FILE *fp;
+		
+		fp = fopen(nomFile, "r");
+		
+		return fp;
+
+		/*FILE *loginFile;
 		char login[100] = "";
 		int len;
 
@@ -244,18 +251,18 @@ int main ()
 				struct login root = {"root", "root"};
 				
 				strcpy(login, root.user);
-				strcat(login, ",");
+				strcat(login, ";");
 				strcat(login, root.pass);
 				strcat(login, "\n");
 
 				//Ajout login dans fichier
 				fputs(login, loginFile);
-			}
+			} */
 /*			else {*/
 /*				fseek(loginFile, 0, SEEK_SET);*/
 /*				//Lecture fichier*/
 /*				fgets(login, 100, loginFile);*/
-/*				char* token = strtok(login, ",");*/
+/*				char* token = strtok(login, ";");*/
 /*				struct login test;*/
 /*					*/
 /*				strcpy(test.user,token);*/
@@ -265,12 +272,12 @@ int main ()
 /*				printf("%s-%s", test.user, test.pass);*/
 /*				*/
 /*			}*/
-			fclose(loginFile);
+			/* fclose(loginFile);
 		}
 		else {
 			puts("Impossible d'ouvrir le fichier login");
 			exit(1);	
-		}
+		} */
 	}
 
 
