@@ -374,6 +374,8 @@ int main ()
         }
         else {
 
+            strcat(msg,'\r');    
+
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {    
                 if(strcmp(identifiant, msg) == 0)
