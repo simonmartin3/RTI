@@ -349,8 +349,35 @@ int main ()
         switch(msg[0])
         {
             case '1':
-                printf("login\n");
+                authentification(msg);
                 break;
+        }
+    }
+
+/*----------------------------------------------------------------*/
+/*                         authentification()                        */
+/*----------------------------------------------------------------*/
+
+    void authentification(char *msg)
+    {
+        FILE *fp;
+        char identifiant[MAXSTRING] = "";
+
+        fp = fopen(FILELOG, "r");
+        
+
+        if(fp == (FILE*) NULL)
+        {
+            printf("Le fichier %s n'existe pas.\n", FILELOG);
+            exit(1);
+        }
+        else {
+
+            while(fgets(identifiant, MAXSTRING, fp) != NULL)
+            {    
+                printf("%s\n", identifiant);
+            }
+            fclose(fp);
         }
     }
 
