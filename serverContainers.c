@@ -33,7 +33,7 @@ int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 int fctFile(char *nomFile);
 void createLogin();
 void createFichParc();
-int checkCommande(char *msg);
+char * checkCommande(char *msg);
 void pressEnter(void);
 char * authentification(char *msg);
 
@@ -148,7 +148,7 @@ int main ()
         int vr = (int)(param), finDialogue=0, iCliTraite;
         int retRecv;
         char * numThr = getThreadIdentity();
-        char * ret;
+        char * ret = (char *)malloc(MAXSTRING);
         int hSocketServ;
 
         while (1)
@@ -293,7 +293,7 @@ int main ()
 
     char * checkCommande(char *msg)
     {
-        char * ret;
+        char * ret = (char *)malloc(MAXSTRING);
         switch(msg[0])
         {
             case '1':
@@ -318,7 +318,7 @@ int main ()
         const char s[2] = "#";
         char *token;
         char test[MAXSTRING];
-        char find = "false";
+        char *find = (char *)malloc(MAXSTRING);
 
         fp = fopen(FILELOG, "r");
         
