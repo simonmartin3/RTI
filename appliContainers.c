@@ -101,7 +101,7 @@ int main()
             printf("Recv socket OK\n");
 
         printf("Message recu en ACK = %s\n", msgServeur);
-    }while(msgServeur != "1");
+    }while(strcmp(msgServeur, "1") != 0);
 
 /* 7.Envoi d'un deuxième message client */
     printf("Message a envoyer : ");
