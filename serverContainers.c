@@ -383,11 +383,11 @@ int main ()
                 token = strtok(NULL, s);
             }
 
-            //strcat(test,"\r");
+            strcat(test,"\r");
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {    
-                if(strcmp(identifiant, msg) == 0)
+                if(strcmp(identifiant, test) == 0)
                 {
                     printf("good\n");
                 }
