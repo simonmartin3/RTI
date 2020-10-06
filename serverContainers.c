@@ -376,7 +376,13 @@ int main ()
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {    
-                printf("%s\n", identifiant);
+                if(strcmp(identifiant, msg) == 0)
+                {
+                    printf("good\n");
+                }
+                else {
+                    printf("bad\n");
+                }
             }
             fclose(fp);
         }
