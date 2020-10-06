@@ -13,6 +13,7 @@
 #include <netinet/tcp.h> /* pour la conversion adresse reseau-format dot */
 #include <arpa/inet.h> /* pour la conversion adresse reseau-format dot */
 #include "socketLib.h"
+#include "CMMP.h"
 
 #define PORT 50000 /* Port d'ecoute de la socket serveur */
 #define MAXSTRING 100 /* Longeur des messages */
@@ -28,14 +29,6 @@ int main()
     unsigned int tailleSockaddr_in;
     int ret; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
-	
-	typedef struct Login Login;
-	struct Login{
-		int type;
-		char user[30];
-		char pass[30];
-	};
-	Login log;
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -81,19 +74,7 @@ int main()
 
 /* 5.Envoi d'un message client */
     
-	log.type=LOGIN;
-	
-	puts("Entrer l'user :");
-	fgets(log.user, sizeof(log.user),stdin);
-		
-	puts("Entrer le password :");
-	fgets(log.pass, sizeof(log.pass),stdin);
-	
-	strcpy(msgClient, "1");
-	strcat(msgClient, "#");
-	strcat(msgClient, log.user-1);
-	strcat(msgClient, "-");
-	strcat(msgClient, log.pass);
+	msgClient = login();
 	
     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
     {
