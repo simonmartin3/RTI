@@ -348,7 +348,7 @@ int main ()
     {
         switch(msg[0])
         {
-            case 1:
+            case '1':
                 printf("login\n");
                 break;
         }
