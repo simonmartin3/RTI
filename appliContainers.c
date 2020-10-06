@@ -84,14 +84,14 @@ int main()
 	log.type=LOGIN;
 	
 	puts("Entrer l'user :");
-	scanf("%s", log->user);
+	fgets(log.user, sizeof(log.user),stdin);
 		
 	puts("Entrer le password :");
-	scanf("%s", log->pass);
+	fgets(log.pass, sizeof(log.pass),stdin);
 	
-	strcpy(msgClient, log.type);
+	strcpy(msgClient, "1");
 	strcat(msgClient, "#");
-	strcat(msgClient, log.user);
+	strcat(msgClient, log.user-1);
 	strcat(msgClient, "-");
 	strcat(msgClient, log.pass);
 	
