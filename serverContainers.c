@@ -383,7 +383,7 @@ int main ()
                 token = strtok(NULL, s);
             }
 
-            strcat(test,"\r");
+            strcat(test,"\r\n");
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {    
