@@ -369,11 +369,9 @@ int main ()
         token = strtok(msg, s);
 
         while(token != NULL) {
-            printf("%s\n", token);
-
             token = strtok(NULL, s);
         }
-
+printf("%s\n", token);
         pressEnter();
 
         fp = fopen(FILELOG, "r");
