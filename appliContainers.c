@@ -74,32 +74,34 @@ int main()
         printf("Connect socket OK\n");
 
 /* 5.Envoi d'un message client */
-    
-	msgTmp = login();
-
-	strcpy(msgClient, msgTmp);
-	
-    if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
+    do
     {
-        printf("Erreur sur le send de la socket %d\n", errno);
-        close(hSocket); /* Fermeture de la socket */
-        exit(1);
-    }
-    else 
-        printf("Send socket OK\n");
+    	msgTmp = login();
 
-    printf("Message envoye = %s\n", msgClient);
-/* 6. Reception de l'ACK du serveur au client */
-    if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
-    {
-        printf("Erreur sur le recv de la socket %d\n", errno);
-        close(hSocket); /* Fermeture de la socket */
-        exit(1);
-    }
-    else 
-        printf("Recv socket OK\n");
+    	strcpy(msgClient, msgTmp);
+    	
+        if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
+        {
+            printf("Erreur sur le send de la socket %d\n", errno);
+            close(hSocket); /* Fermeture de la socket */
+            exit(1);
+        }
+        else 
+            printf("Send socket OK\n");
 
-    printf("Message recu en ACK = %s\n", msgServeur);
+        printf("Message envoye = %s\n", msgClient);
+    /* 6. Reception de l'ACK du serveur au client */
+        if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+        {
+            printf("Erreur sur le recv de la socket %d\n", errno);
+            close(hSocket); /* Fermeture de la socket */
+            exit(1);
+        }
+        else 
+            printf("Recv socket OK\n");
+
+        printf("Message recu en ACK = %s\n", msgServeur);
+    }while(msgServeur != "1");
 
 /* 7.Envoi d'un deuxième message client */
     printf("Message a envoyer : ");
