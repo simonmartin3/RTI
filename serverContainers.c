@@ -392,6 +392,8 @@ int main ()
                     printf("good\n");
                 }
                 else {
+                    printf("%s\n", test);
+                    printf("%s\n", identifiant);
                     printf("bad\n");
                 }
             }
