@@ -26,13 +26,15 @@ int indiceCourant=-1;
 pthread_t threadHandle[NB_MAX_CLIENTS]; /* Threads pour clients*/
 void * fctThread(void * param);
 char * getThreadIdentity();
-void pressEnter(void);
+
 int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 
 /* My function */
 int fctFile(char *nomFile);
 void createLogin();
 void createFichParc();
+void checkCommande(char *msg);
+void pressEnter(void);
 
 int main ()
 {
@@ -183,7 +185,11 @@ int main ()
                 {
                     finDialogue=1; break;
                 }
-                
+
+                checkCommande(msgClient);
+
+                pressEnter();
+
                 sprintf(msgServeur,"ACK pour votre message : <%s>", msgClient);
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
@@ -333,4 +339,13 @@ int main ()
 		
 		fclose(fichParcFile);
 	}
+
+/*----------------------------------------------------------------*/
+/*                         checkCommande()                        */
+/*----------------------------------------------------------------*/
+
+    void checkCommande(char *msg)
+    {
+        printf("%c\n", msg[0]);
+    }
 
