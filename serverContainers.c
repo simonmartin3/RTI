@@ -365,13 +365,15 @@ int main ()
         char identifiant[MAXSTRING] = "";
         const char s[2] = "#";
         char *token;
+        char test[MAXSTRING];
 
         token = strtok(msg, s);
 
-        while(token != NULL) {
+        for(i=0; token != NULL; i++) {
+            strcpy(test, token);
             token = strtok(NULL, s);
         }
-printf("%s\n", token);
+        printf("%s\n", test);
         pressEnter();
 
         fp = fopen(FILELOG, "r");
