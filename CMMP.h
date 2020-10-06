@@ -22,7 +22,7 @@
 #include <time.h>
 #include <pthread.h>
 
-char* login();
+char * login();
 /*void inputTruck(int*, int*);
 void inputDone(char*, int*);
 void outputReady(int*, char*, int*);

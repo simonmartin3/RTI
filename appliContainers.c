@@ -29,6 +29,7 @@ int main()
     unsigned int tailleSockaddr_in;
     int ret; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
+	char * msgTmp;
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -74,7 +75,9 @@ int main()
 
 /* 5.Envoi d'un message client */
     
-	msgClient = login();
+	msgTmp = login();
+
+	strcpy(msgClient, msgTmp);
 	
     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
     {
