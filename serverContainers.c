@@ -369,7 +369,7 @@ int main ()
 
         token = strtok(msg, s);
 
-        for(i=0; token != NULL; i++) {
+        for(int i=0; token != NULL; i++) {
             strcpy(test, token);
             token = strtok(NULL, s);
         }
