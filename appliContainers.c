@@ -115,7 +115,7 @@ int main()
         printf("5 - Signalement maximum container.\n");
         printf("6 - LOGOUT.\n");
         printf("Veuillez selectionner une option :");
-        scanf("%d", option);
+        scanf("%d", &option);
         fflush(stdin);
     }while(option < 1 && option > 7);
 
