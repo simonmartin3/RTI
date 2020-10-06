@@ -117,10 +117,12 @@ int main()
         printf("Veuillez selectionner une option :");
         scanf("%d", &option);
         fflush(stdin);
+        option = (int)option;
     }while(option < 1 || option > 7);
 
 
-    printf("Message a envoyer : ");
+    printf("%d\n", option);
+
 	fgets(msgClient, sizeof(msgClient), stdin);
     
     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
