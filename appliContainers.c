@@ -117,7 +117,7 @@ int main()
         printf("Veuillez selectionner une option :");
         scanf("%d", &option);
         fflush(stdin);
-    }while(option < 1 && option > 7);
+    }while(option < 1 || option > 7);
 
 
     printf("Message a envoyer : ");
