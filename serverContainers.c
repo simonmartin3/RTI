@@ -35,6 +35,7 @@ void createLogin();
 void createFichParc();
 void checkCommande(char *msg);
 void pressEnter(void);
+void authentification(char *msg)
 
 int main ()
 {
