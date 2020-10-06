@@ -17,8 +17,7 @@
 
 #define PORT 50000 /* Port d'ecoute de la socket serveur */
 #define MAXSTRING 100 /* Longeur des messages */
-
-#define LOGIN 1
+#define EOC "END_OF_CONNEXION"
 
 int main()
 {
@@ -27,7 +26,7 @@ int main()
     struct in_addr adresseIP; /* Adresse Internet au format reseau */
     struct sockaddr_in adresseSocket; /* Structure de type sockaddr - ici, cas de TCP */
     unsigned int tailleSockaddr_in;
-    int ret, option; /* valeur de retour */
+    int ret, option, logout = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp;
 
@@ -101,51 +100,67 @@ int main()
             printf("Recv socket OK\n");
 
         printf("Message recu en ACK = %s\n", msgServeur);
-    }while(strcmp(msgServeur, "1") != 0);
+    }while(strcmp(msgServeur, "true") != 0);
 
 /* 7.Choix d'une action du client */
-    
     do
     {
-        system("clear");
-        printf("1 - Signalement qu'un camion arrive.\n");
-        printf("2 - Signalement container.\n");
-        printf("3 - Signalement vehicule disponible.\n");
-        printf("4 - Signalement container charge.\n");
-        printf("5 - Signalement maximum container.\n");
-        printf("6 - LOGOUT.\n");
-        printf("Veuillez selectionner une option :");
-        scanf("%d", &option);
-        fflush(stdin);
-        option = (int)option;
-    }while(option < 1 || option > 7);
+        do
+        {
+            system("clear");
+            printf("1 - Signalement qu'un camion arrive.\n");
+            printf("2 - Signalement container.\n");
+            printf("3 - Signalement vehicule disponible.\n");
+            printf("4 - Signalement container charge.\n");
+            printf("5 - Signalement maximum container.\n");
+            printf("6 - LOGOUT.\n");
+            printf("Veuillez selectionner une option :");
+            scanf("%d", &option);
+            fflush(stdin);
+            option = (int)option;
+        }while(option < 1 || option > 7);
 
+        switch(option)
+        {
+            case 1 :
+                //msgTmp = inputTruck();
+                break;
 
-    printf("%d\n", option);
+            case 7 :
+                msgTmp = logout();
+                break;
+        }
 
-	fgets(msgClient, sizeof(msgClient), stdin);
-    
-    if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
-    {
-        printf("Erreur sur le send de la socket %d\n", errno);
-        close(hSocket); /* Fermeture de la socket */
-        exit(1);
-    }
-    else 
-        printf("Send socket OK\n");
+        strcpy(msgClient, msgTmp);
+        
+        if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
+        {
+            printf("Erreur sur le send de la socket %d\n", errno);
+            close(hSocket); /* Fermeture de la socket */
+            exit(1);
+        }
+        else 
+            printf("Send socket OK\n");
 
-    printf("Message envoye = %s\n", msgClient);
+        printf("Message envoye = %s\n", msgClient);
 
-/* 8. Reception de l'ACK du serveur au client */
-    if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
-    {
-        printf("Erreur sur le recv de la socket %d\n", errno);
-        close(hSocket); /* Fermeture de la socket */
-        exit(1);
-    }
-    else 
-        printf("Recv socket OK\n");
-    printf("Message recu en ACK = %s\n", msgServeur);
+    /* 8. Reception de l'ACK du serveur au client */
+        if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+        {
+            printf("Erreur sur le recv de la socket %d\n", errno);
+            close(hSocket); /* Fermeture de la socket */
+            exit(1);
+        }
+        else 
+            printf("Recv socket OK\n");
+        printf("Message recu en ACK = %s\n", msgServeur);
+
+        if (strcmp(msgServeur, EOC)==0)
+        {
+            logout=1;
+        }
+
+    }while(logout != 1);
 
 /* 9. Fermeture de la socket */
     close(hSocket); /* Fermeture de la socket */

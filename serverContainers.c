@@ -35,7 +35,7 @@ void createLogin();
 void createFichParc();
 int checkCommande(char *msg);
 void pressEnter(void);
-int authentification(char *msg);
+char * authentification(char *msg);
 
 int main ()
 {
@@ -148,6 +148,7 @@ int main ()
         int vr = (int)(param), finDialogue=0, iCliTraite;
         int retRecv;
         char * numThr = getThreadIdentity();
+        char * ret;
         int hSocketServ;
 
         while (1)
@@ -187,9 +188,9 @@ int main ()
                     finDialogue=1; break;
                 }
 
-                retRecv = checkCommande(msgClient);
+                ret = checkCommande(msgClient);
 
-                sprintf(msgServeur,"%d", retRecv);
+                sprintf(msgServeur,"%s", ret);
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
                 {
@@ -255,59 +256,6 @@ int main ()
 		else {
 			return 0;
 		}
-		
-		
-
-		/*FILE *loginFile;
-		char login[100] = "";
-		int len;
-
-		struct login {
-			char user[30];
-			char pass[30];
-		};
-		
-		loginFile = fopen(FILELOG, "a+");
-
-		if(login != NULL)
-		{
-			puts("Fichier ouvert");
-	
-			fseek(loginFile, 0, SEEK_END);			
-
-			len = ftell(loginFile);
-			if(len == 0)
-			{
-				struct login root = {"root", "root"};
-				
-				strcpy(login, root.user);
-				strcat(login, ";");
-				strcat(login, root.pass);
-				strcat(login, "\n");
-
-				//Ajout login dans fichier
-				fputs(login, loginFile);
-			} */
-/*			else {*/
-/*				fseek(loginFile, 0, SEEK_SET);*/
-/*				//Lecture fichier*/
-/*				fgets(login, 100, loginFile);*/
-/*				char* token = strtok(login, ";");*/
-/*				struct login test;*/
-/*					*/
-/*				strcpy(test.user,token);*/
-/*				token = strtok(NULL, login);*/
-/*				strcpy(test.pass,token);*/
-/*				*/
-/*				printf("%s-%s", test.user, test.pass);*/
-/*				*/
-/*			}*/
-			/* fclose(loginFile);
-		}
-		else {
-			puts("Impossible d'ouvrir le fichier login");
-			exit(1);	
-		} */
 	}
 
 /*----------------------------------------------------------------*/
@@ -343,12 +291,16 @@ int main ()
 /*                         checkCommande()                        */
 /*----------------------------------------------------------------*/
 
-    int checkCommande(char *msg)
+    char * checkCommande(char *msg)
     {
-        int ret;
+        char * ret;
         switch(msg[0])
         {
             case '1':
+                ret = authentification(msg);
+                break;
+
+            case '7':
                 ret = authentification(msg);
                 break;
         }
@@ -359,14 +311,14 @@ int main ()
 /*                         authentification()                        */
 /*----------------------------------------------------------------*/
 
-    int authentification(char *msg)
+    char * authentification(char *msg)
     {
         FILE *fp;
         char identifiant[MAXSTRING] = "";
         const char s[2] = "#";
         char *token;
         char test[MAXSTRING];
-        int find = 0;
+        char find = "false";
 
         fp = fopen(FILELOG, "r");
         
@@ -390,11 +342,11 @@ int main ()
             {    
                 if(strcmp(identifiant, test) == 0)
                 {
-                    find = 1;
+                    find = "true";
                     break;
                 }
                 else {
-                    find = 0;
+                    find = "false";
                 }
             }
             return find;
