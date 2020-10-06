@@ -363,14 +363,15 @@ int main ()
     {
         FILE *fp;
         char identifiant[MAXSTRING] = "";
+        const char s[2] = "#";
         char *token;
 
-        token = strtok(msg, '#');
+        token = strtok(msg, s);
 
         while(token != NULL) {
             printf("%s\n", token);
 
-            token = strtok(NULL, '#');
+            token = strtok(NULL, s);
         }
 
         pressEnter();
