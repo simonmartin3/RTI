@@ -16,10 +16,14 @@ char * login()
 	char user[30], pass[30];
 
 	puts("Entrer l'user :");
-	fgets(user, sizeof(user),stdin);
-		
+	scanf("%s", user);
+	
+	fflush(stdin);
+	
 	puts("Entrer le password :");
-	fgets(pass, sizeof(pass),stdin);
+	scanf("%s", pass);
+	
+	fflush(stdin);
 
 	sprintf(message, "%d", type);
 
