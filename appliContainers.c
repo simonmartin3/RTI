@@ -157,6 +157,15 @@ int main()
 
         if (strcmp(msgServeur, EOC)==0)
         {
+            if (send(hSocket, EOC, MAXSTRING, 0) == -1) /* pas message urgent */
+            {
+                printf("Erreur sur le send de la socket %d\n", errno);
+                close(hSocket); /* Fermeture de la socket */
+                exit(1);
+            }
+            else 
+                printf("Send socket OK\n");
+
             end=1;
         }
 
