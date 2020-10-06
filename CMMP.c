@@ -29,7 +29,7 @@ char * login()
 
 	strcat(message, "#");
 	strcat(message, user);
-	strcat(message, "-");
+	strcat(message, ";");
 	strcat(message, pass);
 
 	return message;
