@@ -367,25 +367,23 @@ int main ()
         char *token;
         char test[MAXSTRING];
 
-        token = strtok(msg, s);
-
-        for(int i=0; token != NULL; i++) {
-            strcpy(test, token);
-            token = strtok(NULL, s);
-        }
-        printf("%s\n", test);
-        pressEnter();
-
         fp = fopen(FILELOG, "r");
         
-
-
         if(fp == (FILE*) NULL)
         {
             printf("Le fichier %s n'existe pas.\n", FILELOG);
             exit(1);
         }
         else {   
+
+            token = strtok(msg, s);
+
+            while(token != NULL) {
+                strcpy(test, token);
+                token = strtok(NULL, s);
+            }
+
+            strcat(test,'\r');
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {    
