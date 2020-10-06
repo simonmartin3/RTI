@@ -363,22 +363,32 @@ int main ()
     {
         FILE *fp;
         char identifiant[MAXSTRING] = "";
+        char *token;
+
+        token = strtok(msg, '#');
+
+        while(token != NULL) {
+            printf("%s\n", token);
+
+            token = strtok(NULL, '#');
+        }
+
+        pressEnter();
 
         fp = fopen(FILELOG, "r");
         
+
 
         if(fp == (FILE*) NULL)
         {
             printf("Le fichier %s n'existe pas.\n", FILELOG);
             exit(1);
         }
-        else {
-
-            strcat(msg,'\r');    
+        else {   
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {    
-                if(strcmp(identifiant, msg) == 0)
+                if(strcmp(identifiant, ) == 0)
                 {
                     printf("good\n");
                 }
