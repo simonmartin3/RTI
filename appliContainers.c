@@ -28,7 +28,7 @@ int main()
     unsigned int tailleSockaddr_in;
     int ret, option, end = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
-	char * msgTmp;
+	char * msgTmp = (char *)malloc(MAXSTRING);
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
