@@ -388,7 +388,7 @@ int main ()
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {    
-                if(strcmp(identifiant, ) == 0)
+                if(strcmp(identifiant, msg) == 0)
                 {
                     printf("good\n");
                 }
