@@ -27,7 +27,7 @@ int main()
     struct in_addr adresseIP; /* Adresse Internet au format reseau */
     struct sockaddr_in adresseSocket; /* Structure de type sockaddr - ici, cas de TCP */
     unsigned int tailleSockaddr_in;
-    int ret; /* valeur de retour */
+    int ret, option; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp;
 
@@ -103,7 +103,23 @@ int main()
         printf("Message recu en ACK = %s\n", msgServeur);
     }while(strcmp(msgServeur, "1") != 0);
 
-/* 7.Envoi d'un deuxième message client */
+/* 7.Choix d'une action du client */
+    
+    do
+    {
+        system("clear");
+        printf("1 - Signalement qu'un camion arrive.\n");
+        printf("2 - Signalement container.\n");
+        printf("3 - Signalement vehicule disponible.\n");
+        printf("4 - Signalement container charge.\n");
+        printf("5 - Signalement maximum container.\n");
+        printf("6 - LOGOUT.\n");
+        printf("Veuillez selectionner une option :");
+        scanf("%d", option);
+        fflush(stdin);
+    }while(option < 1 && option > 7);
+
+
     printf("Message a envoyer : ");
 	fgets(msgClient, sizeof(msgClient), stdin);
     

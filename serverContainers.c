@@ -189,8 +189,6 @@ int main ()
 
                 retRecv = checkCommande(msgClient);
 
-                pressEnter();
-
                 sprintf(msgServeur,"%d", retRecv);
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
