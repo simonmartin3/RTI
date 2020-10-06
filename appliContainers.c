@@ -26,7 +26,7 @@ int main()
     struct in_addr adresseIP; /* Adresse Internet au format reseau */
     struct sockaddr_in adresseSocket; /* Structure de type sockaddr - ici, cas de TCP */
     unsigned int tailleSockaddr_in;
-    int ret, option, logout = 0; /* valeur de retour */
+    int ret, option, end = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp;
 
@@ -157,10 +157,10 @@ int main()
 
         if (strcmp(msgServeur, EOC)==0)
         {
-            logout=1;
+            end=1;
         }
 
-    }while(logout != 1);
+    }while(end != 1);
 
 /* 9. Fermeture de la socket */
     close(hSocket); /* Fermeture de la socket */
