@@ -33,9 +33,9 @@ int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 int fctFile(char *nomFile);
 void createLogin();
 void createFichParc();
-void checkCommande(char *msg);
+int checkCommande(char *msg);
 void pressEnter(void);
-void authentification(char *msg);
+int authentification(char *msg);
 
 int main ()
 {
@@ -187,11 +187,11 @@ int main ()
                     finDialogue=1; break;
                 }
 
-                checkCommande(msgClient);
+                retRecv = checkCommande(msgClient);
 
                 pressEnter();
 
-                sprintf(msgServeur,"ACK pour votre message : <%s>", msgClient);
+                sprintf(msgServeur,"ACK pour votre message : <%d>", retRecv);
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
                 {
@@ -345,27 +345,30 @@ int main ()
 /*                         checkCommande()                        */
 /*----------------------------------------------------------------*/
 
-    void checkCommande(char *msg)
+    int checkCommande(char *msg)
     {
+        int ret;
         switch(msg[0])
         {
             case '1':
-                authentification(msg);
+                ret = authentification(msg);
                 break;
         }
+        return ret;
     }
 
 /*----------------------------------------------------------------*/
 /*                         authentification()                        */
 /*----------------------------------------------------------------*/
 
-    void authentification(char *msg)
+    int authentification(char *msg)
     {
         FILE *fp;
         char identifiant[MAXSTRING] = "";
         const char s[2] = "#";
         char *token;
         char test[MAXSTRING];
+        int find = 0;
 
         fp = fopen(FILELOG, "r");
         
@@ -389,14 +392,14 @@ int main ()
             {    
                 if(strcmp(identifiant, test) == 0)
                 {
-                    printf("good\n");
+                    find = 1;
+                    break;
                 }
                 else {
-                    printf("%s\n", test);
-                    printf("%s\n", identifiant);
-                    printf("bad\n");
+                    find = 0;
                 }
             }
+            return find;
             fclose(fp);
         }
     }
