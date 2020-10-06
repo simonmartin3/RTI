@@ -346,6 +346,11 @@ int main ()
 
     void checkCommande(char *msg)
     {
-        printf("%c\n", msg[0]);
+        switch(msg[0])
+        {
+            case 1:
+                printf("login\n");
+                break;
+        }
     }
 
