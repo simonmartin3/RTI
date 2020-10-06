@@ -191,7 +191,7 @@ int main ()
 
                 pressEnter();
 
-                sprintf(msgServeur,"ACK pour votre message : <%d>", retRecv);
+                sprintf(msgServeur,"%d", retRecv);
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
                 {
