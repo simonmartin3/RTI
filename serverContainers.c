@@ -302,6 +302,8 @@ int main ()
 
             case '7':
                 ret = authentification(msg);
+                if(strcmp(ret, "true") == 0)
+                    ret = EOC;
                 break;
         }
         return ret;
