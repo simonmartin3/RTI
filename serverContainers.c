@@ -276,7 +276,7 @@ int main ()
             
 			pressEnter();
 
-			printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n",portTest, fileLog, fileParc, sepCsv);
+			printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n", portTest, fileLog, fileParc, sepCsv);
 
 			pressEnter();
 
@@ -315,7 +315,7 @@ int main ()
 	        }
 	        
         }
-        
+        printf("%s\n", ret);
        	return ret;
 
 	}
