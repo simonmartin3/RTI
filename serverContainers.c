@@ -295,11 +295,12 @@ int main ()
         char *token;
 		char * ret = (char *)malloc(MAXSTRING);
 		char paramSearch[30];
+        int find = 0;
 
 		strcpy(paramSearch, param);
 
-		while(fgets(tmp, MAXSTRING, fp) != NULL)
-        {    
+		while(fgets(tmp, MAXSTRING, fp) != NULL || find != 1)
+        {   
             printf("%s\n", tmp);
 
             token = strtok(tmp, s);
@@ -308,13 +309,14 @@ int main ()
 	        	if(strcmp(token, paramSearch) == 0)
 	        	{
 	        		token = strtok(NULL, s);
-	        		return token;
+	        		ret = token;
+                    find = 1;
+                    break;
 	        	}
 	            token = strtok(NULL, s);
 	        }
-	        
         }
-        return "false";
+        return ret;
 	}
 
 /*----------------------------------------------------------------*/
