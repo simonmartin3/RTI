@@ -293,10 +293,7 @@ int main ()
 		const char s[2] = "=";
         char *token;
 		char * ret = (char *)malloc(MAXSTRING);
-		char paramSearch[30];
         int find = 0;
-
-		strcpy(paramSearch, param);
 
 		while(fgets(tmp, MAXSTRING, fp) != NULL && find != 1)
         {   
@@ -313,6 +310,7 @@ int main ()
 	        		//printf("La valeur est : %s\n", token);
                     find = 1;
                     ret = token;
+                    printf("La valeur est : %s\n", ret);
                     break;
 	        	}
 	            token = strtok(NULL, s);
