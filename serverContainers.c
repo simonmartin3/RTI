@@ -305,14 +305,16 @@ int main ()
 
             token = strtok(tmp, s);
 
-	        while(token != NULL) {
-	        	if(strcmp(token, param) == 0)
-	        	{
-	        		token = strtok(NULL, s);
-	        		ret = token;
-                    find = 1;
-                    break;
-	        	}
+	        while(token != NULL) 
+            {
+                printf("%s\n", token);
+	        	// if(strcmp(token, param) == 0)
+	        	// {
+	        	// 	token = strtok(NULL, s);
+	        	// 	ret = token;
+          //           find = 1;
+          //           break;
+	        	// }
 	            token = strtok(NULL, s);
 	        }
         }
