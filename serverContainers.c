@@ -484,9 +484,9 @@ int main ()
             token = strtok(NULL, s);
         }
 
-        Container newContainer = (char *)malloc(sizeof(Container));
+        Container newContainer;
 
-        newContainer.idContainer = param;
+        strcpy(newContainer.idContainer, param);
 
         fp = fopen(FILEPARC, "w");
 
