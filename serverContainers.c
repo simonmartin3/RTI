@@ -273,7 +273,6 @@ int main ()
 	{
 		FILE *fp;
 
-		char * portTest = (char *)malloc(MAXSTRING);
 		fp = fopen(SERVEURCONF, "r");
 		
 		if(fp == (FILE*) NULL)
@@ -485,7 +484,7 @@ int main ()
 
         Container newContainer;
 
-        newContainer.idContainer = param;
+        newContainer.idContainer = atoi(param);
 
         printf("le container %d a ete cree.\n", newContainer.idContainer);
 
