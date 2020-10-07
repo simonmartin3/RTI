@@ -310,7 +310,7 @@ int main ()
 	        	if(strcmp(token, param) == 0)
 	        	{
 	        		token = strtok(NULL, s);
-	        		printf("La valeur est : %s\n", token);
+	        		//printf("La valeur est : %s\n", token);
                     find = 1;
                     ret = token;
                     break;
