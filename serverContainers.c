@@ -309,17 +309,13 @@ int main ()
 	        	{
 	        		token = strtok(NULL, s);
 	        		ret = token;
-	        		printf("%s\n", ret);
-	        		break;
-	        		printf("%s\n", ret);
+	        		return ret;
 	        	}
 	            token = strtok(NULL, s);
 	        }
 	        
         }
-        printf("%s\n", ret);
-       	return ret;
-
+        
 	}
 
 /*----------------------------------------------------------------*/
