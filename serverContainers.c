@@ -308,8 +308,7 @@ int main ()
 	        	if(strcmp(token, paramSearch) == 0)
 	        	{
 	        		token = strtok(NULL, s);
-	        		ret = token;
-	        		return ret;
+	        		return token;
 	        	}
 	            token = strtok(NULL, s);
 	        }
