@@ -271,7 +271,9 @@ int main ()
 			
             port = (char *)malloc(MAXSTRING);
 			port = searchConfig("PORT_SERVEUR", fp);
-			// fileLog = searchConfig("FILELOG", fp);
+			
+            fileLog = (char *)malloc(MAXSTRING);
+            fileLog = searchConfig("FILELOG", fp);
 			// fileParc = searchConfig("FILEPARC", fp);
 			// sepCsv = searchConfig("SEP_CSV", fp);
 
