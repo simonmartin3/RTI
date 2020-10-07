@@ -304,7 +304,7 @@ int main ()
             token = strtok(tmp, s);
 
 	        while(token != NULL) {
-	        	if(strcmp(token, paramSearch) == 0)
+	        	if(strcmp(token, param) == 0)
 	        	{
 	        		token = strtok(NULL, s);
 	        		ret = token;
