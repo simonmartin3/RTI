@@ -50,7 +50,7 @@ char * port;
 typedef struct Container Container;
 struct Container
 {
-    int idContainer;
+    char idContainer[20];
     char coordonnees[10];
     int etat;
     char dateReservation[20];
@@ -462,6 +462,8 @@ int main ()
 
     char * createContainer(char *msg)
     {
+        FILE *fp;
+
         char * ret = (char *)malloc(MAXSTRING);
         const char s[2] = "#";
         const char pv[2] = ";";
@@ -482,9 +484,16 @@ int main ()
             token = strtok(NULL, s);
         }
 
-        Container newContainer;
+        Container newContainer = (char *)malloc(sizeof(Container));
 
-        newContainer.idContainer = atoi(param);
+        newContainer.idContainer = param;
+
+        fp = fopen(FILEPARC, "w");
+
+        //Ajout login dans fichier
+        fwrite(&container, sizeof(Container), 1, fp);
+        
+        fclose(fp);
 
         printf("le container %d a ete cree.\n", newContainer.idContainer);
 
