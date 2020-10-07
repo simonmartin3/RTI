@@ -19,6 +19,7 @@
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
 #define FILELOG "login.csv"
 #define FILEPARC "FICH_PARC"
+#define SERVEURCONF "serveur.conf"
 
 pthread_mutex_t mutexIndiceCourant;
 pthread_cond_t condIndiceCourant;
@@ -31,6 +32,7 @@ int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 
 /* My function */
 int fctFile(char *nomFile);
+void openConfig();
 void createLogin();
 void createFichParc();
 char * checkCommande(char *msg);
@@ -50,7 +52,10 @@ int main ()
 	int ret;
     char msgServeur[MAXSTRING];
 
-/* Ouverture et/ou création du fichier login.csv */
+/* Ouverture du fichier de configuration */
+    openConfig();
+
+/* Ouverture et/ou création du fichier login.csv & FICH_PARC */
 	ret = fctFile(FILELOG);
 	if(ret != 0)
 	{
@@ -236,6 +241,27 @@ int main ()
 	{
 		printf("Press enter to continue...");
 		getchar();
+	}
+
+/*----------------------------------------------------------------*/
+/*             	               openConfig()    	                  */
+/*----------------------------------------------------------------*/
+
+	void openConfig()
+	{
+		FILE *fp;
+		
+		fp = fopen(SERVEURCONF, "r");
+		
+		if(fp == (FILE*) NULL)
+		{
+			printf("Le fichier %s n'existe pas.\n", nomFile);
+			exit(1);
+		}
+		else {
+			printf("Ouverture du fichier conf.\n");
+			pressEnter();
+		}
 	}
 
 /*----------------------------------------------------------------*/
