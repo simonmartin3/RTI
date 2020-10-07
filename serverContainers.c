@@ -487,7 +487,7 @@ int main ()
 
         newContainer.idContainer = param;
 
-        printf("le container %s a ete cree.\n", newContainer.idContainer);
+        printf("le container %d a ete cree.\n", newContainer.idContainer);
 
         return ret;
     }
