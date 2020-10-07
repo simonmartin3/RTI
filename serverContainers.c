@@ -255,7 +255,7 @@ int main ()
 		
 		if(fp == (FILE*) NULL)
 		{
-			printf("Le fichier %s n'existe pas.\n", nomFile);
+			printf("Le fichier %s n'existe pas.\n", SERVEURCONF);
 			exit(1);
 		}
 		else {
