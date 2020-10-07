@@ -250,7 +250,10 @@ int main ()
 	void openConfig()
 	{
 		FILE *fp;
-		
+		char param[MAXSTRING] = "";
+        const char s[2] = "=";
+        char *token;
+
 		fp = fopen(SERVEURCONF, "r");
 		
 		if(fp == (FILE*) NULL)
@@ -260,7 +263,14 @@ int main ()
 		}
 		else {
 			printf("Ouverture du fichier conf.\n");
+			
+			while(fgets(param, MAXSTRING, fp) != NULL)
+            {    
+                printf("%s\n", param);
+            }
+            
 			pressEnter();
+			fclose(fp);
 		}
 	}
 
@@ -364,7 +374,7 @@ int main ()
                 token = strtok(NULL, s);
             }
 
-            strcat(test,"\r\n");
+            //strcat(test,"\r\n");
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {    
