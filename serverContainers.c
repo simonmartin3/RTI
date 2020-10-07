@@ -309,7 +309,9 @@ int main ()
 	        	{
 	        		token = strtok(NULL, s);
 	        		ret = token;
+	        		printf("%s\n", ret);
 	        		break;
+	        		printf("%s\n", ret);
 	        	}
 	            token = strtok(NULL, s);
 	        }
