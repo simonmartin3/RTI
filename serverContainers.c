@@ -258,6 +258,7 @@ int main ()
 	{
 		FILE *fp;
 
+		char * portTest = (char *)malloc(MAXSTRING);
 		fp = fopen(SERVEURCONF, "r");
 		
 		if(fp == (FILE*) NULL)
@@ -268,14 +269,14 @@ int main ()
 		else {
 			printf("Ouverture du fichier conf.\n");
 			
-			port = searchConfig("PORT_SERVEUR", fp);
+			portTest = searchConfig("PORT_SERVEUR", fp);
 			// fileLog = searchConfig("FILELOG", fp);
 			// fileParc = searchConfig("FILEPARC", fp);
 			// sepCsv = searchConfig("SEP_CSV", fp);
             
 			pressEnter();
 
-			printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n",port, fileLog, fileParc, sepCsv);
+			printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n",portTest, fileLog, fileParc, sepCsv);
 
 			pressEnter();
 
@@ -308,7 +309,6 @@ int main ()
 	        	{
 	        		token = strtok(NULL, s);
 	        		ret = token;
-	        		printf("True : %s\n", ret);
 	        		break;
 	        	}
 	            token = strtok(NULL, s);
