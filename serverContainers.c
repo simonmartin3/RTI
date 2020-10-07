@@ -269,7 +269,7 @@ int main ()
 		else {
 			printf("Ouverture du fichier conf.\n");
 			
-			portTest = searchConfig("PORT_SERVEUR", fp);
+			searchConfig("PORT_SERVEUR", fp);
 			// fileLog = searchConfig("FILELOG", fp);
 			// fileParc = searchConfig("FILEPARC", fp);
 			// sepCsv = searchConfig("SEP_CSV", fp);
