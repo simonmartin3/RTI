@@ -488,10 +488,10 @@ int main ()
         Container newContainer;
 
         strcpy(newContainer.idContainer, param);
-        random = itoa(rand()%20);
+        sprintf(random, "%d" ,rand()%20);
         strcpy(newContainer.coordonnees, random);
         strcat(newContainer.coordonnees, ",");
-        random = itoa(rand()%20);
+        sprintf(random, "%d" ,rand()%20);
         strcat(newContainer.coordonnees, random);
 
         fp = fopen(FILEPARC, "w");
