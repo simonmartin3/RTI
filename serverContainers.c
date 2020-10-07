@@ -301,24 +301,13 @@ int main ()
             token = strtok(tmp, s);
 
 	        while(token != NULL) {
-	        	if(strcmp(token, param) == 0)
-	        	{
-	        		token = strtok(NULL, s);
-	        		ret = token;
-	        		break;
-	        	}
+	        	printf("%s\n", token);
 	            token = strtok(NULL, s);
 	        }
-	        ret = "false";
+	        
         }
-        if(strcmp(ret, "fasle\n") == 0)
-       	{
-       		printf("Le serveur n'a pas su trouver certains parametres de config.\n");
-       		exit(1);
-       	}
-       	else {
-       		return ret;
-       	}
+        
+       	return ret;
 
 	}
 
