@@ -469,7 +469,7 @@ int main ()
         const char pv[2] = ";";
         char param[MAXSTRING];
         char *token;
-        char *random;
+        char random[MAXSTRING];
 
         token = strtok(msg, s);
 
