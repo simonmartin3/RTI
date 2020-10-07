@@ -278,7 +278,7 @@ int main ()
 			printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n",port, fileLog, fileParc, sepCsv);
 
 			pressEnter();
-			
+
 			fclose(fp);
 		}
 	}
@@ -311,7 +311,7 @@ int main ()
 	        }
 	        ret = "false";
         }
-        if(strcmp(ret, "fasle") == 0)
+        if(strcmp(ret, "fasle\n") == 0)
        	{
        		printf("Le serveur n'a pas su trouver certains parametres de config.\n");
        		exit(1);
