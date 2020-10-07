@@ -488,6 +488,10 @@ int main ()
 
         strcpy(newContainer.idContainer, param);
 
+        strcpy(newContainer.coordonnees, itoa(rand()%20));
+        strcat(newContainer.coordonnees, ",");
+        strcat(newContainer.coordonnees, itoa(rand()%20));
+
         fp = fopen(FILEPARC, "w");
 
         //Ajout login dans fichier
