@@ -308,13 +308,13 @@ int main ()
 	        while(token != NULL) 
             {
                 printf("%s\n", token);
-	        	// if(strcmp(token, param) == 0)
-	        	// {
-	        	// 	token = strtok(NULL, s);
-	        	// 	ret = token;
-          //           find = 1;
-          //           break;
-	        	// }
+	        	if(strcmp(token, param) == 0)
+	        	{
+	        		token = strtok(NULL, s);
+	        		printf("La valeur est : %s\n", token);
+                    find = 1;
+                    break;
+	        	}
 	            token = strtok(NULL, s);
 	        }
         }
