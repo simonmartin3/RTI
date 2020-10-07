@@ -494,7 +494,7 @@ int main ()
         sprintf(random, "%d" ,rand()%20);
         strcat(newContainer.coordonnees, random);
 
-        fp = fopen(FILEPARC, "w");
+        fp = fopen(FILEPARC, "a");
 
         //Ajout login dans fichier
         fwrite(&newContainer, sizeof(Container), 1, fp);
@@ -502,6 +502,8 @@ int main ()
         fclose(fp);
 
         printf("Le container %s a ete cree.\n", newContainer.idContainer);
+        printf("Le container %s a ete cree.\n", newContainer.coordonnees);
+
 
         return ret;
     }
