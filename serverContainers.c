@@ -313,6 +313,7 @@ int main ()
 	        		token = strtok(NULL, s);
 	        		printf("La valeur est : %s\n", token);
                     find = 1;
+                    port = token;
                     break;
 	        	}
 	            token = strtok(NULL, s);
