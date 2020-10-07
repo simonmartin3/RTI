@@ -308,6 +308,7 @@ int main ()
 	        	{
 	        		token = strtok(NULL, s);
 	        		ret = token;
+	        		break;
 	        	}
 	            token = strtok(NULL, s);
 	        }
