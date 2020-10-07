@@ -269,9 +269,9 @@ int main ()
 			printf("Ouverture du fichier conf.\n");
 			
 			port = searchConfig("PORT_SERVEUR", fp);
-			fileLog = searchConfig("FILELOG", fp);
-			fileParc = searchConfig("FILEPARC", fp);
-			sepCsv = searchConfig("SEP_CSV", fp);
+			// fileLog = searchConfig("FILELOG", fp);
+			// fileParc = searchConfig("FILEPARC", fp);
+			// sepCsv = searchConfig("SEP_CSV", fp);
             
 			pressEnter();
 
@@ -304,10 +304,11 @@ int main ()
             token = strtok(tmp, s);
 
 	        while(token != NULL) {
-	        	if(strcmp(token, param) == 0)
+	        	if(strcmp(token, paramSearch) == 0)
 	        	{
 	        		token = strtok(NULL, s);
 	        		ret = token;
+	        		printf("True : %s\n", ret);
 	        		break;
 	        	}
 	            token = strtok(NULL, s);
