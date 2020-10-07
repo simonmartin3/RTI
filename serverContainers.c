@@ -274,6 +274,11 @@ int main ()
 			sepCsv = searchConfig("SEP_CSV", fp);
             
 			pressEnter();
+
+			printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n",port, fileLog, fileParc, sepCsv);
+
+			pressEnter();
+			
 			fclose(fp);
 		}
 	}
