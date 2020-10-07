@@ -24,6 +24,7 @@
 
 char * login();
 char * logout();
+char * inputTruck();
 /*void inputTruck(int*, int*);
 void inputDone(char*, int*);
 void outputReady(int*, char*, int*);
