@@ -41,10 +41,10 @@ void pressEnter(void);
 char * authentification(char *msg);
 
 /* My variables */
-const char * fileLog = (char *)malloc(20);
-const char *fileParc = (char *)malloc(20);
-const char * sepCsv = (char *)malloc(5);
-const char * port = (char *)malloc(10);
+char * fileLog;
+char * fileParc;
+char * sepCsv;
+char * port;
 
 int main ()
 {
