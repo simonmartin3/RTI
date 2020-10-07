@@ -269,7 +269,7 @@ int main ()
 		else {
 			printf("Ouverture du fichier conf.\n");
 			
-            port = (char *)malloc(10);
+            port = (char *)malloc(MAXSTRING);
 			port = searchConfig("PORT_SERVEUR", fp);
 			// fileLog = searchConfig("FILELOG", fp);
 			// fileParc = searchConfig("FILEPARC", fp);
