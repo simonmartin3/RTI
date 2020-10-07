@@ -41,10 +41,10 @@ void pressEnter(void);
 char * authentification(char *msg);
 
 /* My variables */
-char * fileLog = (char *)malloc(20);
-char *fileParc = (char *)malloc(20);
-char * sepCsv = (char *)malloc(5);
-char * port = (char *)malloc(10);
+const char * fileLog = (char *)malloc(20);
+const char *fileParc = (char *)malloc(20);
+const char * sepCsv = (char *)malloc(5);
+const char * port = (char *)malloc(10);
 
 int main ()
 {
@@ -257,9 +257,6 @@ int main ()
 	void openConfig()
 	{
 		FILE *fp;
-		char param[MAXSTRING] = "";
-        const char s[2] = "=";
-        char *token;
 
 		fp = fopen(SERVEURCONF, "r");
 		
@@ -288,7 +285,10 @@ int main ()
 	char * searchConfig(char *param, FILE *fp)
 	{
 		char tmp[MAXSTRING] = "";
+		const char s[2] = "=";
+        char *token;
 		char * ret = (char *)malloc(MAXSTRING);
+
 		while(fgets(tmp, MAXSTRING, fp) != NULL)
         {    
             printf("%s\n", tmp);
