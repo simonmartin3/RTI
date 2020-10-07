@@ -491,11 +491,11 @@ int main ()
         fp = fopen(FILEPARC, "w");
 
         //Ajout login dans fichier
-        fwrite(&container, sizeof(Container), 1, fp);
+        fwrite(&newContainer, sizeof(Container), 1, fp);
         
         fclose(fp);
 
-        printf("le container %d a ete cree.\n", newContainer.idContainer);
+        printf("Le container %s a ete cree.\n", newContainer.idContainer);
 
         return ret;
     }
