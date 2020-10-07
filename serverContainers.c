@@ -269,12 +269,11 @@ int main ()
 		else {
 			printf("Ouverture du fichier conf.\n");
 			
-			searchConfig("PORT_SERVEUR", fp);
+            port = (char *)malloc(10);
+			port = searchConfig("PORT_SERVEUR", fp);
 			// fileLog = searchConfig("FILELOG", fp);
 			// fileParc = searchConfig("FILEPARC", fp);
 			// sepCsv = searchConfig("SEP_CSV", fp);
-            
-			pressEnter();
 
 			printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n", port, fileLog, fileParc, sepCsv);
 
@@ -313,7 +312,7 @@ int main ()
 	        		token = strtok(NULL, s);
 	        		printf("La valeur est : %s\n", token);
                     find = 1;
-                    port = token;
+                    ret = token;
                     break;
 	        	}
 	            token = strtok(NULL, s);
