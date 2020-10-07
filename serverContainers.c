@@ -469,6 +469,7 @@ int main ()
         const char pv[2] = ";";
         char param[MAXSTRING];
         char *token;
+        int random;
 
         token = strtok(msg, s);
 
@@ -487,10 +488,11 @@ int main ()
         Container newContainer;
 
         strcpy(newContainer.idContainer, param);
-
-        strcpy(newContainer.coordonnees, itoa(rand()%20));
+        random = rand()%20;
+        strcpy(newContainer.coordonnees, itoa(random));
         strcat(newContainer.coordonnees, ",");
-        strcat(newContainer.coordonnees, itoa(rand()%20));
+        random = rand()%20;
+        strcat(newContainer.coordonnees, itoa(random));
 
         fp = fopen(FILEPARC, "w");
 
