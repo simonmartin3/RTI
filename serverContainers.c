@@ -304,7 +304,7 @@ int main ()
             token = strtok(tmp, s);
 
 	        while(token != NULL) {
-	        	if(strcmp(tmp, paramSearch) == 0)
+	        	if(strcmp(token, paramSearch) == 0)
 	        	{
 	        		printf("True\n");
 	        	}
