@@ -33,11 +33,18 @@ int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 /* My function */
 int fctFile(char *nomFile);
 void openConfig();
+char * searchConfig(char *param, FILE *fp);
 void createLogin();
 void createFichParc();
 char * checkCommande(char *msg);
 void pressEnter(void);
 char * authentification(char *msg);
+
+/* My variables */
+char * fileLog = (char *)malloc(20);
+char *fileParc = (char *)malloc(20);
+char * sepCsv = (char *)malloc(5);
+char * port = (char *)malloc(10);
 
 int main ()
 {
@@ -264,14 +271,50 @@ int main ()
 		else {
 			printf("Ouverture du fichier conf.\n");
 			
-			while(fgets(param, MAXSTRING, fp) != NULL)
-            {    
-                printf("%s\n", param);
-            }
+			port = searchConfig("PORT_SERVEUR", fp);
+			fileLog = searchConfig("FILELOG", fp);
+			fileParc = searchConfig("FILEPARC", fp);
+			sepCsv = searchConfig("SEP_CSV", fp);
             
 			pressEnter();
 			fclose(fp);
 		}
+	}
+
+/*----------------------------------------------------------------*/
+/*             	             searchConfig()    	                  */
+/*----------------------------------------------------------------*/
+
+	char * searchConfig(char *param, FILE *fp)
+	{
+		char tmp[MAXSTRING] = "";
+		char * ret = (char *)malloc(MAXSTRING);
+		while(fgets(tmp, MAXSTRING, fp) != NULL)
+        {    
+            printf("%s\n", tmp);
+
+            token = strtok(tmp, s);
+
+	        while(token != NULL) {
+	        	if(strcmp(token, param) == 0)
+	        	{
+	        		token = strtok(NULL, s);
+	        		ret = token;
+	        		break;
+	        	}
+	            token = strtok(NULL, s);
+	        }
+	        ret = "false";
+        }
+        if(strcmp(ret, "fasle") == 0)
+       	{
+       		printf("Le serveur n'a pas su trouver certains parametres de config.\n");
+       		exit(1);
+       	}
+       	else {
+       		return ret;
+       	}
+
 	}
 
 /*----------------------------------------------------------------*/

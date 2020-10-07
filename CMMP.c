@@ -31,6 +31,7 @@ char * login()
 	strcat(message, user);
 	strcat(message, ";");
 	strcat(message, pass);
+	strcat(message, "\r\n");
 
 	return message;
 }
