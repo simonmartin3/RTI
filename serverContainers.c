@@ -299,7 +299,7 @@ int main ()
 
 		strcpy(paramSearch, param);
 
-		while(fgets(tmp, MAXSTRING, fp) != NULL || find != 1)
+		while(fgets(tmp, MAXSTRING, fp) != NULL && find != 1)
         {   
             printf("%s\n", tmp);
 
