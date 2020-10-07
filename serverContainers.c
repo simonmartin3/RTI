@@ -39,12 +39,27 @@ void createFichParc();
 char * checkCommande(char *msg);
 void pressEnter(void);
 char * authentification(char *msg);
+char * createContainer(char *msg);
 
 /* My variables */
 char * fileLog;
 char * fileParc;
 char * sepCsv;
 char * port;
+
+typedef struct Container Container;
+struct Container
+{
+    int idContainer;
+    char coordonnees[10];
+    int etat;
+    char dateReservation[20];
+    char dateArrivee[20];
+    char destination[50];
+    int poids;
+    char typeRetour[10];
+
+};
 
 int main ()
 {
@@ -269,19 +284,18 @@ int main ()
 		else {
 			printf("Ouverture du fichier conf.\n");
 			
-            port = (char *)malloc(MAXSTRING);
-			port = searchConfig("PORT_SERVEUR", fp);
-			
-            fileLog = (char *)malloc(MAXSTRING);
-            fileLog = searchConfig("FILELOG", fp);
+            //port = (char *)malloc(MAXSTRING);
+			//port = searchConfig("PORT_SERVEUR", fp);
+            //fileLog = (char *)malloc(MAXSTRING);
+            //fileLog = searchConfig("FILELOG", fp);
 			// fileParc = searchConfig("FILEPARC", fp);
 			// sepCsv = searchConfig("SEP_CSV", fp);
 
-			printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n", port, fileLog, fileParc, sepCsv);
+			//printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n", port, fileLog, fileParc, sepCsv);
 
-			pressEnter();
+			//pressEnter();
 
-			fclose(fp);
+			//fclose(fp);
 		}
 	}
 
@@ -379,11 +393,15 @@ int main ()
         char * ret = (char *)malloc(MAXSTRING);
         switch(msg[0])
         {
-            case '1':
+            case '0':
                 ret = authentification(msg);
                 break;
 
-            case '7':
+            case '1':
+                ret = createContainer(msg);
+                break;
+
+            case '6':
                 ret = authentification(msg);
                 if(strcmp(ret, "true") == 0)
                     ret = EOC;
@@ -437,5 +455,40 @@ int main ()
             return find;
             fclose(fp);
         }
+    }
+
+/*----------------------------------------------------------------*/
+/*                       createContainer()                        */
+/*----------------------------------------------------------------*/
+
+    char * createContainer(char *msg)
+    {
+        char * ret = (char *)malloc(MAXSTRING);
+        const char s[2] = "#";
+        const char pv[2] = ";";
+        char param[MAXSTRING];
+        char *token;
+
+        token = strtok(msg, s);
+
+        while(token != NULL) {
+            strcpy(param, token);
+            token = strtok(NULL, s);
+        }
+
+        token = strtok(param, pv);
+
+        while(token != NULL) {
+            strcpy(param, token);
+            token = strtok(NULL, s);
+        }
+
+        Container newContainer;
+
+        newContainer.idContainer = param;
+
+        printf("le container %s a ete cree.\n", newContainer.idContainer);
+
+        return ret;
     }
 

@@ -1,13 +1,13 @@
 #include "CMMP.h"
 
 #define MAXSTRING 		100
-#define LOGIN 			1
-#define INPUT_TRUCK 	2
-#define INPUT_DONE 		3
-#define OUTPUT_READY 	4
-#define OUTPUT_ONE		5
-#define OUTPUT_DONE		6
-#define LOGOUT 			7
+#define LOGIN 			0
+#define INPUT_TRUCK 	1
+#define INPUT_DONE 		2
+#define OUTPUT_READY 	3
+#define OUTPUT_ONE		4
+#define OUTPUT_DONE		5
+#define LOGOUT 			6
 
 char * login()
 {
@@ -58,6 +58,33 @@ char * logout()
 	strcat(message, user);
 	strcat(message, ";");
 	strcat(message, pass);
+	strcat(message, "\r\n");
+
+	return message;
+}
+
+char * inputTruck()
+{
+	int type = INPUT_TRUCK;
+	char *message = (char *)malloc(MAXSTRING);
+	char immatriculation[20], idContainer[20];
+
+	puts("Entrer l'immatriculation :");
+	scanf("%s", immatriculation);
+	
+	fflush(stdin);
+	
+	puts("Entrer l'identifiant du container' :");
+	scanf("%s", idContainer);
+	
+	fflush(stdin);
+
+	sprintf(message, "%d", type);
+
+	strcat(message, "#");
+	strcat(message, immatriculation);
+	strcat(message, ";");
+	strcat(message, idContainer);
 
 	return message;
 }
