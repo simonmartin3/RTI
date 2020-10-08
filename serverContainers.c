@@ -519,5 +519,6 @@ int main ()
 
         fclose(fp);
 
+        ret = "OK";
         return ret;
     }

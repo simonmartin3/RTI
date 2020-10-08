@@ -201,7 +201,8 @@ int main()
                     printf("Recv socket OK\n");
 
                 printf("Message recu en ACK = %s\n", msgServeur);
-            }while(strcmp(msgServeur, "2#OK") != 0);
+                param = tokenizer(msgServeur);
+            }while(strcmp(param[1], "OK") != 0);
         }
 
     }while(end != 1);
