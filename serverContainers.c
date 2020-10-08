@@ -505,15 +505,28 @@ int main ()
 
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
-
+        int end = 0, find = 0;
+        
         param = tokenizer(msg);
 
         fp = fopen(FILEPARC, "rb");
 
         Container* uploadContainer=NULL;
         uploadContainer = malloc(sizeof(Container));
+        
+        do
+        {
+            fread(uploadContainer, sizeof(Container), 1, fp);
+            
+            if(strcmp(uploadContainer->idContainer, param[2]) == 0)
+            {
+                find = 1;
+            }
 
-        fread(uploadContainer, sizeof(Container), 1, fp);
+            if(!feof(fp) != 0)
+                end = 1;
+
+        }while(find != 1 && end != 1);
 
         printf("%s\n", uploadContainer->idContainer);        
 
