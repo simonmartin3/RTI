@@ -10,6 +10,7 @@
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
 #include "socketLib.h"
+#include "CMMP.h"
 
 #define NB_MAX_CLIENTS 2 /* Nombre maximum de clients connectes */
 #define EOC "END_OF_CONNEXION"
