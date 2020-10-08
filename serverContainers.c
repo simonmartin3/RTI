@@ -201,7 +201,8 @@ int main ()
                 }
                 else if (retRecv==0)
                 {
-                    sprintf(buf,"Le client est parti !!!"); affThread(numThr, buf);
+                    sprintf(buf,"Le client est parti !!!"); 
+                    affThread(numThr, buf);
                     finDialogue=1;
                     break;
                 }
@@ -400,6 +401,10 @@ int main ()
                 ret = createContainer(msg);
                 break;
 
+            case '2':
+                ret = Container(msg);
+                break;
+
             case '6':
                 ret = authentification(msg);
                 if(strcmp(ret, "true") == 0)
@@ -499,11 +504,15 @@ int main ()
         //Ajout login dans fichier
         fwrite(&newContainer, sizeof(Container), 1, fp);
         
+        if(fwrite != 0)  
+        {
+            printf("Le container a bien ete ajoute !\n");
+            strcpy(ret, newContainer.idContainer);
+        }
+        else 
+            printf("Erreur d'ecriture dans le fichier !\n"); 
+
         fclose(fp);
-
-        printf("Le container %s a ete cree.\n", newContainer.idContainer);
-        printf("Le container %s a ete cree.\n", newContainer.coordonnees);
-
 
         return ret;
     }

@@ -88,3 +88,16 @@ char * inputTruck()
 
 	return message;
 }
+
+char * inputDone()
+{
+	int type = INPUT_DONE;
+	char *message = (char *)malloc(MAXSTRING);
+
+	sprintf(message, "%d", type);
+
+	strcat(message, "#");
+	strcat(message, "OK");
+
+	return message;
+}
