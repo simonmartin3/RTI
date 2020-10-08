@@ -106,7 +106,7 @@ char ** tokenizer(char *msg)
 {
 	char **tab = NULL;
 	const char ct[2] = "#;";
-   if (s != NULL && ct != NULL)
+   if (msg != NULL && ct != NULL)
    {
       int i;
       char *cs = NULL;
@@ -136,11 +136,11 @@ char ** tokenizer(char *msg)
          }
 /* (3) */
          tab[i] = cs;
-         s = NULL;
+         msg = NULL;
       }
       tab[i] = NULL;
 
-	return param;
+	return tab;
 }
 
 void pressEnter()

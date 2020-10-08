@@ -26,7 +26,7 @@ char * login();
 char * logout();
 char * inputTruck();
 char * inputDone();
-char * tokenizer(char *msg);
+char ** tokenizer(char *msg);
 void pressEnter();
 /*void inputTruck(int*, int*);
 void inputDone(char*, int*);
