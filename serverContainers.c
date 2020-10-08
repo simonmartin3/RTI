@@ -466,9 +466,9 @@ int main ()
         param = tokenizer(msg);
 
         Container* newContainer;
-        newContainer = malloc(Container);
+        newContainer = malloc(sizeof(Container));
 
-        strcpy(newContainer.idContainer, param[2]);
+        strcpy(newContainer->idContainer, param[2]);
         sprintf(random, "%d" , rand()%50);
         strcpy(newContainer.coordonnees, random);
         strcat(newContainer.coordonnees, ",");
