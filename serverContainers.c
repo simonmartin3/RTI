@@ -529,7 +529,7 @@ int main ()
             i++;
         }while(find != 1 && end != 1);
 
-        strcpy(uploadContainer->poids, param[1]);
+        uploadContainer->poids = atoi(param[1]);
 
         fclose(fp);
 
