@@ -29,9 +29,6 @@ int main()
     int ret, option, end = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp = (char *)malloc(MAXSTRING);
-    const char s[2] = "#";
-    char param[MAXSTRING];
-    char *token;
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -178,7 +175,7 @@ int main()
             end=1;
         }
 
-        if (strcmp(msgServeur[0], "1") ==0)
+        if (strcmp(msgServeur, "1") ==0)
         {
             do
             {
