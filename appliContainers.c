@@ -29,7 +29,7 @@ int main()
     int ret, option, end = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp = (char *)malloc(MAXSTRING);
-    
+    char **param = NULL;    
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -90,6 +90,7 @@ int main()
             printf("Send socket OK\n");
 
         printf("Message envoye = %s\n", msgClient);
+
     /* 6. Reception de l'ACK du serveur au client */
         if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
         {
@@ -169,9 +170,25 @@ int main()
 
             end=1;
         }
+        param = tokenizer(msgServeur);
 
-        if (strcmp(msgServeur, "1") ==0)
+        if (strcmp(param[0], "2") ==0)
         {
+            msgTmp = inputDone();
+            strcat(msgTmp, ";");
+            strcat(msgTmp, param[2]);
+
+            strcpy(msgClient, msgTmp);
+            
+            if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
+            {
+                printf("Erreur sur le send de la socket %d\n", errno);
+                close(hSocket); /* Fermeture de la socket */
+                exit(1);
+            }
+            else 
+                printf("Send socket OK\n");
+
             do
             {
                 if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)

@@ -480,7 +480,8 @@ int main ()
         if(fwrite(&newContainer, sizeof(Container), 1, fp) != 0)  
         {
             printf("Le container a bien ete ajoute !\n");
-            strcpy(ret, "1#");
+            strcpy(ret, param[0]);
+            strcat(ret, "#")
             strcat(ret, newContainer.coordonnees);
             strcat(ret, ";");
             strcat(ret, newContainer.idContainer);
@@ -502,50 +503,17 @@ int main ()
         FILE *fp;
 
         char * ret = (char *)malloc(MAXSTRING);
-        const char s[2] = "#";
-        const char pv[2] = ";";
-        char param[MAXSTRING];
-        char *token;
-        char random[MAXSTRING];
+        char **param = NULL;
 
-        token = strtok(msg, s);
+        param = tokenizer(msg);
 
-        while(token != NULL) {
-            strcpy(param, token);
-            token = strtok(NULL, s);
-        }
+        fp = fopen(FILEPARC, "r");
 
-        token = strtok(param, pv);
+        Container uploadContainer;
 
-        while(token != NULL) {
-            strcpy(param, token);
-            token = strtok(NULL, s);
-        }
+        fread(uploadContainer, sizeof(Container), 1, fp);
 
-        Container newContainer;
-
-        strcpy(newContainer.idContainer, param);
-        sprintf(random, "%d" , rand()%50);
-        strcpy(newContainer.coordonnees, random);
-        strcat(newContainer.coordonnees, ",");
-        sprintf(random, "%d" , rand()%50);
-        strcat(newContainer.coordonnees, random);
-
-        fp = fopen(FILEPARC, "a");
-
-        //Ajout login dans fichier
-        //fwrite(&newContainer, sizeof(Container), 1, fp);
-        
-        if(fwrite(&newContainer, sizeof(Container), 1, fp) != 0)  
-        {
-            printf("Le container a bien ete ajoute !\n");
-            strcpy(ret, "1#");
-            strcat(ret, newContainer.coordonnees);
-            strcat(ret, ";");
-            strcat(ret, newContainer.idContainer);
-        }
-        else 
-            printf("Erreur d'ecriture dans le fichier !\n"); 
+        printf("%s\n", uploadContainer.idContainer);        
 
         fclose(fp);
 
