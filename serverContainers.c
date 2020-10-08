@@ -518,7 +518,7 @@ int main ()
 
             fread(uploadContainer, sizeof(Container), 1, fp);
             
-            printf("%s\n", uploadContainer->idContainer);
+            printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
 
             if(strcmp(uploadContainer->idContainer, param[2]) == 0)
             {
