@@ -531,14 +531,14 @@ int main ()
             i++;
         }while(find != 1 && end != 1);
 
-        // uploadContainer->poids = atoi(param[1]);
+        uploadContainer->poids = atoi(param[1]);
 
-        // fclose(fp);
+        fclose(fp);
 
-        // fp = fopen(FILEPARC, "wb");
+        fp = fopen(FILEPARC, "ab");
 
-        // fseek(fp, i*sizeof(Container), SEEK_SET);
-        // fwrite(uploadContainer, sizeof(Container), 1, fp);
+        fseek(fp, i*sizeof(Container), SEEK_SET);
+        fwrite(uploadContainer, sizeof(Container), 1, fp);
 
         printf("Container upload\n");
 
