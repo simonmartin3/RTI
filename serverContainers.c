@@ -470,10 +470,10 @@ int main ()
 
         strcpy(newContainer->idContainer, param[2]);
         sprintf(random, "%d" , rand()%50);
-        strcpy(newContainer.coordonnees, random);
-        strcat(newContainer.coordonnees, ",");
+        strcpy(newContainer->coordonnees, random);
+        strcat(newContainer->coordonnees, ",");
         sprintf(random, "%d" , rand()%50);
-        strcat(newContainer.coordonnees, random);
+        strcat(newContainer->coordonnees, random);
 
         fp = fopen(FILEPARC, "wb");
 
@@ -515,7 +515,7 @@ int main ()
 
         fread(uploadContainer, sizeof(Container), 1, fp);
 
-        printf("%s\n", uploadContainer.idContainer);        
+        printf("%s\n", uploadContainer->idContainer);        
 
         fclose(fp);
 
