@@ -525,6 +525,7 @@ int main ()
             if(strcmp(uploadContainer->idContainer, param[2]) == 0)
             {
                 find = 1;
+                printf("Trouve\n");
             }
 
             if(feof(fp))
