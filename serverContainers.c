@@ -371,7 +371,7 @@ int main ()
 	{
 		FILE *fichParcFile;
 
-		fichParcFile = fopen(FILEPARC, "a");
+		fichParcFile = fopen(FILEPARC, "wb");
 		
 		fclose(fichParcFile);
 	}
@@ -475,7 +475,7 @@ int main ()
         sprintf(random, "%d" , rand()%50);
         strcat(newContainer->coordonnees, random);
 
-        fp = fopen(FILEPARC, "ab");
+        fp = fopen(FILEPARC, "wb");
 
         //Ajout login dans fichier        
         if(fwrite(newContainer, sizeof(Container), 1, fp) != 0)  
@@ -509,7 +509,7 @@ int main ()
 
         param = tokenizer(msg);
 
-        fp = fopen(FILEPARC, "ab");
+        fp = fopen(FILEPARC, "rb");
 
         Container* uploadContainer=NULL;
         uploadContainer = malloc(sizeof(Container));
