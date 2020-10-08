@@ -79,7 +79,7 @@ int main()
 
     	strcpy(msgClient, msgTmp);
     	
-        tokenizer(msgClient);
+        printf("%s\n", tokenizer(msgClient));
 
         pressEnter();
 
