@@ -465,7 +465,8 @@ int main ()
 
         param = tokenizer(msg);
 
-        Container newContainer;
+        Container* newContainer;
+        newContainer = malloc(Container);
 
         strcpy(newContainer.idContainer, param[2]);
         sprintf(random, "%d" , rand()%50);
@@ -474,14 +475,14 @@ int main ()
         sprintf(random, "%d" , rand()%50);
         strcat(newContainer.coordonnees, random);
 
-        fp = fopen(FILEPARC, "a");
+        fp = fopen(FILEPARC, "wb");
 
         //Ajout login dans fichier        
         if(fwrite(&newContainer, sizeof(Container), 1, fp) != 0)  
         {
             printf("Le container a bien ete ajoute !\n");
             strcpy(ret, param[0]);
-            strcat(ret, "#")
+            strcat(ret, "#");
             strcat(ret, newContainer.coordonnees);
             strcat(ret, ";");
             strcat(ret, newContainer.idContainer);
@@ -507,9 +508,10 @@ int main ()
 
         param = tokenizer(msg);
 
-        fp = fopen(FILEPARC, "r");
+        fp = fopen(FILEPARC, "rb");
 
-        Container uploadContainer;
+        Container* uploadContainer=NULL;
+        uploadContainer = malloc(sizeof(Container));
 
         fread(uploadContainer, sizeof(Container), 1, fp);
 
