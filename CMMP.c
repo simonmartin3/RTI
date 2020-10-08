@@ -106,41 +106,50 @@ char ** tokenizer(char *msg)
 {
 	char **tab = NULL;
 	const char ct[2] = "#;";
-   if (msg != NULL && ct != NULL)
-   {
-      int i;
-      char *cs = NULL;
-      size_t size = 1;
+   	
+   	if (msg != NULL && ct != NULL)
+   	{
+      	int i;
+      	char *cs = NULL;
+      	size_t size = 1;
 
-/* (1) */
-      for (i = 0; (cs = strtok (msg, ct)); i++)
-      {
-         if (size <= i + 1)
-         {
-            void *tmp = NULL;
+		/* (1) */
+      	for (i = 0; (cs = strtok (msg, ct)); i++)
+      	{
+         	if (size <= i + 1)
+         	{
+	            void *tmp = NULL;
 
-/* (2) */
-            size <<= 1;
-            tmp = realloc (tab, sizeof (*tab) * size);
-            if (tmp != NULL)
-            {
-               tab = tmp;
-            }
-            else
-            {
-               fprintf (stderr, "Memoire insuffisante\n");
-               free (tab);
-               tab = NULL;
-               exit (EXIT_FAILURE);
-            }
-         }
-/* (3) */
-         tab[i] = cs;
-         msg = NULL;
-      }
-      tab[i] = NULL;
+				/* (2) */
+	            size <<= 1;
+	            tmp = realloc (tab, sizeof (*tab) * size);
+	            if (tmp != NULL)
+	            {
+	               tab = tmp;
+	            }
+	            else
+	            {
+	               fprintf (stderr, "Memoire insuffisante\n");
+	               free (tab);
+	               tab = NULL;
+	               exit (EXIT_FAILURE);
+	            }
+         	}
+
+		/* (3) */
+        tab[i] = cs;
+        msg = NULL;
+    }
+    tab[i] = NULL;
   }
 	return tab;
+
+	/*
+	char **param = NULL;
+	param = tokenizer(msgClient);
+    for(int i=0; param[i] != NULL; i++)
+        printf("%s\n", param[i]);
+    */
 }
 
 void pressEnter()

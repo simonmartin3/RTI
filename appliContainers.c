@@ -29,7 +29,7 @@ int main()
     int ret, option, end = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp = (char *)malloc(MAXSTRING);
-    char **param = NULL;
+    
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -79,11 +79,6 @@ int main()
     	msgTmp = login();
 
     	strcpy(msgClient, msgTmp);
-        param = tokenizer(msgClient);
-    	for(int i=0; param[i] != NULL; i++)
-            printf("%s\n", param[i]);
-
-        pressEnter();
 
         if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
         {
@@ -113,7 +108,7 @@ int main()
     {
         do
         {
-            //system("clear");
+            system("clear");
             printf("1 - Signalement qu'un camion arrive.\n");
             printf("2 - Signalement container.\n");
             printf("3 - Signalement vehicule disponible.\n");

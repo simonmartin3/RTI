@@ -415,8 +415,9 @@ int main ()
         char identifiant[MAXSTRING] = "";
         const char s[2] = "#";
         char *token;
-        char test[MAXSTRING];
         char *find = (char *)malloc(MAXSTRING);
+        char **param = NULL;
+        char **id = NULL;
 
         fp = fopen(FILELOG, "r");
         
@@ -427,21 +428,20 @@ int main ()
         }
         else {   
 
-            token = strtok(msg, s);
-
-            while(token != NULL) {
-                strcpy(test, token);
-                token = strtok(NULL, s);
-            }
-
-            //strcat(test,"\r\n");
+            param = tokenizer(msg);
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
-            {    
-                if(strcmp(identifiant, test) == 0)
+            {   
+                id = NULL; 
+                id = token(identifiant);
+                if(strcmp(id[0], param[1]) == 0)
                 {
-                    find = "true";
-                    break;
+                    if(strcmp(id[1], param[2]) == 0)
+                    {
+                        find = "true";
+                        break;
+                    }
+                    find = "false";
                 }
                 else {
                     find = "false";
