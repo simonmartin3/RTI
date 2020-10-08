@@ -513,7 +513,7 @@ int main ()
         
         Container* uploadContainer=NULL;
         uploadContainer = malloc(sizeof(Container));
-        
+
         do
         {
             fseek(fp, i*sizeof(Container), SEEK_SET);
@@ -527,7 +527,7 @@ int main ()
                 find = 1;
             }
 
-            if(!feof(fp) != 0)
+            if(feof(fp))
                 end = 1;
 
             i++;
