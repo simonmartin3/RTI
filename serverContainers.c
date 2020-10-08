@@ -507,7 +507,10 @@ int main ()
         if(fwrite(&newContainer, sizeof(Container), 1, fp) != 0)  
         {
             printf("Le container a bien ete ajoute !\n");
-            strcpy(ret, newContainer.idContainer);
+            strcpy(ret, "OK#");
+            strcat(ret, newContainer.coordonnees);
+            strcat(ret, ";");
+            strcat(ret, newContainer.idContainer);
         }
         else 
             printf("Erreur d'ecriture dans le fichier !\n"); 
