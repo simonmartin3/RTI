@@ -139,7 +139,7 @@ char ** tokenizer(char *msg)
          msg = NULL;
       }
       tab[i] = NULL;
-
+  }
 	return tab;
 }
 
