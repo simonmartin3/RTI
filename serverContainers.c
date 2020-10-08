@@ -402,7 +402,7 @@ int main ()
                 break;
 
             case '2':
-                ret = Container(msg);
+                // ret = Container(msg);
                 break;
 
             case '6':
@@ -504,7 +504,7 @@ int main ()
         //Ajout login dans fichier
         fwrite(&newContainer, sizeof(Container), 1, fp);
         
-        if(fwrite != 0)  
+        if(fwrite != NULL)  
         {
             printf("Le container a bien ete ajoute !\n");
             strcpy(ret, newContainer.idContainer);
