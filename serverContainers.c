@@ -537,7 +537,7 @@ int main ()
 
         fclose(fp);
 
-        fp = fopen(FILEPARC, "ab");
+        fp = fopen(FILEPARC, "wb");
 
         fseek(fp, i*sizeof(Container), SEEK_SET);
         fwrite(uploadContainer, sizeof(Container), 1, fp);
