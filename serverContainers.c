@@ -483,9 +483,9 @@ int main ()
             printf("Le container a bien ete ajoute !\n");
             strcpy(ret, param[0]);
             strcat(ret, "#");
-            strcat(ret, newContainer.coordonnees);
+            strcat(ret, newContainer->coordonnees);
             strcat(ret, ";");
-            strcat(ret, newContainer.idContainer);
+            strcat(ret, newContainer->idContainer);
         }
         else 
             printf("Erreur d'ecriture dans le fichier !\n"); 
