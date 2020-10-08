@@ -505,8 +505,8 @@ int main ()
 
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
-        int end = 0, find = 0;
-        
+        int end = 0, find = 0, i = 0;
+
         param = tokenizer(msg);
 
         fp = fopen(FILEPARC, "rb");
@@ -526,9 +526,19 @@ int main ()
             if(!feof(fp) != 0)
                 end = 1;
 
+            i++;
         }while(find != 1 && end != 1);
 
-        printf("%s\n", uploadContainer->idContainer);        
+        strcpy(uploadContainer->poids, param[1]);
+
+        fclose(fp);
+
+        fp = fopen(FILEPARC, "wb");
+
+        fseek(fp, -sizeof(Container), SEEK_CUR);
+        fwrite(uploadContainer, sizeof(Container), 1, fp)
+
+        printf("Container upload\n");
 
         fclose(fp);
 
