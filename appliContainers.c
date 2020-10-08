@@ -172,14 +172,14 @@ int main()
         }
         param = tokenizer(msgServeur);
 
-        if (strcmp(param[0], "2") ==0)
+        if (strcmp(param[0], "1") ==0)
         {
             msgTmp = inputDone();
             strcat(msgTmp, ";");
             strcat(msgTmp, param[2]);
 
             strcpy(msgClient, msgTmp);
-            
+
             if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
             {
                 printf("Erreur sur le send de la socket %d\n", errno);
