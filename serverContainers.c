@@ -532,18 +532,20 @@ int main ()
             i++;
         }while(find != 1 && end != 1);
 
-        uploadContainer->poids = 125;
 
+        uploadContainer->poids = 125;
+        printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
+        printf("%d\n", i);
         fclose(fp);
 
-        fp = fopen(FILEPARC, "wb");
-        printf("%d\n", i);
-        fseek(fp, i*sizeof(Container), SEEK_SET);
-        fwrite(uploadContainer, sizeof(Container), 1, fp);
+        //fp = fopen(FILEPARC, "wb");
+        
+        // fseek(fp, i*sizeof(Container), SEEK_SET);
+        // fwrite(uploadContainer, sizeof(Container), 1, fp);
 
         printf("Container upload\n");
 
-        fclose(fp);
+        //fclose(fp);
 
         ret = "OK";
         return ret;
