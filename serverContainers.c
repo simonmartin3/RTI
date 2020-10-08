@@ -510,12 +510,12 @@ int main ()
         param = tokenizer(msg);
 
         fp = fopen(FILEPARC, "rb");
-        
-        Container* uploadContainer=NULL;
-        uploadContainer = malloc(sizeof(Container));
 
         do
         {
+            Container* uploadContainer=NULL;
+            uploadContainer = malloc(sizeof(Container));
+
             fread(uploadContainer, sizeof(Container), 1, fp);
             
             printf("%s\n", uploadContainer->idContainer);
