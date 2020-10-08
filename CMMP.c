@@ -104,7 +104,7 @@ char * inputDone()
 
 char * tokenizer(char *msg)
 {
-	char *param[] = {};
+	char *param[][MAXSTRING] = {};
 	int i;
 	const char s[2] = "#;";
     char *token;
@@ -113,7 +113,7 @@ char * tokenizer(char *msg)
 
 	for(i=0; token != NULL; i++)
 	{
-		param[i] = token;
+		strcpy(param[i], token);
 		printf("%s\n", param[i]);
 		token = strtok(NULL, s);
 	}
