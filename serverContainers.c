@@ -539,7 +539,7 @@ int main ()
 
         fp = fopen(FILEPARC, "ab");
 
-        fseek(fp, i-1*sizeof(Container), SEEK_SET);
+        fseek(fp, i*sizeof(Container), SEEK_SET);
         fwrite(uploadContainer, sizeof(Container), 1, fp);
 
         printf("Container upload\n");
