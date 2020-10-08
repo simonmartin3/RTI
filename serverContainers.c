@@ -539,7 +539,7 @@ int main ()
         fclose(fp);
 
         fp = fopen(FILEPARC, "wb");
-
+        printf("%d\n", i);
         fseek(fp, i*sizeof(Container), SEEK_SET);
         fwrite(uploadContainer, sizeof(Container), 1, fp);
 
