@@ -533,13 +533,13 @@ int main ()
             i++;
         }while(find != 1 && end != 1);
 
-        uploadContainer->poids = atoi(param[1]);
+        uploadContainer->poids = 125;
 
         fclose(fp);
 
         fp = fopen(FILEPARC, "ab");
 
-        fseek(fp, i*sizeof(Container), SEEK_SET);
+        fseek(fp, i-1*sizeof(Container), SEEK_SET);
         fwrite(uploadContainer, sizeof(Container), 1, fp);
 
         printf("Container upload\n");
