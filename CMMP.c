@@ -97,7 +97,31 @@ char * inputDone()
 	sprintf(message, "%d", type);
 
 	strcat(message, "#");
-	strcat(message, "OK");
+	strcat(message, "125.6");
 
 	return message;
+}
+
+char * tokenizer(char *msg)
+{
+	char *param[] = {};
+	int i;
+	const char s[2] = "#;";
+    char *token;
+
+    token = strtok(msg, s);
+
+	for(i=0, token != NULL, i++)
+	{
+		param[i] = token;
+		token = strtok(NULL, s);
+	}
+
+	return param;
+}
+
+void pressEnter()
+{
+	printf("Press enter to continue...");
+	getchar();
 }

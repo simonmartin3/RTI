@@ -29,6 +29,9 @@ int main()
     int ret, option, end = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp = (char *)malloc(MAXSTRING);
+    const char s[2] = "#";
+    char param[MAXSTRING];
+    char *token;
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -79,6 +82,12 @@ int main()
 
     	strcpy(msgClient, msgTmp);
     	
+        //tokenizer(msgClient);
+
+        printf("%s\n", tokenizer(msgClient));
+
+        pressEnter();
+
         if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
         {
             printf("Erreur sur le send de la socket %d\n", errno);
@@ -169,36 +178,22 @@ int main()
             end=1;
         }
 
-        // if (strcmp(msgServeur, "")==0)
-        // {
-        //     msgTmp = inputDone();
-        //     strcpy(msgClient, msgTmp);
-        
-        //     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
-        //     {
-        //         printf("Erreur sur le send de la socket %d\n", errno);
-        //         close(hSocket); /* Fermeture de la socket */
-        //         exit(1);
-        //     }
-        //     else 
-        //         printf("Send socket OK\n");
+        if (strcmp(msgServeur[0], "1") ==0)
+        {
+            do
+            {
+                if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+                {
+                    printf("Erreur sur le recv de la socket %d\n", errno);
+                    close(hSocket); /* Fermeture de la socket */
+                    exit(1);
+                }
+                else 
+                    printf("Recv socket OK\n");
 
-        //     printf("Message envoye = %s\n", msgClient);
-
-        //     do
-        //     {
-        //         if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
-        //         {
-        //             printf("Erreur sur le recv de la socket %d\n", errno);
-        //             close(hSocket); /* Fermeture de la socket */
-        //             exit(1);
-        //         }
-        //         else 
-        //             printf("Recv socket OK\n");
-
-        //         printf("Message recu en ACK = %s\n", msgServeur);
-        //     }while(strcmp(msgServeur, "OK") != 0);
-        // }
+                printf("Message recu en ACK = %s\n", msgServeur);
+            }while(strcmp(msgServeur, "2#OK") != 0);
+        }
 
     }while(end != 1);
 
@@ -208,3 +203,5 @@ int main()
     
     return 0;
 }
+
+

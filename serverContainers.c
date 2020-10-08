@@ -40,6 +40,7 @@ char * checkCommande(char *msg);
 void pressEnter(void);
 char * authentification(char *msg);
 char * createContainer(char *msg);
+char * container(char *msg);
 
 /* My variables */
 char * fileLog;
@@ -402,7 +403,7 @@ int main ()
                 break;
 
             case '2':
-                // ret = Container(msg);
+                ret = Container(msg);
                 break;
 
             case '6':
@@ -493,10 +494,10 @@ int main ()
         Container newContainer;
 
         strcpy(newContainer.idContainer, param);
-        sprintf(random, "%d" ,rand()%20);
+        sprintf(random, "%d" , rand()%50);
         strcpy(newContainer.coordonnees, random);
         strcat(newContainer.coordonnees, ",");
-        sprintf(random, "%d" ,rand()%20);
+        sprintf(random, "%d" , rand()%50);
         strcat(newContainer.coordonnees, random);
 
         fp = fopen(FILEPARC, "a");
@@ -507,7 +508,7 @@ int main ()
         if(fwrite(&newContainer, sizeof(Container), 1, fp) != 0)  
         {
             printf("Le container a bien ete ajoute !\n");
-            strcpy(ret, "OK#");
+            strcpy(ret, "1#");
             strcat(ret, newContainer.coordonnees);
             strcat(ret, ";");
             strcat(ret, newContainer.idContainer);
@@ -520,3 +521,61 @@ int main ()
         return ret;
     }
 
+/*----------------------------------------------------------------*/
+/*                      	 container()                          */
+/*----------------------------------------------------------------*/
+
+	char * container(char *msg)
+	{
+        FILE *fp;
+
+        char * ret = (char *)malloc(MAXSTRING);
+        const char s[2] = "#";
+        const char pv[2] = ";";
+        char param[MAXSTRING];
+        char *token;
+        char random[MAXSTRING];
+
+        token = strtok(msg, s);
+
+        while(token != NULL) {
+            strcpy(param, token);
+            token = strtok(NULL, s);
+        }
+
+        token = strtok(param, pv);
+
+        while(token != NULL) {
+            strcpy(param, token);
+            token = strtok(NULL, s);
+        }
+
+        Container newContainer;
+
+        strcpy(newContainer.idContainer, param);
+        sprintf(random, "%d" , rand()%50);
+        strcpy(newContainer.coordonnees, random);
+        strcat(newContainer.coordonnees, ",");
+        sprintf(random, "%d" , rand()%50);
+        strcat(newContainer.coordonnees, random);
+
+        fp = fopen(FILEPARC, "a");
+
+        //Ajout login dans fichier
+        //fwrite(&newContainer, sizeof(Container), 1, fp);
+        
+        if(fwrite(&newContainer, sizeof(Container), 1, fp) != 0)  
+        {
+            printf("Le container a bien ete ajoute !\n");
+            strcpy(ret, "1#");
+            strcat(ret, newContainer.coordonnees);
+            strcat(ret, ";");
+            strcat(ret, newContainer.idContainer);
+        }
+        else 
+            printf("Erreur d'ecriture dans le fichier !\n"); 
+
+        fclose(fp);
+
+        return ret;
+    }
