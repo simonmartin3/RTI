@@ -102,21 +102,43 @@ char * inputDone()
 	return message;
 }
 
-char * tokenizer(char *msg)
+char ** tokenizer(char *msg)
 {
-	char *param[][MAXSTRING] = {};
-	int i;
-	const char s[2] = "#;";
-    char *token;
+	char **tab = NULL;
+	const char ct[2] = "#;";
+   if (s != NULL && ct != NULL)
+   {
+      int i;
+      char *cs = NULL;
+      size_t size = 1;
 
-    token = strtok(msg, s);
+/* (1) */
+      for (i = 0; (cs = strtok (msg, ct)); i++)
+      {
+         if (size <= i + 1)
+         {
+            void *tmp = NULL;
 
-	for(i=0; token != NULL; i++)
-	{
-		strcpy(param[i], token);
-		printf("%s\n", param[i]);
-		token = strtok(NULL, s);
-	}
+/* (2) */
+            size <<= 1;
+            tmp = realloc (tab, sizeof (*tab) * size);
+            if (tmp != NULL)
+            {
+               tab = tmp;
+            }
+            else
+            {
+               fprintf (stderr, "Memoire insuffisante\n");
+               free (tab);
+               tab = NULL;
+               exit (EXIT_FAILURE);
+            }
+         }
+/* (3) */
+         tab[i] = cs;
+         s = NULL;
+      }
+      tab[i] = NULL;
 
 	return param;
 }
