@@ -29,6 +29,7 @@ int main()
     int ret, option, end = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp = (char *)malloc(MAXSTRING);
+    char **param = NULL;
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -78,8 +79,9 @@ int main()
     	msgTmp = login();
 
     	strcpy(msgClient, msgTmp);
-    	
-        printf("%s\n", tokenizer(msgClient));
+        param = tokenizer(msgClient);
+    	for(int i=0; param[i] != NULL; i++)
+            printf("%s\n", param[i]);
 
         pressEnter();
 
