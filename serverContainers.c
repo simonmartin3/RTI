@@ -516,8 +516,6 @@ int main ()
 
         do
         {
-            fseek(fp, i*sizeof(Container), SEEK_SET);
-
             fread(uploadContainer, sizeof(Container), 1, fp);
             
             printf("%s\n", uploadContainer->idContainer);
