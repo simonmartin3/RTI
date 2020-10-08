@@ -518,6 +518,8 @@ int main ()
         {
             fread(uploadContainer, sizeof(Container), 1, fp);
             
+            printf("%s\n", uploadContainer->idContainer);
+
             if(strcmp(uploadContainer->idContainer, param[2]) == 0)
             {
                 find = 1;
@@ -529,14 +531,14 @@ int main ()
             i++;
         }while(find != 1 && end != 1);
 
-        uploadContainer->poids = atoi(param[1]);
+        // uploadContainer->poids = atoi(param[1]);
 
-        fclose(fp);
+        // fclose(fp);
 
-        fp = fopen(FILEPARC, "wb");
+        // fp = fopen(FILEPARC, "wb");
 
-        fseek(fp, i*sizeof(Container), SEEK_SET);
-        fwrite(uploadContainer, sizeof(Container), 1, fp);
+        // fseek(fp, i*sizeof(Container), SEEK_SET);
+        // fwrite(uploadContainer, sizeof(Container), 1, fp);
 
         printf("Container upload\n");
 
