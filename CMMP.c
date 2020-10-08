@@ -111,7 +111,7 @@ char * tokenizer(char *msg)
 
     token = strtok(msg, s);
 
-	for(i=0, token != NULL, i++)
+	for(i=0; token != NULL; i++)
 	{
 		param[i] = token;
 		token = strtok(NULL, s);
