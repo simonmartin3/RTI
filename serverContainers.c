@@ -460,29 +460,14 @@ int main ()
         FILE *fp;
 
         char * ret = (char *)malloc(MAXSTRING);
-        const char s[2] = "#";
-        const char pv[2] = ";";
-        char param[MAXSTRING];
-        char *token;
+        char **param = NULL;
         char random[MAXSTRING];
 
-        token = strtok(msg, s);
-
-        while(token != NULL) {
-            strcpy(param, token);
-            token = strtok(NULL, s);
-        }
-
-        token = strtok(param, pv);
-
-        while(token != NULL) {
-            strcpy(param, token);
-            token = strtok(NULL, s);
-        }
+        param = tokenizer(msg);
 
         Container newContainer;
 
-        strcpy(newContainer.idContainer, param);
+        strcpy(newContainer.idContainer, param[2]);
         sprintf(random, "%d" , rand()%50);
         strcpy(newContainer.coordonnees, random);
         strcat(newContainer.coordonnees, ",");
@@ -491,9 +476,7 @@ int main ()
 
         fp = fopen(FILEPARC, "a");
 
-        //Ajout login dans fichier
-        //fwrite(&newContainer, sizeof(Container), 1, fp);
-        
+        //Ajout login dans fichier        
         if(fwrite(&newContainer, sizeof(Container), 1, fp) != 0)  
         {
             printf("Le container a bien ete ajoute !\n");
