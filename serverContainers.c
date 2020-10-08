@@ -505,7 +505,7 @@ int main ()
 
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
-        int end = 0, find = 0, i = 0;
+        int end = 0, i = 0;
 
         param = tokenizer(msg);
 
