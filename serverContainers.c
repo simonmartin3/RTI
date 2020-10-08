@@ -478,7 +478,7 @@ int main ()
         fp = fopen(FILEPARC, "wb");
 
         //Ajout login dans fichier        
-        if(fwrite(&newContainer, sizeof(Container), 1, fp) != 0)  
+        if(fwrite(newContainer, sizeof(Container), 1, fp) != 0)  
         {
             printf("Le container a bien ete ajoute !\n");
             strcpy(ret, param[0]);
