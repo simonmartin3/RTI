@@ -536,7 +536,7 @@ int main ()
         fp = fopen(FILEPARC, "wb");
 
         fseek(fp, -sizeof(Container), SEEK_CUR);
-        fwrite(uploadContainer, sizeof(Container), 1, fp)
+        fwrite(uploadContainer, sizeof(Container), 1, fp);
 
         printf("Container upload\n");
 
