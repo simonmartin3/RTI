@@ -522,15 +522,15 @@ int main ()
 
             if(strcmp(uploadContainer->idContainer, param[2]) == 0)
             {
-                find = 1;
                 printf("Trouve\n");
+                break;
             }
 
             if(feof(fp))
                 end = 1;
 
             i++;
-        }while(find != 1 && end != 1);
+        }while(end != 1);
 
 
         uploadContainer->poids = 125;
@@ -538,14 +538,14 @@ int main ()
         printf("%d\n", i);
         fclose(fp);
 
-        //fp = fopen(FILEPARC, "wb");
+        fp = fopen(FILEPARC, "wb");
         
-        // fseek(fp, i*sizeof(Container), SEEK_SET);
-        // fwrite(uploadContainer, sizeof(Container), 1, fp);
+        fseek(fp, i*sizeof(Container), SEEK_SET);
+        fwrite(uploadContainer, sizeof(Container), 1, fp);
 
         printf("Container upload\n");
 
-        //fclose(fp);
+        fclose(fp);
 
         ret = "OK";
         return ret;
