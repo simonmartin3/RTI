@@ -496,6 +496,7 @@ int main ()
         else 
             printf("Erreur d'ecriture dans le fichier !\n"); 
 
+        free(newContainer);
         fclose(fp);
 
         return ret;
@@ -534,11 +535,12 @@ int main ()
         uploadContainer->poids = 125;
 
         i--;
-        fseek(fp, i*sizeof(Container), SEEK_CUR);
+        fseek(fp, i*sizeof(Container), SEEK_SET);
         fwrite(uploadContainer, sizeof(Container), 1, fp);
 
         printf("Container upload\n");
 
+        free(uploadContainer);
         fclose(fp);
 
         ret = "OK";
