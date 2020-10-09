@@ -93,11 +93,15 @@ char * inputDone()
 {
 	int type = INPUT_DONE;
 	char *message = (char *)malloc(MAXSTRING);
+	char random[50];
 
 	sprintf(message, "%d", type);
 
 	strcat(message, "#");
-	strcat(message, "125.6");
+
+	sprintf(random, "%d" , rand()%250);
+
+	strcat(message, random);
 
 	return message;
 }
