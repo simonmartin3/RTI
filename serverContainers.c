@@ -564,9 +564,6 @@ int main ()
 	{
 		FILE *fp;
 
-
-        param = tokenizer(msg);
-
         fp = fopen(FILEPARC, "r+b");
 
         Container* container;
