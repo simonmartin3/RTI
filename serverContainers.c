@@ -516,7 +516,7 @@ int main ()
 
         param = tokenizer(msg);
 
-        fp = fopen(FILEPARC, "a+b");
+        fp = fopen(FILEPARC, "r+b");
 
         Container* uploadContainer;
         uploadContainer = malloc(sizeof(Container));
