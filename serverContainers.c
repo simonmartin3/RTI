@@ -520,7 +520,7 @@ int main ()
         Container* uploadContainer;
         uploadContainer = malloc(sizeof(Container));
 
-        while(fread(uploadContainer, sizeof(Container), 1, fp);)
+        while(fread(uploadContainer, sizeof(Container), 1, fp))
         {
             if(strcmp(uploadContainer->idContainer, param[2]) == 0)
             {
