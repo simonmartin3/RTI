@@ -245,17 +245,22 @@ int main()
 void showContainer()
 {
     FILE *fp;
+    int end = 0;
 
     fp = fopen(FILEPARC, "r+b");
 
     Container* container;
     container = malloc(sizeof(Container));
 
-    while(!feof(fp))
+    while(end != 1)
     {
         fread(container, sizeof(Container), 1, fp);
             
         printf("%s - %s - %d\n", container->idContainer, container->coordonnees, container->poids);
+        
+        if(feof(fp))
+            end = 1;
+
     }
 }
 

@@ -402,6 +402,10 @@ int main ()
                 if(strcmp(ret, "true") == 0)
                     ret = EOC;
                 break;
+            case '':
+            	printf("Affiche container\n");
+            	ret = "OK"
+            	break;
         }
         return ret;
     }
@@ -519,7 +523,7 @@ int main ()
         do
         {
         	uploadContainer = malloc(sizeof(Container));
-        	
+
             fread(uploadContainer, sizeof(Container), 1, fp);
             
             printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
