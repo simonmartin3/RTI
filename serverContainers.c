@@ -519,26 +519,16 @@ int main ()
 
         Container* uploadContainer;
         uploadContainer = malloc(sizeof(Container));
-        
-		printf("Afficher container\n");
 
-        while(1)
+        while(fread(uploadContainer, sizeof(Container), 1, fp);)
         {
-
-        	if(feof(fp))
+            if(strcmp(uploadContainer->idContainer, param[2]) == 0)
+            {
+                printf("Trouve\n");
                 break;
+            }
 
-            fread(uploadContainer, sizeof(Container), 1, fp);
-            
-            printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
-
-            // if(strcmp(uploadContainer->idContainer, param[2]) == 0)
-            // {
-            //     printf("Trouve\n");
-            //     break;
-            // }
-
-            // i++;
+            i++;
         }
 
 
@@ -578,5 +568,6 @@ int main ()
             printf("%s - %s\n", container->idContainer, container->coordonnees);
         }
 
+        free(container);
         fclose(fp);
 	}
