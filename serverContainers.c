@@ -514,10 +514,12 @@ int main ()
 
         Container* uploadContainer;
 		uploadContainer=NULL;
-		uploadContainer = malloc(sizeof(Container));
+		
         
         do
         {
+        	uploadContainer = malloc(sizeof(Container));
+        	
             fread(uploadContainer, sizeof(Container), 1, fp);
             
             printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
