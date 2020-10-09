@@ -532,7 +532,7 @@ int main ()
         }
 
 
-        sprintf(uploadContainer->poids,"%d", param[1]);
+        uploadContainer->poids = atoi(param[1]);
 
         i--;
         fseek(fp, i*sizeof(Container), SEEK_SET);
