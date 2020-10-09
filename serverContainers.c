@@ -532,14 +532,14 @@ int main ()
         }
 
 
-        // uploadContainer->poids = 125;
-        // printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
+        uploadContainer->poids = 125;
+        //printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
         // printf("%d\n", i);
         
-        // fseek(fp, i*sizeof(Container), SEEK_SET);
-        // fwrite(uploadContainer, sizeof(Container), 1, fp);
+        fseek(fp, i*sizeof(Container), SEEK_SET);
+        fwrite(uploadContainer, sizeof(Container), 1, fp);
 
-        // printf("Container upload\n");
+        printf("Container upload\n");
 
         fclose(fp);
 
@@ -565,7 +565,7 @@ int main ()
         while(fread(container, sizeof(Container), 1, fp))
         {
 
-            printf("%s - %s\n", container->idContainer, container->coordonnees);
+            printf("%s - %s - %d\n", container->idContainer, container->coordonnees, container->poids);
         }
 
         free(container);
