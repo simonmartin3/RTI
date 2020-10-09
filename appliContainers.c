@@ -18,6 +18,8 @@
 #define PORT 50000 /* Port d'ecoute de la socket serveur */
 #define MAXSTRING 100 /* Longeur des messages */
 #define EOC "END_OF_CONNEXION"
+#define FILELOG "login.csv"
+#define FILEPARC "FICH_PARC"
 
 void showContainer();
 
