@@ -480,7 +480,7 @@ int main ()
         sprintf(random, "%d" , rand()%50);
         strcat(newContainer->coordonnees, random);
 
-        fp = fopen(FILEPARC, "r+b");
+        fp = fopen(FILEPARC, "a+b");
 
 
         //Ajout login dans fichier        
@@ -515,7 +515,7 @@ int main ()
 
         param = tokenizer(msg);
 
-        fp = fopen(FILEPARC, "r+b");
+        fp = fopen(FILEPARC, "a+b");
 
         Container* uploadContainer;
         uploadContainer = malloc(sizeof(Container));
@@ -565,7 +565,7 @@ int main ()
 	{
 		FILE *fp;
 
-        fp = fopen(FILEPARC, "r+b");
+        fp = fopen(FILEPARC, "a+b");
 
         Container* container;
         container = malloc(sizeof(Container));
