@@ -565,22 +565,17 @@ int main ()
 	{
 		FILE *fp;
 
-        fp = fopen(FILEPARC, "r+b");
+        fp = fopen(FILEPARC, "rb");
 
         Container* container;
         container = malloc(sizeof(Container));
         
 		printf("Afficher container\n");
-		rewind(fp);
 
-        while(fgetc(fp) != EOF)
+        while(fread(container, sizeof(Container), 1, fp))
         {
-            fread(container, sizeof(Container), 1, fp);
-            
-            printf("%s - %s\n", container->idContainer, container->coordonnees);
 
-            if(feof(fp))
-                break;
+            printf("%s - %s\n", container->idContainer, container->coordonnees);
         }
 
         fclose(fp);
