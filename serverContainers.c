@@ -576,13 +576,12 @@ int main ()
         while(1)
         {
 
-        	if(feof(fp))
-                break;
-
             fread(container, sizeof(Container), 1, fp);
             
             printf("%s - %s\n", container->idContainer, container->coordonnees);
 
+            if(feof(fp))
+                break;
         }
 
         fclose(fp);
