@@ -532,7 +532,7 @@ int main ()
         }
 
 
-        uploadContainer->poids = itoa(param[1]);
+        itoa(param[1], uploadContainer->poids, 10);
 
         i--;
         fseek(fp, i*sizeof(Container), SEEK_SET);
