@@ -402,9 +402,9 @@ int main ()
                 if(strcmp(ret, "true") == 0)
                     ret = EOC;
                 break;
-            case '':
+            case ' ':
             	printf("Affiche container\n");
-            	ret = "OK"
+            	ret = "OK";
             	break;
         }
         return ret;
