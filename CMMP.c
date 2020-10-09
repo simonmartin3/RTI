@@ -157,20 +157,3 @@ void pressEnter()
 	printf("Press enter to continue...");
 	getchar();
 }
-
-void showContainer()
-{
-	FILE *fp;
-
-	fp = fopen(FILEPARC, "r+b");
-
-    Container* container;
-	container = malloc(sizeof(Container));
-
-	while(!feof(fp))
-	{
- 		fread(container, sizeof(Container), 1, fp);
-            
-        printf("%s - %s - %d\n", container->idContainer, container->coordonnees, container->poids);
-	}
-}

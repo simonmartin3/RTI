@@ -19,6 +19,22 @@
 #define MAXSTRING 100 /* Longeur des messages */
 #define EOC "END_OF_CONNEXION"
 
+void showContainer();
+
+typedef struct Container Container;
+struct Container
+{
+    char idContainer[20];
+    char coordonnees[10];
+    int etat;
+    char dateReservation[20];
+    char dateArrivee[20];
+    char destination[50];
+    int poids;
+    char typeRetour[10];
+
+};
+
 int main()
 {
     int hSocket; /* Handle de la socket */
@@ -221,6 +237,23 @@ int main()
     printf("Socket client fermee\n");
     
     return 0;
+}
+
+void showContainer()
+{
+    FILE *fp;
+
+    fp = fopen(FILEPARC, "r+b");
+
+    Container* container;
+    container = malloc(sizeof(Container));
+
+    while(!feof(fp))
+    {
+        fread(container, sizeof(Container), 1, fp);
+            
+        printf("%s - %s - %d\n", container->idContainer, container->coordonnees, container->poids);
+    }
 }
 
 
