@@ -565,7 +565,7 @@ int main ()
 	{
 		FILE *fp;
 
-        fp = fopen(FILEPARC, "a+b");
+        fp = fopen(FILEPARC, "r+b");
 
         Container* container;
         container = malloc(sizeof(Container));
@@ -573,9 +573,8 @@ int main ()
 		printf("Afficher container\n");
 		rewind(fp);
 
-        while(1)
+        while(fgetc(fp) != EOF)
         {
-
             fread(container, sizeof(Container), 1, fp);
             
             printf("%s - %s\n", container->idContainer, container->coordonnees);
