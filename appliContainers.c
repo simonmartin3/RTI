@@ -146,9 +146,6 @@ int main()
                 msgTmp = inputTruck();
                 break;
 
-            case 2 :
-                msgTmp = inputDone();
-                break;
 
             case 5 :
                 msgTmp = logout();
