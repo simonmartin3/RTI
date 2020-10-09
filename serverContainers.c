@@ -517,12 +517,10 @@ int main ()
         fp = fopen(FILEPARC, "r+b");
 
         Container* uploadContainer;
-		uploadContainer=NULL;
-		
+        uploadContainer = malloc(sizeof(Container));
         
         do
         {
-        	uploadContainer = malloc(sizeof(Container));
 
             fread(uploadContainer, sizeof(Container), 1, fp);
             
