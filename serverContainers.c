@@ -541,7 +541,7 @@ int main ()
         printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
         printf("%d\n", i);
         
-        fseek(fp, i-1*sizeof(Container), SEEK_SET);
+        fseek(fp, i*sizeof(Container), SEEK_SET);
         fwrite(uploadContainer, sizeof(Container), 1, fp);
 
         printf("Container upload\n");
