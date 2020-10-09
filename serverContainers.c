@@ -560,12 +560,12 @@ void showContainer()
 	fp = fopen(FILEPARC, "r+b");
 
     Container* container;
-	container=NULL;
+	container = malloc(sizeof(Container));
 
 	while(!feof(fp))
 	{
- 		fread(uploadContainer, sizeof(Container), 1, fp);
+ 		fread(container, sizeof(Container), 1, fp);
             
-        printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
+        printf("%s - %s - %d\n", container->idContainer, container->coordonnees, container->poids);
 	}
 }
