@@ -514,12 +514,10 @@ int main ()
 
         Container* uploadContainer;
 		uploadContainer=NULL;
+		uploadContainer = malloc(sizeof(Container));
         
         do
         {
-            
-            uploadContainer = malloc(sizeof(Container));
-
             fread(uploadContainer, sizeof(Container), 1, fp);
             
             printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
@@ -551,3 +549,23 @@ int main ()
         ret = "OK";
         return ret;
     }
+
+/*----------------------------------------------------------------*/
+/*                         showContainer()                        */
+/*----------------------------------------------------------------*/
+void showContainer()
+{
+	FILE *fp;
+
+	fp = fopen(FILEPARC, "r+b");
+
+    Container* container;
+	container=NULL;
+
+	while(!feof(fp))
+	{
+ 		fread(uploadContainer, sizeof(Container), 1, fp);
+            
+        printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
+	}
+}

@@ -109,13 +109,13 @@ int main()
     {
         do
         {
-            system("clear");
+            //system("clear");
             printf("1 - Signalement qu'un camion arrive.\n");
-            printf("2 - Signalement container.\n");
-            printf("3 - Signalement vehicule disponible.\n");
-            printf("4 - Signalement container charge.\n");
-            printf("5 - Signalement maximum container.\n");
-            printf("6 - LOGOUT.\n");
+            printf("2 - Signalement vehicule disponible.\n");
+            printf("3 - Signalement container charge.\n");
+            printf("4 - Signalement maximum container.\n");
+            printf("5 - LOGOUT.\n");
+            printf("6 - Afficher containers\n");
             printf("Veuillez selectionner une option :");
             scanf("%d", &option);
             fflush(stdin);
@@ -128,8 +128,16 @@ int main()
                 msgTmp = inputTruck();
                 break;
 
-            case 6 :
+            case 2 :
+                msgTmp = inputDone();
+                break;
+
+            case 5 :
                 msgTmp = logout();
+                break;
+
+            case 6 :
+                showContainer();
                 break;
         }
 
@@ -170,6 +178,7 @@ int main()
 
             end=1;
         }
+
         param = tokenizer(msgServeur);
 
         if (strcmp(param[0], "1") ==0)
@@ -201,7 +210,6 @@ int main()
                     printf("Recv socket OK\n");
 
                 printf("Message recu en ACK = %s\n", msgServeur);
-                // param = tokenizer(msgServeur);
 
             }while(strcmp(msgServeur, "OK") != 0);
         }
