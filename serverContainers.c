@@ -511,7 +511,7 @@ int main ()
 
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
-        int end = 0, i = 0;
+        int i = 0;
 
         param = tokenizer(msg);
 
@@ -522,21 +522,19 @@ int main ()
 
         while(fread(uploadContainer, sizeof(Container), 1, fp))
         {
+        	i++;
             if(strcmp(uploadContainer->idContainer, param[2]) == 0)
             {
                 printf("Trouve\n");
                 break;
             }
-
-            i++;
         }
 
 
         uploadContainer->poids = 125;
-        //printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
-        // printf("%d\n", i);
+
         i--;
-        fseek(fp, i*sizeof(Container), SEEK_SET);
+        fseek(fp, i*sizeof(Container), SEEK_CUR);
         fwrite(uploadContainer, sizeof(Container), 1, fp);
 
         printf("Container upload\n");
