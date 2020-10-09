@@ -42,6 +42,7 @@ void pressEnter(void);
 char * authentification(char *msg);
 char * createContainer(char *msg);
 char * container(char *msg);
+void displayContainer();
 
 /* My variables */
 char * fileLog;
@@ -402,9 +403,8 @@ int main ()
                 if(strcmp(ret, "true") == 0)
                     ret = EOC;
                 break;
-            case ' ':
-            	printf("Affiche container\n");
-            	ret = "OK";
+            case '8':
+            	displayContainer();
             	break;
         }
         return ret;
@@ -479,7 +479,7 @@ int main ()
         sprintf(random, "%d" , rand()%50);
         strcat(newContainer->coordonnees, random);
 
-        fp = fopen(FILEPARC, "a+b");
+        fp = fopen(FILEPARC, "r+b");
 
 
         //Ajout login dans fichier        
@@ -519,24 +519,26 @@ int main ()
         Container* uploadContainer;
         uploadContainer = malloc(sizeof(Container));
         
-        do
+		printf("Afficher container\n");
+
+        while(1)
         {
+
+        	if(feof(fp))
+                break;
 
             fread(uploadContainer, sizeof(Container), 1, fp);
             
             printf("%s - %s - %d\n", uploadContainer->idContainer, uploadContainer->coordonnees, uploadContainer->poids);
 
-            if(strcmp(uploadContainer->idContainer, param[2]) == 0)
-            {
-                printf("Trouve\n");
-                break;
-            }
+            // if(strcmp(uploadContainer->idContainer, param[2]) == 0)
+            // {
+            //     printf("Trouve\n");
+            //     break;
+            // }
 
-            if(feof(fp))
-                end = 1;
-
-            i++;
-        }while(end != 1);
+            // i++;
+        }
 
 
         // uploadContainer->poids = 125;
@@ -546,10 +548,44 @@ int main ()
         // fseek(fp, i*sizeof(Container), SEEK_SET);
         // fwrite(uploadContainer, sizeof(Container), 1, fp);
 
-        printf("Container upload\n");
+        // printf("Container upload\n");
 
         fclose(fp);
 
         ret = "OK";
         return ret;
     }
+
+/*----------------------------------------------------------------*/
+/*                      displayContainer()                        */
+/*----------------------------------------------------------------*/
+
+	void displayContainer()
+	{
+		FILE *fp;
+
+
+        param = tokenizer(msg);
+
+        fp = fopen(FILEPARC, "r+b");
+
+        Container* container;
+        container = malloc(sizeof(Container));
+        
+		printf("Afficher container\n");
+		rewind(fp);
+
+        while(1)
+        {
+
+        	if(feof(fp))
+                break;
+
+            fread(container, sizeof(Container), 1, fp);
+            
+            printf("%s - %s\n", container->idContainer, container->coordonnees);
+
+        }
+
+        fclose(fp);
+	}

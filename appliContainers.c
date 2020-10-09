@@ -152,8 +152,7 @@ int main()
                 break;
 
             case 6 :
-                showContainer();
-                msgTmp = "";
+                msgTmp = "8";
                 break;
         }
 
