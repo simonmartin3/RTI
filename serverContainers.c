@@ -405,6 +405,7 @@ int main ()
                 break;
             case '8':
             	displayContainer();
+            	ret ="OK";
             	break;
         }
         return ret;
