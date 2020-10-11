@@ -106,6 +106,40 @@ char * inputDone()
 	return message;
 }
 
+char * outputReady()
+{
+	int type = OUTPUT_READY;
+	char *message = (char *)malloc(MAXSTRING);
+	char idVehicule[20], dest[50], capacite[10];
+	int tmp;
+
+	puts("Entrer l'identifiant :");
+	scanf("%s", idVehicule);
+	
+	fflush(stdin);
+	
+	puts("Entrer la destination :");
+	scanf("%s", dest);
+
+	puts("Entrer la capacite :");
+	scanf("%d", tmp);
+	
+	fflush(stdin);
+
+	sprintf(capacite, "%d", tmp);
+	sprintf(message, "%d", type);
+
+	strcat(message, "#");
+	strcat(message, idVehicule);
+	strcat(message, ";");
+	strcat(message, dest);
+	strcat(message, ";");
+	strcat(message, capacite);
+
+	return message;
+}
+
+
 char ** tokenizer(char *msg)
 {
 	char **tab = NULL;

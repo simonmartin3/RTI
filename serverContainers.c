@@ -42,6 +42,7 @@ void pressEnter(void);
 char * authentification(char *msg);
 char * createContainer(char *msg);
 char * container(char *msg);
+char * createVehicule(char *msg);
 void displayContainer();
 
 /* My variables */
@@ -55,13 +56,21 @@ struct Container
 {
     char idContainer[20];
     char coordonnees[10];
-    int etat;
+    int  etat;
     char dateReservation[20];
     char dateArrivee[20];
     char destination[50];
-    int poids;
+    int  poids;
     char typeRetour[10];
 
+};
+
+typedef struct Vehicule Vehicule;
+struct Vehicule
+{
+    char idVehicule[20];
+    char destination[50];
+    int  capacite;
 };
 
 int main ()
@@ -398,6 +407,10 @@ int main ()
                 ret = container(msg);
                 break;
 
+            case '3':
+                ret = createVehicule(msg);
+                break;
+
             case '6':
                 ret = authentification(msg);
                 if(strcmp(ret, "true") == 0)
@@ -544,6 +557,50 @@ int main ()
         fclose(fp);
 
         ret = "OK";
+        return ret;
+    }
+
+/*----------------------------------------------------------------*/
+/*                         createVehicule()                       */
+/*----------------------------------------------------------------*/
+
+    char * createVehicule(char *msg)
+    {
+        char * ret = (char *)malloc(MAXSTRING);
+        char **param = NULL;
+        char random[MAXSTRING];
+
+        param = tokenizer(msg);
+
+        Container* newContainer;
+        newContainer = malloc(sizeof(Container));
+
+        strcpy(newContainer->idContainer, param[2]);
+        sprintf(random, "%d" , rand()%50);
+        strcpy(newContainer->coordonnees, random);
+        strcat(newContainer->coordonnees, ",");
+        sprintf(random, "%d" , rand()%50);
+        strcat(newContainer->coordonnees, random);
+
+        fp = fopen(FILEPARC, "a+b");
+
+
+        //Ajout login dans fichier        
+        if(fwrite(newContainer, sizeof(Container), 1, fp) != 0)  
+        {
+            printf("Le container a bien ete ajoute !\n");
+            strcpy(ret, param[0]);
+            strcat(ret, "#");
+            strcat(ret, newContainer->coordonnees);
+            strcat(ret, ";");
+            strcat(ret, newContainer->idContainer);
+        }
+        else 
+            printf("Erreur d'ecriture dans le fichier !\n"); 
+
+        free(newContainer);
+        fclose(fp);
+
         return ret;
     }
 
