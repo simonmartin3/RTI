@@ -56,7 +56,7 @@ int main()
     fp = openConfig();
 
     PORT = atoi(searchConfig("PORT_SERVEUR", fp));
-
+    printf("%d\n", PORT);
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
 
