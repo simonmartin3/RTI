@@ -227,5 +227,6 @@ void pressEnter()
 	        }
 		}
 		printf("%s\n", ret);
+		fclose(fp);
         return ret;
 	}
