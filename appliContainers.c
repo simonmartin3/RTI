@@ -15,13 +15,14 @@
 #include "socketLib.h"
 #include "CMMP.h"
 
-#define PORT 50000 /* Port d'ecoute de la socket serveur */
 #define MAXSTRING 100 /* Longeur des messages */
 #define EOC "END_OF_CONNEXION"
 #define FILELOG "login.csv"
 #define FILEPARC "FICH_PARC"
 
 void showContainer();
+
+int PORT;
 
 typedef struct Container Container;
 struct Container
@@ -47,7 +48,14 @@ int main()
     int ret, option, end = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp = (char *)malloc(MAXSTRING);
-    char **param = NULL;    
+    char **param = NULL;
+    FILE *fp; 
+
+/* Ouverture fichier config */
+
+    fp = openConfig();
+
+    PORT = atoi(searchConfig("PORT_SERVEUR", fp));
 
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);

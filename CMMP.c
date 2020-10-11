@@ -9,6 +9,8 @@
 #define OUTPUT_DONE		5
 #define LOGOUT 			6
 
+#define SERVEURCONF "serveur.conf"
+
 char * login()
 {
 	int type = LOGIN;
@@ -190,3 +192,47 @@ void pressEnter()
 	printf("Press enter to continue...");
 	getchar();
 }
+
+/*----------------------------------------------------------------*/
+/*             	               openConfig()    	                  */
+/*----------------------------------------------------------------*/
+
+	FILE *openConfig()
+	{
+		FILE *fp;
+
+		fp = fopen(SERVEURCONF, "r");
+		
+		if(fp == (FILE*) NULL)
+		{
+			printf("Le fichier %s n'existe pas.\n", SERVEURCONF);
+			exit(1);
+		}
+		else {
+			printf("Ouverture du fichier conf.\n");
+		}
+		return fp;
+	}
+
+/*----------------------------------------------------------------*/
+/*             	             searchConfig()    	                  */
+/*----------------------------------------------------------------*/
+
+	char * searchConfig(char *config, FILE *fp)
+	{
+		char tmp[MAXSTRING] = "";
+		char * ret = (char *)malloc(MAXSTRING);
+        char **param = NULL;
+
+		while(fgets(tmp, MAXSTRING, fp) != NULL)
+        {   
+            param = tokenizer(tmp, "=");
+            if(strcmp(param[0], config) == 0)
+            {
+                ret = param[1];
+                break;
+            }
+        }
+        printf("%s\n", ret);
+        return ret;
+	}

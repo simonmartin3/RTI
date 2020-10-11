@@ -19,7 +19,6 @@
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
 #define FILELOG "login.csv"
 #define FILEPARC "FICH_PARC"
-#define SERVEURCONF "serveur.conf"
 
 pthread_mutex_t mutexIndiceCourant;
 pthread_cond_t condIndiceCourant;
@@ -32,8 +31,6 @@ int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 
 /* My function */
 int fctFile(char *nomFile);
-void openConfig();
-char * searchConfig(char *config, FILE *fp);
 void createLogin();
 void createFichParc();
 char * checkCommande(char *msg);
@@ -84,9 +81,16 @@ int main ()
 	//int ret, * retThread;
 	int ret;
     char msgServeur[MAXSTRING];
+    FILE *fp;
 
 /* Ouverture du fichier de configuration */
-    openConfig();
+    fp = openConfig();
+
+    PORT = atoi(searchConfig("PORT_SERVEUR", fp));
+    fileLog = searchConfig("FILELOG", fp);
+    fileParc = searchConfig("FILEPARC", fp);
+    sepCsv = searchConfig("SEP_CSV", fp);
+
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
 	ret = fctFile(FILELOG);
@@ -266,63 +270,6 @@ int main ()
         sprintf(buf, "%d.%lu", getpid(), numSequence);
         return buf;
     }
-
-/*----------------------------------------------------------------*/
-/*             	               openConfig()    	                  */
-/*----------------------------------------------------------------*/
-
-	void openConfig()
-	{
-		FILE *fp;
-
-		fp = fopen(SERVEURCONF, "r");
-		
-		if(fp == (FILE*) NULL)
-		{
-			printf("Le fichier %s n'existe pas.\n", SERVEURCONF);
-			exit(1);
-		}
-		else {
-			printf("Ouverture du fichier conf.\n");
-			
-			PORT = atoi(searchConfig("PORT_SERVEUR", fp));
-            fileLog = searchConfig("FILELOG", fp);
-			fileParc = searchConfig("FILEPARC", fp);
-			sepCsv = searchConfig("SEP_CSV", fp);
-
-			printf("Port : %s", PORT);
-            printf("log : %s", fileLog);
-            printf("parc : %s", fileParc);
-            printf("csv : %s", sepCsv);
-
-			pressEnter();
-
-			fclose(fp);
-		}
-	}
-
-/*----------------------------------------------------------------*/
-/*             	             searchConfig()    	                  */
-/*----------------------------------------------------------------*/
-
-	char * searchConfig(char *config, FILE *fp)
-	{
-		char tmp[MAXSTRING] = "";
-		char * ret = (char *)malloc(MAXSTRING);
-        char **param = NULL;
-
-		while(fgets(tmp, MAXSTRING, fp) != NULL)
-        {   
-            param = tokenizer(tmp, "=");
-            if(strcmp(param[0], config) == 0)
-            {
-                ret = param[1];
-                break;
-            }
-        }
-        printf("%s\n", ret);
-        return ret;
-	}
 
 /*----------------------------------------------------------------*/
 /*             	               fctFile()    	                  */
