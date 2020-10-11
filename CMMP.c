@@ -217,17 +217,15 @@ void pressEnter()
 
 			while(fgets(tmp, MAXSTRING, fp) != NULL)
 	        {   
-	        	printf("%s\n", tmp);
 	            param = tokenizer(tmp, "=");
-	            printf("%s-%s\n", param[0], param[1]);
 
 	            if(strcmp(param[0], config) == 0)
 	            {
 	                ret = param[1];
-	                printf("TROUVE\n");
 	                break;
 	            }
 	        }
 		}
+		printf("%s\n", ret);
         return ret;
 	}

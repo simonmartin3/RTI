@@ -84,8 +84,8 @@ int main ()
 
     //port = atoi(searchConfig("PORT_SERVEUR"));
     fileLog = searchConfig("FILELOG");
-    fileParc = searchConfig("FILEPARC");
-    sepCsv = searchConfig("SEP_CSV");
+    // fileParc = searchConfig("FILEPARC");
+    // sepCsv = searchConfig("SEP_CSV");
 
     //printf("%d\n", port);
     printf("%s\n", fileLog);
