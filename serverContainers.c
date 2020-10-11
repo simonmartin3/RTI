@@ -34,7 +34,7 @@ int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 /* My function */
 int fctFile(char *nomFile);
 void openConfig();
-char * searchConfig(char *param, FILE *fp);
+char * searchConfig(char *config, FILE *fp);
 void createLogin();
 void createFichParc();
 char * checkCommande(char *msg);
@@ -286,18 +286,17 @@ int main ()
 		else {
 			printf("Ouverture du fichier conf.\n");
 			
-            //port = (char *)malloc(MAXSTRING);
-			//port = searchConfig("PORT_SERVEUR", fp);
+			port = searchConfig("PORT_SERVEUR", fp);
             //fileLog = (char *)malloc(MAXSTRING);
             //fileLog = searchConfig("FILELOG", fp);
 			// fileParc = searchConfig("FILEPARC", fp);
 			// sepCsv = searchConfig("SEP_CSV", fp);
 
-			//printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n", port, fileLog, fileParc, sepCsv);
+			printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n", port, fileLog, fileParc, sepCsv);
 
-			//pressEnter();
+			pressEnter();
 
-			//fclose(fp);
+			fclose(fp);
 		}
 	}
 
@@ -305,34 +304,24 @@ int main ()
 /*             	             searchConfig()    	                  */
 /*----------------------------------------------------------------*/
 
-	char * searchConfig(char *param, FILE *fp)
+	char * searchConfig(char *config, FILE *fp)
 	{
 		char tmp[MAXSTRING] = "";
 		const char s[2] = "=";
         char *token;
 		char * ret = (char *)malloc(MAXSTRING);
         int find = 0;
+        char **param = NULL;
 
 		while(fgets(tmp, MAXSTRING, fp) != NULL && find != 1)
         {   
-            printf("%s\n", tmp);
+            param = tokenizer(tmp);
 
-            token = strtok(tmp, s);
-
-	        while(token != NULL) 
+            if(strcmp(param[0], config) == 0)
             {
-                printf("%s\n", token);
-	        	if(strcmp(token, param) == 0)
-	        	{
-	        		token = strtok(NULL, s);
-	        		//printf("La valeur est : %s\n", token);
-                    find = 1;
-                    ret = token;
-                    printf("La valeur est : %s\n", ret);
-                    break;
-	        	}
-	            token = strtok(NULL, s);
-	        }
+                ret = param[0];
+                break;
+            }
         }
         return ret;
 	}
@@ -464,8 +453,8 @@ int main ()
                     find = "false";
                 }
             }
-            return find;
             fclose(fp);
+            return find;
         }
     }
 
