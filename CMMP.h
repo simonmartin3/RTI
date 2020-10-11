@@ -29,7 +29,6 @@ char * inputDone();
 char * outputReady();
 char ** tokenizer(char *msg, char *ct);
 void pressEnter();
-FILE *openConfig();
 char * searchConfig(char *config);
 /*void inputTruck(int*, int*);
 void inputDone(char*, int*);

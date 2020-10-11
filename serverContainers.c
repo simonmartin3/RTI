@@ -82,7 +82,6 @@ int main ()
 	int ret;
     char msgServeur[MAXSTRING];
     char * tmp = (char *)malloc(MAXSTRING);
-    FILE *fp;
 
 
 /* Ouverture du fichier de configuration */
@@ -94,7 +93,6 @@ int main ()
     //sepCsv = searchConfig("SEP_CSV", fp);
 
     printf("%s\n", fileLog);
-    fclose(fp);
 
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */

@@ -194,14 +194,18 @@ void pressEnter()
 }
 
 /*----------------------------------------------------------------*/
-/*             	               openConfig()    	                  */
+/*             	             searchConfig()    	                  */
 /*----------------------------------------------------------------*/
 
-	FILE *openConfig()
+	char * searchConfig(char *config)
 	{
 		FILE *fp;
 
-		fp = fopen(SERVEURCONF, "r");
+		char tmp[MAXSTRING] = "";
+		char * ret = (char *)malloc(MAXSTRING);
+        char **param = NULL;
+
+        fp = fopen(SERVEURCONF, "r");
 		
 		if(fp == (FILE*) NULL)
 		{
@@ -210,30 +214,17 @@ void pressEnter()
 		}
 		else {
 			printf("Ouverture du fichier conf.\n");
+
+			while(fgets(tmp, MAXSTRING, fp) != NULL)
+	        {   
+	            printf("%s\n", param[0]);
+	            if(strcmp(param[0], config) == 0)
+	            {
+	                ret = param[1];
+	                break;
+	            }
+	        }
 		}
-		return fp;
-	}
-
-/*----------------------------------------------------------------*/
-/*             	             searchConfig()    	                  */
-/*----------------------------------------------------------------*/
-
-	char * searchConfig(char *config)
-	{
-		FILE *fp = openConfig();
-		
-		char tmp[MAXSTRING] = "";
-		char * ret = (char *)malloc(MAXSTRING);
-        char **param = NULL;
-
-		while(fgets(tmp, MAXSTRING, fp) != NULL)
-        {   
-            printf("%s\n", param[0]);
-            if(strcmp(param[0], config) == 0)
-            {
-                ret = param[1];
-                break;
-            }
-        }
+		fclose(fp);
         return ret;
 	}
