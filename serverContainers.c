@@ -67,7 +67,7 @@ int main ()
 {
 	int hSocketEcoute, hSocketService;
 	//int i,j,retRecv;
-	int i,j, PORT;
+	int i,j, port;
 	//struct hostent * infosHost;
 	//struct in_addr adresseIP;
 	struct sockaddr_in adresseSocket;
@@ -82,12 +82,13 @@ int main ()
 
 /* Ouverture du fichier de configuration */
 
-    PORT = atoi(searchConfig("PORT_SERVEUR"));
+    port = atoi(searchConfig("PORT_SERVEUR"));
     fileLog = searchConfig("FILELOG");
     fileParc = searchConfig("FILEPARC");
     sepCsv = searchConfig("SEP_CSV");
 
-    printf("%d\n", PORT);
+    printf("%d\n", port);
+    printf("%s\n", fileLog);
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
 	ret = fctFile(FILELOG);
@@ -113,7 +114,7 @@ int main ()
     for (i=0; i<NB_MAX_CLIENTS; i++) 
 		hSocketConnectee[i] = -1;
 
-	hSocketEcoute = SocketInit(&adresseSocket, "solaris11DM2017", PORT);
+	hSocketEcoute = SocketInit(&adresseSocket, "solaris11DM2017", port);
 
 /* 4. Le système prend connaissance de l'adresse et du port de la socket */
 	if (bind(hSocketEcoute, (struct sockaddr *)&adresseSocket, sizeof(struct sockaddr_in)) == -1)
