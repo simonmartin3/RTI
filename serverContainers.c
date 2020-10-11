@@ -287,12 +287,12 @@ int main ()
 			printf("Ouverture du fichier conf.\n");
 			
 			port = searchConfig("PORT_SERVEUR", fp);
-            //fileLog = (char *)malloc(MAXSTRING);
-            //fileLog = searchConfig("FILELOG", fp);
-			// fileParc = searchConfig("FILEPARC", fp);
-			// sepCsv = searchConfig("SEP_CSV", fp);
+            fileLog = (char *)malloc(MAXSTRING);
+            fileLog = searchConfig("FILELOG", fp);
+			fileParc = searchConfig("FILEPARC", fp);
+			sepCsv = searchConfig("SEP_CSV", fp);
 
-			printf("Port : %s\nLog : %s\nParc : %s\nCSV : %s\n", port, fileLog, fileParc, sepCsv);
+			printf("Port : %sLog : %sParc : %sCSV : %s", port, fileLog, fileParc, sepCsv);
 
 			pressEnter();
 
@@ -313,7 +313,6 @@ int main ()
 		while(fgets(tmp, MAXSTRING, fp) != NULL)
         {   
             param = tokenizer(tmp, "=");
-            printf("%s-%s\n", param[0], param[1]);
             if(strcmp(param[0], config) == 0)
             {
                 ret = param[1];
