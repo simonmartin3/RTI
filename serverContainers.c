@@ -84,11 +84,11 @@ int main ()
 
     PORT = atoi(searchConfig("PORT_SERVEUR"));
     //PORT = atoi(tmp);
-    fileLog = searchConfig("FILELOG");
+    //fileLog = searchConfig("FILELOG");
     //fileParc = searchConfig("FILEPARC", fp);
     //sepCsv = searchConfig("SEP_CSV", fp);
 
-    printf("%s\n", searchConfig("FILELOG"));
+    //printf("%s\n", searchConfig("FILELOG"));
 
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
