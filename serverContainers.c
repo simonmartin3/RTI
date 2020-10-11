@@ -316,10 +316,11 @@ int main ()
 
             if(strcmp(param[0], config) == 0)
             {
-                ret = param[0];
+                ret = param[1];
                 break;
             }
         }
+        printf("%s\n", ret);
         return ret;
 	}
 
