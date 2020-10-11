@@ -86,7 +86,7 @@ int main ()
 /* Ouverture du fichier de configuration */
 
     tmp = searchConfig("PORT_SERVEUR");
-    memcpy(portTmp, tmp, sizeof(portTmp));
+    memcpy(portTmp, searchConfig("PORT_SERVEUR"), sizeof(portTmp));
     //port = atoi(tmp);
     //fileLog = searchConfig("FILELOG");
     //fileParc = searchConfig("FILEPARC");
