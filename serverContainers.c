@@ -287,7 +287,6 @@ int main ()
 			printf("Ouverture du fichier conf.\n");
 			
 			port = searchConfig("PORT_SERVEUR", fp);
-            fileLog = (char *)malloc(MAXSTRING);
             fileLog = searchConfig("FILELOG", fp);
 			fileParc = searchConfig("FILEPARC", fp);
 			sepCsv = searchConfig("SEP_CSV", fp);
