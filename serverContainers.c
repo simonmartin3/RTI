@@ -89,7 +89,7 @@ int main ()
 
 
     memcpy(FILELOG, searchConfig("FILELOG"), sizeof(FILELOG));
-    FILELOG[strlen(FILELOG)-1] = '\0';
+    FILELOG[strlen(FILELOG)-1] = 'E';
     printf("%s\n", FILELOG);
     pressEnter();
     memcpy(FILEPARC, searchConfig("FILEPARC"), sizeof(FILEPARC));
