@@ -89,8 +89,8 @@ int main ()
 
 
     memcpy(FILELOG, searchConfig("FILELOG"), sizeof(FILELOG));
-    //FILELOG[strlen(FILELOG)] = '\0';
-    printf("%c\n", FILELOG[strlen(FILELOG)]);
+    FILELOG[strlen(FILELOG)-1] = '\0';
+    printf("%s\n", FILELOG);
     pressEnter();
     memcpy(FILEPARC, searchConfig("FILEPARC"), sizeof(FILEPARC));
     FILEPARC[strlen(FILEPARC)+1] = '\0';
