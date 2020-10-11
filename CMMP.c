@@ -143,7 +143,7 @@ char * outputReady()
 char ** tokenizer(char *msg)
 {
 	char **tab = NULL;
-	const char ct[2] = "#;";
+	const char ct[2] = "#;=";
    	
    	if (msg != NULL && ct != NULL)
    	{
