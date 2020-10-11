@@ -310,7 +310,7 @@ int main ()
 		char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
 
-		while(fgets(tmp, MAXSTRING, fp) != NULL && find != 1)
+		while(fgets(tmp, MAXSTRING, fp) != NULL)
         {   
             param = tokenizer(tmp);
 
@@ -552,7 +552,7 @@ int main ()
 
     char * createVehicule(char *msg)
     {
-        // char * ret = (char *)malloc(MAXSTRING);
+        char * ret = (char *)malloc(MAXSTRING);
         // char **param = NULL;
         // char random[MAXSTRING];
 
