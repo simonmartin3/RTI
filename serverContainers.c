@@ -88,13 +88,13 @@ int main ()
 /* Ouverture du fichier de configuration */
     fp = openConfig();
 
-    tmp = searchConfig("PORT_SERVEUR", fp);
+    fileLog = searchConfig("PORT_SERVEUR", fp);
     //PORT = atoi(tmp);
-    fileLog = searchConfig("FILELOG", fp);
-    fileParc = searchConfig("FILEPARC", fp);
-    sepCsv = searchConfig("SEP_CSV", fp);
+    //fileLog = searchConfig("FILELOG", fp);
+    //fileParc = searchConfig("FILEPARC", fp);
+    //sepCsv = searchConfig("SEP_CSV", fp);
 
-    printf("%s\n", tmp);
+    printf("%s\n", fileLog);
     fclose(fp);
 
 
