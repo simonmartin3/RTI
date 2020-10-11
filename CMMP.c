@@ -218,8 +218,10 @@ void pressEnter()
 /*             	             searchConfig()    	                  */
 /*----------------------------------------------------------------*/
 
-	char * searchConfig(char *config, FILE *fp)
+	char * searchConfig(char *config)
 	{
+		FILE *fp = openConfig();
+		
 		char tmp[MAXSTRING] = "";
 		char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;

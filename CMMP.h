@@ -30,7 +30,7 @@ char * outputReady();
 char ** tokenizer(char *msg, char *ct);
 void pressEnter();
 FILE *openConfig();
-char * searchConfig(char *config, FILE *fp);
+char * searchConfig(char *config);
 /*void inputTruck(int*, int*);
 void inputDone(char*, int*);
 void outputReady(int*, char*, int*);
