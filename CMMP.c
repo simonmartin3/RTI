@@ -233,6 +233,5 @@ void pressEnter()
                 break;
             }
         }
-        printf("%s\n", ret);
         return ret;
 	}
