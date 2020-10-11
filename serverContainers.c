@@ -91,7 +91,7 @@ int main ()
     // sepCsv = searchConfig("SEP_CSV");
 
     //printf("%d\n", port);
-    printf("%d\n", port);
+    printf("%s\n", tmp);
     //printf("%s\n", fileParc);
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
