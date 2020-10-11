@@ -15,7 +15,7 @@
 #define NB_MAX_CLIENTS 2 /* Nombre maximum de clients connectes */
 #define EOC "END_OF_CONNEXION"
 #define DOC "DENY_OF_CONNEXION"
-#define PORT 50000 /* Port d'ecoute de la socket serveur */
+// #define PORT 50000 /* Port d'ecoute de la socket serveur */
 #define MAXSTRING 100 /* Longueur des messages */
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
 #define FILELOG "login.csv"
@@ -49,7 +49,7 @@ void displayContainer();
 char * fileLog;
 char * fileParc;
 char * sepCsv;
-char * port;
+int PORT;
 
 typedef struct Container Container;
 struct Container
@@ -286,12 +286,12 @@ int main ()
 		else {
 			printf("Ouverture du fichier conf.\n");
 			
-			port = searchConfig("PORT_SERVEUR", fp);
+			PORT = atoi(searchConfig("PORT_SERVEUR", fp));
             fileLog = searchConfig("FILELOG", fp);
 			fileParc = searchConfig("FILEPARC", fp);
 			sepCsv = searchConfig("SEP_CSV", fp);
 
-			printf("Port : %s", port);
+			printf("Port : %s", PORT);
             printf("log : %s", fileLog);
             printf("parc : %s", fileParc);
             printf("csv : %s", sepCsv);
