@@ -89,11 +89,9 @@ int main ()
 
 
     memcpy(FILELOG, searchConfig("FILELOG"), sizeof(FILELOG));
-    FILELOG[strlen(FILELOG)-1] = 'E';
-    printf("%s\n", FILELOG);
-    pressEnter();
+    FILELOG[strlen(FILELOG)-1] = '\0';
     memcpy(FILEPARC, searchConfig("FILEPARC"), sizeof(FILEPARC));
-    FILEPARC[strlen(FILEPARC)+1] = '\0';
+    FILEPARC[strlen(FILEPARC)-1] = '\0';
     memcpy(SEP_CSV, searchConfig("SEP_CSV"), sizeof(SEP_CSV));
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
