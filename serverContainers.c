@@ -79,21 +79,19 @@ int main ()
     char fileLog[20];
     char fileParc[20];
     char sepCsv[10];
-    char * tmp = (char *)malloc(MAXSTRING);
-    char portTmp[20];
+    char tmp[20];
 
 
 /* Ouverture du fichier de configuration */
 
-    tmp = searchConfig("PORT_SERVEUR");
-    memcpy(portTmp, searchConfig("PORT_SERVEUR"), sizeof(portTmp));
-    //port = atoi(tmp);
+    memcpy(tmp, searchConfig("PORT_SERVEUR"), sizeof(portTmp));
+    port = atoi(tmp);
     //fileLog = searchConfig("FILELOG");
     //fileParc = searchConfig("FILEPARC");
     // sepCsv = searchConfig("SEP_CSV");
 
-    //printf("%d\n", port);
-    printf("%s\n", portTmp);
+    printf("%d\n", port);
+    //printf("%s\n", portTmp);
     //printf("%s\n", fileParc);
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
