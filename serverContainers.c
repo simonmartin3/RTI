@@ -307,10 +307,7 @@ int main ()
 	char * searchConfig(char *config, FILE *fp)
 	{
 		char tmp[MAXSTRING] = "";
-		const char s[2] = "=";
-        char *token;
 		char * ret = (char *)malloc(MAXSTRING);
-        int find = 0;
         char **param = NULL;
 
 		while(fgets(tmp, MAXSTRING, fp) != NULL && find != 1)
@@ -555,40 +552,40 @@ int main ()
 
     char * createVehicule(char *msg)
     {
-        char * ret = (char *)malloc(MAXSTRING);
-        char **param = NULL;
-        char random[MAXSTRING];
+        // char * ret = (char *)malloc(MAXSTRING);
+        // char **param = NULL;
+        // char random[MAXSTRING];
 
-        param = tokenizer(msg);
+        // param = tokenizer(msg);
 
-        Container* newContainer;
-        newContainer = malloc(sizeof(Container));
+        // Container* newContainer;
+        // newContainer = malloc(sizeof(Container));
 
-        strcpy(newContainer->idContainer, param[2]);
-        sprintf(random, "%d" , rand()%50);
-        strcpy(newContainer->coordonnees, random);
-        strcat(newContainer->coordonnees, ",");
-        sprintf(random, "%d" , rand()%50);
-        strcat(newContainer->coordonnees, random);
+        // strcpy(newContainer->idContainer, param[2]);
+        // sprintf(random, "%d" , rand()%50);
+        // strcpy(newContainer->coordonnees, random);
+        // strcat(newContainer->coordonnees, ",");
+        // sprintf(random, "%d" , rand()%50);
+        // strcat(newContainer->coordonnees, random);
 
-        fp = fopen(FILEPARC, "a+b");
+        // fp = fopen(FILEPARC, "a+b");
 
 
-        //Ajout login dans fichier        
-        if(fwrite(newContainer, sizeof(Container), 1, fp) != 0)  
-        {
-            printf("Le container a bien ete ajoute !\n");
-            strcpy(ret, param[0]);
-            strcat(ret, "#");
-            strcat(ret, newContainer->coordonnees);
-            strcat(ret, ";");
-            strcat(ret, newContainer->idContainer);
-        }
-        else 
-            printf("Erreur d'ecriture dans le fichier !\n"); 
+        // //Ajout login dans fichier        
+        // if(fwrite(newContainer, sizeof(Container), 1, fp) != 0)  
+        // {
+        //     printf("Le container a bien ete ajoute !\n");
+        //     strcpy(ret, param[0]);
+        //     strcat(ret, "#");
+        //     strcat(ret, newContainer->coordonnees);
+        //     strcat(ret, ";");
+        //     strcat(ret, newContainer->idContainer);
+        // }
+        // else 
+        //     printf("Erreur d'ecriture dans le fichier !\n"); 
 
-        free(newContainer);
-        fclose(fp);
+        // free(newContainer);
+        // fclose(fp);
 
         return ret;
     }
