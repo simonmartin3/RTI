@@ -67,13 +67,14 @@ int main ()
 {
 	int hSocketEcoute, hSocketService;
 	//int i,j,retRecv;
-	int i,j, port;
+	int i,j;
 	//struct hostent * infosHost;
 	//struct in_addr adresseIP;
 	struct sockaddr_in adresseSocket;
 	//int tailleSockaddr_in;
 	//int ret, * retThread;
 	int ret;
+    int *port;
     char msgServeur[MAXSTRING];
     char * fileLog = (char *)malloc(MAXSTRING);
     char * fileParc = (char *)malloc(MAXSTRING);
@@ -87,7 +88,7 @@ int main ()
     fileParc = searchConfig("FILEPARC");
     // sepCsv = searchConfig("SEP_CSV");
 
-    printf("%d\n", port);
+    printf("%d\n", &port);
     //printf("%s\n", fileLog);
     //printf("%s\n", fileParc);
 
