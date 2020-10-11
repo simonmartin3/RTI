@@ -75,9 +75,9 @@ int main ()
 	//int ret, * retThread;
 	int ret;
     char msgServeur[MAXSTRING];
-    char * fileLog = (char *)malloc(20);
-    char * fileParc = (char *)malloc(20);
-    char * sepCsv = (char *)malloc(20);
+    char * fileLog = (char *)malloc(MAXSTRING);
+    char * fileParc = (char *)malloc(MAXSTRING);
+    char * sepCsv = (char *)malloc(MAXSTRING);
 
 
 /* Ouverture du fichier de configuration */
