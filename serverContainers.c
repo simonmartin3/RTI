@@ -17,8 +17,6 @@
 #define DOC "DENY_OF_CONNEXION"
 #define MAXSTRING 100 /* Longueur des messages */
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
-#define FILELOG "login.csv"
-#define FILEPARC "FICH_PARC"
 
 pthread_mutex_t mutexIndiceCourant;
 pthread_cond_t condIndiceCourant;
@@ -40,6 +38,12 @@ char * createContainer(char *msg);
 char * container(char *msg);
 char * createVehicule(char *msg);
 void displayContainer();
+
+
+int PORT;
+char FILELOG[20];
+char FILEPARC[20];
+char SEP_CSV[10];
 
 typedef struct Container Container;
 struct Container
@@ -74,25 +78,18 @@ int main ()
 	//int tailleSockaddr_in;
 	//int ret, * retThread;
 	int ret;
-    int port;
     char msgServeur[MAXSTRING];
-    char fileLog[20];
-    char fileParc[20];
-    char sepCsv[10];
     char tmp[20];
 
 
 /* Ouverture du fichier de configuration */
 
     memcpy(tmp, searchConfig("PORT_SERVEUR"), sizeof(tmp));
-    port = atoi(tmp);
-    //fileLog = searchConfig("FILELOG");
-    //fileParc = searchConfig("FILEPARC");
-    // sepCsv = searchConfig("SEP_CSV");
-
-    printf("%d\n", port);
-    //printf("%s\n", portTmp);
-    //printf("%s\n", fileParc);
+    PORT = atoi(tmp);
+    
+    memcpy(FILELOG, searchConfig("FILELOG"), sizeof(FILELOG));
+    memcpy(FILEPARC, searchConfig("FILEPARC"), sizeof(FILEPARC));
+    memcpy(SEP_CSV, searchConfig("SEP_CSV"), sizeof(SEP_CSV));
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
 	ret = fctFile(FILELOG);
