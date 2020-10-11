@@ -81,17 +81,20 @@ int main ()
 	//int ret, * retThread;
 	int ret;
     char msgServeur[MAXSTRING];
+    char * tmp = (char *)malloc(MAXSTRING);
     FILE *fp;
+
 
 /* Ouverture du fichier de configuration */
     fp = openConfig();
 
-    PORT = atoi(searchConfig("PORT_SERVEUR", fp));
+    tmp = searchConfig("PORT_SERVEUR", fp);
+    PORT = atoi(tmp);
     fileLog = searchConfig("FILELOG", fp);
     fileParc = searchConfig("FILEPARC", fp);
     sepCsv = searchConfig("SEP_CSV", fp);
 
-    printf("%d\n", PORT);
+    printf("%s\n", tmp);
     fclose(fp);
 
 
