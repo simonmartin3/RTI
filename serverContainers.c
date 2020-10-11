@@ -86,7 +86,7 @@ int main ()
 
 /* Ouverture du fichier de configuration */
 
-    fileLog = searchConfig("PORT_SERVEUR");
+    searchConfig("PORT_SERVEUR");
     //PORT = atoi(tmp);
     //fileLog = searchConfig("FILELOG", fp);
     //fileParc = searchConfig("FILEPARC", fp);
