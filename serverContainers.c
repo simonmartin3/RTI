@@ -88,7 +88,9 @@ int main ()
     PORT = atoi(tmp);
     
     memcpy(FILELOG, searchConfig("FILELOG"), sizeof(FILELOG));
+    FILELOG[strlen(FILELOG)] = '\0';
     memcpy(FILEPARC, searchConfig("FILEPARC"), sizeof(FILEPARC));
+    FILEPARC[strlen(FILEPARC)] = '\0';
     memcpy(SEP_CSV, searchConfig("SEP_CSV"), sizeof(SEP_CSV));
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
