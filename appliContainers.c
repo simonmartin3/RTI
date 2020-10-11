@@ -49,14 +49,13 @@ int main()
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp = (char *)malloc(MAXSTRING);
     char **param = NULL;
-    FILE *fp; 
+    
 
 /* Ouverture fichier config */
 
-    fp = openConfig();
+    
 
-    PORT = atoi(searchConfig("PORT_SERVEUR", fp));
-    printf("%d\n", PORT);
+    
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
 
