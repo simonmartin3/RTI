@@ -41,12 +41,6 @@ char * container(char *msg);
 char * createVehicule(char *msg);
 void displayContainer();
 
-/* My variables */
-char * fileLog;
-char * fileParc;
-char * sepCsv;
-int PORT;
-
 typedef struct Container Container;
 struct Container
 {
@@ -73,7 +67,7 @@ int main ()
 {
 	int hSocketEcoute, hSocketService;
 	//int i,j,retRecv;
-	int i,j;
+	int i,j, PORT;
 	//struct hostent * infosHost;
 	//struct in_addr adresseIP;
 	struct sockaddr_in adresseSocket;
@@ -81,15 +75,20 @@ int main ()
 	//int ret, * retThread;
 	int ret;
     char msgServeur[MAXSTRING];
+    char * fileLog = (char *)malloc(20);
+    char * fileParc = (char *)malloc(20);
+    char * sepCsv = (char *)malloc(20);
 
 
 /* Ouverture du fichier de configuration */
 
-    //searchConfig("PORT_SERVEUR");
+    PORT = atoi(searchConfig("PORT_SERVEUR"));
     //PORT = atoi(tmp);
     //fileLog = searchConfig("FILELOG", fp);
     //fileParc = searchConfig("FILEPARC", fp);
     //sepCsv = searchConfig("SEP_CSV", fp);
+
+    printf("%d\n", PORT);
 
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
