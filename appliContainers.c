@@ -197,7 +197,7 @@ int main()
             end=1;
         }
 
-        param = tokenizer(msgServeur);
+        param = tokenizer(msgServeur, "#;");
 
         if (strcmp(param[0], "1") ==0)
         {

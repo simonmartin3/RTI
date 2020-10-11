@@ -312,7 +312,7 @@ int main ()
 
 		while(fgets(tmp, MAXSTRING, fp) != NULL)
         {   
-            param = tokenizer(tmp);
+            param = tokenizer(tmp, "=");
             printf("%s-%s\n", param[0], param[1]);
             if(strcmp(param[0], config) == 0)
             {
@@ -432,12 +432,12 @@ int main ()
         }
         else {   
 
-            param = tokenizer(msg);
+            param = tokenizer(msg, "#;");
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {   
                 id = NULL; 
-                id = tokenizer(identifiant);
+                id = tokenizer(identifiant, "#;");
                 if(strcmp(id[0], param[1]) == 0)
                 {
                     if(strcmp(id[1], param[2]) == 0)
@@ -468,7 +468,7 @@ int main ()
         char **param = NULL;
         char random[MAXSTRING];
 
-        param = tokenizer(msg);
+        param = tokenizer(msg, "#;");
 
         Container* newContainer;
         newContainer = malloc(sizeof(Container));
@@ -514,7 +514,7 @@ int main ()
         char **param = NULL;
         int i = 0;
 
-        param = tokenizer(msg);
+        param = tokenizer(msg, "#;");
 
         fp = fopen(FILEPARC, "r+b");
 

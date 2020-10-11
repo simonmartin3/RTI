@@ -140,10 +140,9 @@ char * outputReady()
 }
 
 
-char ** tokenizer(char *msg)
+char ** tokenizer(char *msg, char *ct)
 {
 	char **tab = NULL;
-	const char ct[2] = "#;=";
    	
    	if (msg != NULL && ct != NULL)
    	{
@@ -177,17 +176,13 @@ char ** tokenizer(char *msg)
 		/* (3) */
         tab[i] = cs;
         msg = NULL;
-    }
+    	}
+    
     tab[i] = NULL;
-  }
+  	
+  	}	
+	
 	return tab;
-
-	/*
-	char **param = NULL;
-	param = tokenizer(msgClient);
-    for(int i=0; param[i] != NULL; i++)
-        printf("%s\n", param[i]);
-    */
 }
 
 void pressEnter()
