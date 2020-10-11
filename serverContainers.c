@@ -74,22 +74,24 @@ int main ()
 	//int tailleSockaddr_in;
 	//int ret, * retThread;
 	int ret;
-    int *port;
+    int port;
     char msgServeur[MAXSTRING];
-    char * fileLog = (char *)malloc(MAXSTRING);
-    char * fileParc = (char *)malloc(MAXSTRING);
-    char * sepCsv = (char *)malloc(MAXSTRING);
+    char fileLog[20];
+    char fileParc[20];
+    char sepCsv[10];
+    char tmp[10];
 
 
 /* Ouverture du fichier de configuration */
 
-    fileLog = searchConfig("PORT_SERVEUR");
+    strcpy(tmp, searchConfig("PORT_SERVEUR"));
+    port = atoi(tmp);
     //fileLog = searchConfig("FILELOG");
     //fileParc = searchConfig("FILEPARC");
     // sepCsv = searchConfig("SEP_CSV");
 
     //printf("%d\n", port);
-    printf("%s\n", fileLog);
+    printf("%d\n", port);
     //printf("%s\n", fileParc);
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
