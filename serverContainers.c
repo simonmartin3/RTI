@@ -91,6 +91,9 @@ int main ()
     fileParc = searchConfig("FILEPARC", fp);
     sepCsv = searchConfig("SEP_CSV", fp);
 
+    printf("%d\n", PORT);
+    fclose(fp);
+
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
 	ret = fctFile(FILELOG);
