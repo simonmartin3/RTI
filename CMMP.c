@@ -226,5 +226,6 @@ void pressEnter()
 	            }
 	        }
 		}
+		fclose(fp);
         return ret;
 	}
