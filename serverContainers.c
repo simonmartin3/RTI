@@ -88,7 +88,6 @@ int main ()
     PORT = atoi(tmp);
     
     memcpy(FILELOG, searchConfig("FILELOG"), sizeof(FILELOG));
-    memcpy(FILELOG, searchConfig("FILELOG"), strlen(FILELOG)-1);
     memcpy(FILEPARC, searchConfig("FILEPARC"), sizeof(FILEPARC));
     memcpy(SEP_CSV, searchConfig("SEP_CSV"), sizeof(SEP_CSV));
 

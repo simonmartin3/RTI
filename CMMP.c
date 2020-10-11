@@ -221,7 +221,9 @@ void pressEnter()
 
 	            if(strcmp(param[0], config) == 0)
 	            {
+	            	param[1][strlen(param[1])] = '\0';
 	                ret = param[1];
+
 	                break;
 	            }
 	        }
