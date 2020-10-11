@@ -49,10 +49,12 @@ int main()
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	char * msgTmp = (char *)malloc(MAXSTRING);
     char **param = NULL;
-    
+    int port;
+    char tmp[20];
 
 /* Ouverture fichier config */
-
+    memcpy(tmp, searchConfig("PORT_SERVEUR"), sizeof(tmp));
+    port = atoi(tmp);
     
 
     
@@ -82,7 +84,7 @@ int main()
 /* 3. Préparation de la structure sockaddr_in */
     memset(&adresseSocket, 0, sizeof(struct sockaddr_in));
     adresseSocket.sin_family = AF_INET; /* Domaine */
-    adresseSocket.sin_port = htons(PORT);
+    adresseSocket.sin_port = htons(port);
     /* conversion numéro de port au format réseau */
     memcpy(&adresseSocket.sin_addr, infosHost->h_addr,infosHost->h_length);
 
