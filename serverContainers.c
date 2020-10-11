@@ -85,7 +85,7 @@ int main ()
 
     fileLog = searchConfig("PORT_SERVEUR");
     //fileLog = searchConfig("FILELOG");
-    fileParc = searchConfig("FILEPARC");
+    //fileParc = searchConfig("FILEPARC");
     // sepCsv = searchConfig("SEP_CSV");
 
     //printf("%d\n", port);
