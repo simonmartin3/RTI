@@ -35,7 +35,7 @@ int SocketInit(struct sockaddr_in* si, char* hostname, unsigned long port)
 	/* Préparation de la sockaddre_in*/
 	memset(si, 0, sizeof(struct sockaddr_in));
 	si->sin_family = AF_INET;
-	si->sin_port = htons(PORT);
+	si->sin_port = htons(port);
 	memcpy(&si->sin_addr, infosHost->h_addr, infosHost->h_length);
 		
 	return hSocketEcoute;
