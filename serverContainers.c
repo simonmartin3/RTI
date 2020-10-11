@@ -79,7 +79,7 @@ int main ()
     char fileLog[20];
     char fileParc[20];
     char sepCsv[10];
-    char tmp[10];
+    char *tmp = (char *)malloc(MAXSTRING);
 
 
 /* Ouverture du fichier de configuration */
