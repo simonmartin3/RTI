@@ -89,7 +89,7 @@ int main ()
     fp = openConfig();
 
     tmp = searchConfig("PORT_SERVEUR", fp);
-    PORT = atoi(tmp);
+    //PORT = atoi(tmp);
     fileLog = searchConfig("FILELOG", fp);
     fileParc = searchConfig("FILEPARC", fp);
     sepCsv = searchConfig("SEP_CSV", fp);
