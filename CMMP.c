@@ -217,7 +217,8 @@ void pressEnter()
 
 			while(fgets(tmp, MAXSTRING, fp) != NULL)
 	        {   
-	            printf("%s\n", param[0]);
+	            param = tokenizer(tmp);
+	            
 	            if(strcmp(param[0], config) == 0)
 	            {
 	                ret = param[1];
