@@ -81,7 +81,6 @@ int main ()
 	//int ret, * retThread;
 	int ret;
     char msgServeur[MAXSTRING];
-    char * tmp = (char *)malloc(MAXSTRING);
 
 
 /* Ouverture du fichier de configuration */
