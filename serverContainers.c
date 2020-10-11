@@ -291,7 +291,10 @@ int main ()
 			fileParc = searchConfig("FILEPARC", fp);
 			sepCsv = searchConfig("SEP_CSV", fp);
 
-			printf("Port : %sLog : %sParc : %sCSV : %s", port, fileLog, fileParc, sepCsv);
+			printf("Port : %s", port, fileLog, fileParc, sepCsv);
+            printf("log : %s", fileLog);
+            printf("parc : %s", fileParc);
+            printf("csv : %s", sepCsv);
 
 			pressEnter();
 
