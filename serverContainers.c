@@ -88,7 +88,7 @@ int main ()
     fileParc = searchConfig("FILEPARC");
     // sepCsv = searchConfig("SEP_CSV");
 
-    printf("%d\n", &port);
+    printf("%d\n", port);
     //printf("%s\n", fileLog);
     //printf("%s\n", fileParc);
 
