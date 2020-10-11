@@ -15,7 +15,6 @@
 #define NB_MAX_CLIENTS 2 /* Nombre maximum de clients connectes */
 #define EOC "END_OF_CONNEXION"
 #define DOC "DENY_OF_CONNEXION"
-// #define PORT 50000 /* Port d'ecoute de la socket serveur */
 #define MAXSTRING 100 /* Longueur des messages */
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
 #define FILELOG "login.csv"
