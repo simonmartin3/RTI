@@ -122,7 +122,7 @@ char * outputReady()
 	scanf("%s", dest);
 
 	puts("Entrer la capacite :");
-	scanf("%d", tmp);
+	scanf("%d", &tmp);
 	
 	fflush(stdin);
 
