@@ -580,10 +580,17 @@ int main ()
 
         while(fread(container, sizeof(Container), 1, fp))
         {
-
-            printf("%s - %s - %d\n", container->idContainer, container->coordonnees, container->poids);
+            printf("%s - %s - %d - %s - %s - %s - %d - %s\n", 
+                container->idContainer, 
+                container->coordonnees, 
+                container->etat,
+                container->dateReservation,
+                container->dateArrivee,
+                container->destination,
+                container->poids,
+                container->typeRetour,);
         }
-
+        
         free(container);
         fclose(fp);
 	}
