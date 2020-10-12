@@ -9,6 +9,7 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
+#include <time.h>
 #include "socketLib.h"
 #include "CMMP.h"
 
@@ -416,7 +417,9 @@ int main ()
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
         char random[MAXSTRING];
-        struct date dt;
+        time_t rawtime;
+        struct tm *info;
+
 
         param = tokenizer(msg, "#;");
 
@@ -435,8 +438,9 @@ int main ()
 
         strcpy(newContainer->dateReservation, "12/10/2020");
 
-        getdate(&dt);
-        sprintf(newContainer->dateArrivee, "%d/%d/%d",  dt.da_day, dt.da_mon, dt.da_year);
+        time(&rawtime);
+        info = localtime(&rawtime);
+        strftime(newContainer->dateArrivee, 80, "%d/%m/%Y",  info);
 
         if(rand()%2)
             strcpy(newContainer->destination, "Liege");
@@ -522,10 +526,10 @@ int main ()
     char * createVehicule(char *msg)
     {
         char * ret = (char *)malloc(MAXSTRING);
-        char **param = NULL;
+        //char **param = NULL;
         // char random[MAXSTRING];
 
-        param = tokenizer(msg);
+        //param = tokenizer(msg);
 
         // Container* newContainer;
         // newContainer = malloc(sizeof(Container));
