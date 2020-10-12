@@ -525,9 +525,10 @@ int main ()
 
     char * createVehicule(char *msg)
     {
+        FILE *fp;
+
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
-        // char random[MAXSTRING];
 
         param = tokenizer(msg, "#;");
 
