@@ -113,7 +113,7 @@ char * outputReady()
 	int type = OUTPUT_READY;
 	char *message = (char *)malloc(MAXSTRING);
 	char idVehicule[20], dest[50], capacite[10];
-	int typeV;
+	int typeV, tmp;
 
 	do
     {
