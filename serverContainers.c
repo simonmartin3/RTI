@@ -9,7 +9,6 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
-#include <dos.h>
 #include "socketLib.h"
 #include "CMMP.h"
 
