@@ -588,9 +588,9 @@ int main ()
                 container->dateArrivee,
                 container->destination,
                 container->poids,
-                container->typeRetour,);
+                container->typeRetour);
         }
-        
+
         free(container);
         fclose(fp);
 	}
