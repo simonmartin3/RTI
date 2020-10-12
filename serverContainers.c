@@ -544,11 +544,10 @@ int main ()
                 if(strcmp(container->destination, param[3]) == 0)
                 {
                     printf("%s\n", container->idContainer);
-                    break;
                 }
             }
         }
-
+        ret = "OK";
         return ret;
     }
 
