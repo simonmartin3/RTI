@@ -9,6 +9,7 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
+#include <dos.h>
 #include "socketLib.h"
 #include "CMMP.h"
 
@@ -416,6 +417,7 @@ int main ()
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
         char random[MAXSTRING];
+        struct date dt;
 
         param = tokenizer(msg, "#;");
 
@@ -423,11 +425,29 @@ int main ()
         newContainer = malloc(sizeof(Container));
 
         strcpy(newContainer->idContainer, param[2]);
+        
         sprintf(random, "%d" , rand()%50);
         strcpy(newContainer->coordonnees, random);
         strcat(newContainer->coordonnees, ",");
         sprintf(random, "%d" , rand()%50);
         strcat(newContainer->coordonnees, random);
+
+        newContainer->etat = 1;
+
+        strcpy(newContainer->dateReservation, "12/10/2020");
+
+        getdate(&dt);
+        sprintf(newContainer->dateArrivee, "%d/%d/%d",  dt.da_day, dt.da_mon, dt.da_year);
+
+        if(rand()%2)
+            strcpy(newContainer->destination, "Liege");
+        else
+            strcpy(newContainer->destination, "Namur");
+
+        if(rand()%2)
+            strcpy(newContainer->typeRetour, "Bateau");
+        else
+            strcpy(newContainer->typeRetour, "Train");        
 
         fp = fopen(FILEPARC, "a+b");
 
@@ -503,10 +523,10 @@ int main ()
     char * createVehicule(char *msg)
     {
         char * ret = (char *)malloc(MAXSTRING);
-        // char **param = NULL;
+        char **param = NULL;
         // char random[MAXSTRING];
 
-        // param = tokenizer(msg);
+        param = tokenizer(msg);
 
         // Container* newContainer;
         // newContainer = malloc(sizeof(Container));

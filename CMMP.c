@@ -129,8 +129,8 @@ char * outputReady()
 	fflush(stdin);
 
 	sprintf(capacite, "%d", tmp);
+	
 	sprintf(message, "%d", type);
-
 	strcat(message, "#");
 	strcat(message, idVehicule);
 	strcat(message, ";");
