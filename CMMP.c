@@ -113,7 +113,17 @@ char * outputReady()
 	int type = OUTPUT_READY;
 	char *message = (char *)malloc(MAXSTRING);
 	char idVehicule[20], dest[50], capacite[10];
-	int tmp;
+	int typeV;
+
+	do
+    {
+        //system("clear");
+        printf("1 - Bateau\n");
+        printf("2 - Train\n");
+        scanf("%d", &typeV);
+        fflush(stdin);
+        typeV = (int)typeV;
+    }while(typeV < 1 || typeV > 2);
 
 	puts("Entrer l'identifiant :");
 	scanf("%s", idVehicule);
@@ -132,6 +142,11 @@ char * outputReady()
 	
 	sprintf(message, "%d", type);
 	strcat(message, "#");
+	if(typeV == 1)
+		strcat(message, "Bateau");
+	else
+		strcat(message, "Train");
+	strcat(message, ";");
 	strcat(message, idVehicule);
 	strcat(message, ";");
 	strcat(message, dest);

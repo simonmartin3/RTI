@@ -436,7 +436,7 @@ int main ()
 
         newContainer->etat = 1;
 
-        strcpy(newContainer->dateReservation, "12/10/2020");
+        strcpy(newContainer->dateReservation, "01/10/2020");
 
         time(&rawtime);
         info = localtime(&rawtime);
@@ -526,39 +526,27 @@ int main ()
     char * createVehicule(char *msg)
     {
         char * ret = (char *)malloc(MAXSTRING);
-        //char **param = NULL;
+        char **param = NULL;
         // char random[MAXSTRING];
 
-        //param = tokenizer(msg);
+        param = tokenizer(msg, "#;");
 
-        // Container* newContainer;
-        // newContainer = malloc(sizeof(Container));
+        fp = fopen(FILEPARC, "r+b");
 
-        // strcpy(newContainer->idContainer, param[2]);
-        // sprintf(random, "%d" , rand()%50);
-        // strcpy(newContainer->coordonnees, random);
-        // strcat(newContainer->coordonnees, ",");
-        // sprintf(random, "%d" , rand()%50);
-        // strcat(newContainer->coordonnees, random);
+        Container* container;
+        container = malloc(sizeof(Container));
 
-        // fp = fopen(FILEPARC, "a+b");
-
-
-        // //Ajout login dans fichier        
-        // if(fwrite(newContainer, sizeof(Container), 1, fp) != 0)  
-        // {
-        //     printf("Le container a bien ete ajoute !\n");
-        //     strcpy(ret, param[0]);
-        //     strcat(ret, "#");
-        //     strcat(ret, newContainer->coordonnees);
-        //     strcat(ret, ";");
-        //     strcat(ret, newContainer->idContainer);
-        // }
-        // else 
-        //     printf("Erreur d'ecriture dans le fichier !\n"); 
-
-        // free(newContainer);
-        // fclose(fp);
+        while(fread(container, sizeof(Container), 1, fp))
+        {
+            if(strcmp(container->typeRetour, param[1]) == 0)
+            {
+                if(strcmp(container->destination, param[3]) == 0)
+                {
+                    printf("%s\n", container->idContainer);
+                    break;
+                }
+            }
+        }
 
         return ret;
     }
