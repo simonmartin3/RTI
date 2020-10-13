@@ -552,22 +552,21 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    strcat(message, toString(container));
-                    printf("%s\n", message);
+                    strcpy(message, toString(container));
+                    if (send(hSocketServ, message, sizeof(Container), 0) == -1)
+                    {
+                        printf("Erreur dans l'envoi de la liste\n");
+                        ret = "false";
+                        break;
+                    }
+                    else
+                    {
+                        printf("Liste envoyee\n");
+                        ret = "true";
+                    }
                     i++;
                 }
             }
-        }
-
-        if (send(hSocketServ, message, sizeof(Container)*i, 0) == -1)
-        {
-            printf("Erreur dans l'envoi de la liste\n");
-            ret = "false";
-        }
-        else
-        {
-            printf("Liste envoyee\n");
-            ret = "true";
         }
 
         return ret;

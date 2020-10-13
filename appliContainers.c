@@ -181,6 +181,24 @@ int main()
 
         printf("Message envoye = %s\n", msgClient);
 
+        if(option == 2)
+        {
+            do
+            {
+                if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+                {
+                    printf("Erreur sur le recv de la socket %d\n", errno);
+                    close(hSocket); /* Fermeture de la socket */
+                    exit(1);
+                }
+                else 
+                    printf("Recv socket OK\n");
+
+                printf("Message recu en ACK = %s\n", msgServeur);
+            }while(strcmp(msgServeur, "true") != 0 && strcmp(msgServeur, "false") != 0)
+        }
+
+
     /* 8. Reception de l'ACK du serveur au client */
         if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
         {
@@ -204,11 +222,6 @@ int main()
                 printf("Send socket OK\n");
 
             end=1;
-        }
-
-        if(option == 2)
-        {
-
         }
 
         param = tokenizer(msgServeur, "#;");
