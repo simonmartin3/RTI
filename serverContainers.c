@@ -557,10 +557,11 @@ int main ()
             }
         }
 
-        for(int j = 0; j < i; j++)
-        {
-        	printf("%s\n", listContainer[j]->idContainer);
-        }
+        // for(int j = 0; j < i; j++)
+        // {
+        	printf("%s\n", listContainer[0]->idContainer);
+        	printf("%s\n", listContainer[1]->idContainer);
+        // }
         ret = "OK";
         return ret;
     }
