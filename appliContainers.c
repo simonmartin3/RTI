@@ -208,9 +208,10 @@ int main()
 
         if(option == 2)
         {
+            int i = strlen(msgServeur);
             Container *container;
             container = (struct Container*) msgServeur;
-            int i = strlen(msgServeur)/sizeof(Container);
+            
             printf("%d\n", i);
             for(int j = 0; j < i; j++)
             {
