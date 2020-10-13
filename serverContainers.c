@@ -67,6 +67,7 @@ char * createContainer(char *msg);
 char * container(char *msg);
 char * outputVehicule(char *msg);
 void displayContainer();
+char * toString(struct Container* container);
 
 
 int main ()
@@ -530,6 +531,7 @@ int main ()
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
         int i=0;
+        char * message;
 
         param = tokenizer(msg, "#;");
 
@@ -550,13 +552,13 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    memcpy(&listContainer[i], container, sizeof(Container));
+                    strcat(message, toString(container));
                     i++;
                 }
             }
         }
 
-        if (send(hSocketServ, &listContainer, i*sizeof(Container), 0) == -1)
+        if (send(hSocketServ, message, sizeof(Container)*i, 0) == -1)
         {
             printf("Erreur dans l'envoi de la liste\n");
             ret = "false";
@@ -601,3 +603,25 @@ int main ()
         free(container);
         fclose(fp);
 	}
+
+/*----------------------------------------------------------------*/
+/*                              toString()                        */
+/*----------------------------------------------------------------*/
+
+    char * toString(struct Container * container)
+    {
+        char * msg = sizeof(Container);
+
+
+        sprintf(msg, "%s - %s - %d - %s - %s - %s - %d - %s\n", 
+                container->idContainer, 
+                container->coordonnees, 
+                container->etat,
+                container->dateReservation,
+                container->dateArrivee,
+                container->destination,
+                container->poids,
+                container->typeRetour);
+
+        return msg;
+    }
