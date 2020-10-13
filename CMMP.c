@@ -11,20 +11,6 @@
 
 #define SERVEURCONF "serveur.conf"
 
-typedef struct Container Container;
-struct Container
-{
-    char idContainer[20];
-    char coordonnees[10];
-    int  etat;
-    char dateReservation[20];
-    char dateArrivee[20];
-    char destination[50];
-    int  poids;
-    char typeRetour[10];
-
-};
-
 char * login()
 {
 	int type = LOGIN;

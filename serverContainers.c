@@ -25,6 +25,20 @@ char FILEPARC[20];
 char SEP_CSV[10];
 int hSocketServ;
 
+typedef struct Container Container;
+struct Container
+{
+    char idContainer[20];
+    char coordonnees[10];
+    int  etat;
+    char dateReservation[20];
+    char dateArrivee[20];
+    char destination[50];
+    int  poids;
+    char typeRetour[10];
+
+};
+
 typedef struct Vehicule Vehicule;
 struct Vehicule
 {
