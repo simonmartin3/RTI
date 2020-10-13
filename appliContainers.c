@@ -206,6 +206,13 @@ int main()
             end=1;
         }
 
+        if(option == 2)
+        {
+            Container *tmp;
+            memcpy(tmp, msgServeur, sizeof(msgServeur));
+            printf("%s\n", tmp[0]->idContainer);
+        }
+
         param = tokenizer(msgServeur, "#;");
 
         if (strcmp(param[0], "1") ==0)
