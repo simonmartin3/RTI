@@ -215,14 +215,14 @@ int main()
             for(int j = 0; j < i; j++)
             {
                 printf("%s - %s - %d - %s - %s - %s - %d - %s\n", 
-                container[j]->idContainer, 
-                container[j]->coordonnees, 
-                container[j]->etat,
-                container[j]->dateReservation,
-                container[j]->dateArrivee,
-                container[j]->destination,
-                container[j]->poids,
-                container[j]->typeRetour);
+                container[j].idContainer, 
+                container[j].coordonnees, 
+                container[j].etat,
+                container[j].dateReservation,
+                container[j].dateArrivee,
+                container[j].destination,
+                container[j].poids,
+                container[j].typeRetour);
             }
         }
 
