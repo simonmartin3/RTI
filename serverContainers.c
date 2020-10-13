@@ -345,9 +345,7 @@ int main ()
                 break;
 
             case '3':
-                ret = msg[0];
-                strcat(ret, "#");
-                strcat(ret, outputVehicule(msg));
+                ret = outputVehicule(msg);
                 break;
 
             case '6':
@@ -557,7 +555,19 @@ int main ()
                 }
             }
         }
-        return (char*) &listContainer;
+
+        if (send(hSocketServ, (char*) &listContainer, MAXSTRING, 0) == -1)
+        {
+            printf("Erreur dans l'envoi de la liste");
+            ret = "false";
+        }
+        else
+        {
+            printf("Liste envoyee");
+            ret = "true";
+        }
+
+        return ret;
     }
 
 /*----------------------------------------------------------------*/
