@@ -329,7 +329,7 @@ int main ()
 
     void * checkCommande(char *msg)
     {
-        char * ret = (char *)malloc(MAXSTRING);
+        void * ret;
         switch(msg[0])
         {
             case '0':
@@ -555,7 +555,7 @@ int main ()
                 }
             }
         }
-        return listContainer;
+        return *listContainer;
     }
 
 /*----------------------------------------------------------------*/
