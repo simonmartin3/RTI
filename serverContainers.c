@@ -557,7 +557,7 @@ int main ()
                 }
             }
         }
-        return (char*) listContainer;
+        return (char*) &listContainer;
     }
 
 /*----------------------------------------------------------------*/
