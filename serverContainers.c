@@ -551,8 +551,8 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    listContainer[i]->idContainer = container->idContainer;
-                    printf("%s - %s\n", listContainer[i]->idContainer, container->idContainer);
+                    listContainer[i].idContainer = container->idContainer;
+                    printf("%s - %s\n", listContainer[i]3.idContainer, container->idContainer);
                     i++;
                 }
             }
@@ -560,8 +560,8 @@ int main ()
 
         // for(int j = 0; j < i; j++)
         // {
-        	printf("%s\n", listContainer[0]->idContainer);
-        	printf("%s\n", listContainer[1]->idContainer);
+        	printf("%s\n", listContainer[0].idContainer);
+        	printf("%s\n", listContainer[1].idContainer);
         // }
         ret = "OK";
         return ret;
