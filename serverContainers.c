@@ -550,7 +550,7 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    listContainer[i]->idContainer = container->idContainer;
+                    listContainer[i] = container;
                     i++;
                 }
             }
