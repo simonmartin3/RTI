@@ -209,7 +209,7 @@ int main()
         if(option == 2)
         {
             Container *tmp;
-            memcpy(tmp, (struct Container*) msgServeur, sizeof(msgServeur));
+            tmp = (struct Container*) msgServeur;
             //printf("%s\n", tmp[0].idContainer);
         }
 
