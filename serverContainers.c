@@ -556,7 +556,7 @@ int main ()
             }
         }
 
-        if (send(hSocketServ, *listContainer, sizeof(Container)*i, 0) == -1)
+        if (send(hSocketServ, &listContainer, sizeof(Container)*i, 0) == -1)
         {
             printf("Erreur dans l'envoi de la liste\n");
             ret = "false";
