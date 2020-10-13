@@ -523,7 +523,7 @@ int main ()
 /*                         outputVehicule()                       */
 /*----------------------------------------------------------------*/
 
-    char * outputVehicule(char *msg)
+    struct Container * outputVehicule(char *msg)
     {
         FILE *fp;
 
@@ -555,8 +555,7 @@ int main ()
                 }
             }
         }
-        ret = "OK";
-        return ret;
+        return listContainer;
     }
 
 /*----------------------------------------------------------------*/
