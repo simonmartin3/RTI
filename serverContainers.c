@@ -556,14 +556,14 @@ int main ()
             }
         }
 
-        if (send(hSocketServ, (char*) &listContainer, MAXSTRING, 0) == -1)
+        if (send(hSocketServ, (char*) &listContainer, sizeof(Container)*res, 0) == -1)
         {
-            printf("Erreur dans l'envoi de la liste");
+            printf("Erreur dans l'envoi de la liste\n");
             ret = "false";
         }
         else
         {
-            printf("Liste envoyee");
+            printf("Liste envoyee\n");
             ret = "true";
         }
 
