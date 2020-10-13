@@ -347,6 +347,7 @@ int main ()
 
             case '3':
                 tmp = outputVehicule(msg);
+                return tmp;
                 break;
 
             case '6':
