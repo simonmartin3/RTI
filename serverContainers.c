@@ -613,7 +613,7 @@ int main ()
     {
         char * msg = malloc(sizeof(Container));
 
-        sprintf(msg, "%s - %s - %d - %s - %s - %s - %d - %s\n", 
+        sprintf(msg, "%s - %s - %d - %s - %s - %s - %d - %s#", 
                 container->idContainer, 
                 container->coordonnees, 
                 container->etat,
@@ -622,6 +622,8 @@ int main ()
                 container->destination,
                 container->poids,
                 container->typeRetour);
+
+        printf("%s\n", msg);
 
         return msg;
     }
