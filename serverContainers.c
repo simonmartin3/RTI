@@ -535,7 +535,7 @@ int main ()
 
         fp = fopen(FILEPARC, "r+b");
 
-        Container listContainer;
+        Container listContainer[];
         Container* container;
         container = malloc(sizeof(Container));
 
