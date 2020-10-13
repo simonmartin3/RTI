@@ -539,7 +539,7 @@ int main ()
     	// calculating the size of the file 
     	int res = ftell(fp)/sizeof(Container);
 
-        Container listContainer[res];
+        //Container listContainer[res];
         Container* container;
         container = malloc(sizeof(Container));
 
@@ -550,21 +550,20 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    memcpy(&listContainer[i], container, sizeof(Container));
+                    if (send(hSocketServ, (char*) &container, sizeof(Container), 0) == -1)
+                    {
+                        printf("Erreur dans l'envoi de la liste\n");
+                        ret = "false";
+                    }
+                    else
+                    {
+                        printf("Liste envoyee\n");
+                        ret = "true";
+                    }
+
                     i++;
                 }
             }
-        }
-
-        if (send(hSocketServ, (char*) &listContainer, sizeof(Container)*res, 0) == -1)
-        {
-            printf("Erreur dans l'envoi de la liste\n");
-            ret = "false";
-        }
-        else
-        {
-            printf("Liste envoyee\n");
-            ret = "true";
         }
 
         return ret;
