@@ -210,7 +210,7 @@ int main()
         {
             Container *tmp;
             memcpy(tmp, msgServeur, sizeof(msgServeur));
-            printf("%s\n", tmp[0]->idContainer);
+            printf("%s\n", tmp[0].idContainer);
         }
 
         param = tokenizer(msgServeur, "#;");
