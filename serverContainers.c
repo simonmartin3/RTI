@@ -539,7 +539,7 @@ int main ()
     	// calculating the size of the file 
     	long int res = ftell(fp)/sizeof(Container);
 
-        Container* listContainer[res];
+        Container* listContainer[res][sizeof(Container)];
         Container* container;
         container = malloc(sizeof(Container));
 
