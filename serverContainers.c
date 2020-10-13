@@ -534,8 +534,12 @@ int main ()
         param = tokenizer(msg, "#;");
 
         fp = fopen(FILEPARC, "r+b");
+        fseek(fp, 0L, SEEK_END); 
+  
+    	// calculating the size of the file 
+    	long int res = ftell(fp)/sizeof(Container);
 
-        Container listContainer[];
+        Container listContainer[res];
         Container* container;
         container = malloc(sizeof(Container));
 
