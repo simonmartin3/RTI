@@ -563,7 +563,6 @@ int main ()
                     {
                         printf("Erreur dans l'envoi de la liste\n");
                         ret = "false";
-                        break;
                     }
                     else
                     {
