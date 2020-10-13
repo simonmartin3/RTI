@@ -193,6 +193,7 @@ int main()
                 }
 
                 printf("%s\n", msgServeur);
+                msgServeur = "";
             }while(strcmp(msgServeur, "true") != 0 && strcmp(msgServeur, "false") != 0);
         }
 
