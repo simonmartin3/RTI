@@ -540,7 +540,7 @@ int main ()
     	int res = ftell(fp)/sizeof(Container);
         printf("%d\n", res);
 
-        Container* listContainer[res];
+        Container* listContainer[res]={};
         Container* container;
         container = malloc(sizeof(Container));
 
