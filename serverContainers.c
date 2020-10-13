@@ -531,7 +531,7 @@ int main ()
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
         int i=0;
-        char * message = (char *)malloc(MAXSTRING);
+        char * message = (char *)malloc(500);
 
         param = tokenizer(msg, "#;");
 
@@ -560,15 +560,15 @@ int main ()
         }
 
         if (send(hSocketServ, message, sizeof(Container), 0) == -1)
-                    {
-                        printf("Erreur dans l'envoi de la liste\n");
-                        ret = "false";
-                    }
-                    else
-                    {
-                        printf("Liste envoyee\n");
-                        ret = "true";
-                    }
+        {
+            printf("Erreur dans l'envoi de la liste\n");
+            ret = "false";
+        }
+        else
+        {
+            printf("Liste envoyee\n");
+            ret = "true";
+        }
 
         return ret;
     }

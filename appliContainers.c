@@ -183,9 +183,7 @@ int main()
 
         if(option == 2)
         {
-            do
-            {
-                if (recv(hSocket, msgTmp, MAXSTRING, 0) == -1)
+            if (recv(hSocket, msgTmp, MAXSTRING, 0) == -1)
                 {
                     printf("Erreur sur le recv de la socket %d\n", errno);
                     close(hSocket); /* Fermeture de la socket */
@@ -193,8 +191,6 @@ int main()
                 }
 
                 printf("%s\n", msgTmp);
-                msgTmp = "";
-            }while(strcmp(msgTmp, "true") != 0 && strcmp(msgTmp, "false") != 0);
         }
 
 
