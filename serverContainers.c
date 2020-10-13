@@ -550,7 +550,7 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    memcpy(listContainer[i], container, sizeof(Container));
+                    memcpy(listContainer[i], &container, sizeof(Container));
                     //printf("%s\n", container->idContainer);
                     i++;
                 }
