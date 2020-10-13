@@ -195,7 +195,7 @@ int main()
                     printf("Recv socket OK\n");
 
                 printf("Message recu en ACK = %s\n", msgServeur);
-            }while(strcmp(msgServeur, "true") != 0 && strcmp(msgServeur, "false") != 0)
+            }while(strcmp(msgServeur, "true") != 0 && strcmp(msgServeur, "false") != 0);
         }
 
 
