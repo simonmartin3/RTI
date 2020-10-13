@@ -59,12 +59,12 @@ int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 int fctFile(char *nomFile);
 void createLogin();
 void createFichParc();
-void * checkCommande(char *msg);
+char * checkCommande(char *msg);
 void pressEnter(void);
 char * authentification(char *msg);
 char * createContainer(char *msg);
 char * container(char *msg);
-struct Container outputVehicule(char *msg);
+char * outputVehicule(char *msg);
 void displayContainer();
 
 
@@ -327,10 +327,9 @@ int main ()
 /*                         checkCommande()                        */
 /*----------------------------------------------------------------*/
 
-    void * checkCommande(char *msg)
+    char * checkCommande(char *msg)
     {
         char *ret = (char *)malloc(MAXSTRING);
-        Container *tmp;
         switch(msg[0])
         {
             case '0':
@@ -346,8 +345,7 @@ int main ()
                 break;
 
             case '3':
-                tmp = outputVehicule(msg);
-                return tmp;
+                ret = outputVehicule(msg);
                 break;
 
             case '6':
@@ -525,7 +523,7 @@ int main ()
 /*                         outputVehicule()                       */
 /*----------------------------------------------------------------*/
 
-    struct Container outputVehicule(char *msg)
+    char * outputVehicule(char *msg)
     {
         FILE *fp;
 
@@ -557,7 +555,7 @@ int main ()
                 }
             }
         }
-        return *listContainer;
+        return (char*) listContainer;
     }
 
 /*----------------------------------------------------------------*/
