@@ -553,6 +553,7 @@ int main ()
                 if(strcmp(container->destination, param[3]) == 0)
                 {
                     strcat(message, toString(container));
+                    printf("%s\n", message);
                     i++;
                 }
             }
@@ -611,7 +612,6 @@ int main ()
     char * toString(struct Container * container)
     {
         char * msg = malloc(sizeof(Container));
-
 
         sprintf(msg, "%s - %s - %d - %s - %s - %s - %d - %s\n", 
                 container->idContainer, 
