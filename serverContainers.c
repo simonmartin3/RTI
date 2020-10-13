@@ -552,9 +552,14 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    message = toString(container);
+                    strcat(message, toString(container));
                     printf("%s\n", message);
-                    if (send(hSocketServ, message, sizeof(Container), 0) == -1)
+                    i++;
+                }
+            }
+        }
+
+        if (send(hSocketServ, message, sizeof(Container), 0) == -1)
                     {
                         printf("Erreur dans l'envoi de la liste\n");
                         ret = "false";
@@ -565,10 +570,6 @@ int main ()
                         printf("Liste envoyee\n");
                         ret = "true";
                     }
-                    i++;
-                }
-            }
-        }
 
         return ret;
     }
@@ -613,7 +614,7 @@ int main ()
     {
         char * msg = malloc(sizeof(Container));
 
-        sprintf(msg, "%s - %s - %d - %s - %s - %s - %d - %s", 
+        sprintf(msg, "%s - %s - %d - %s - %s - %s - %d - %s#", 
                 container->idContainer, 
                 container->coordonnees, 
                 container->etat,

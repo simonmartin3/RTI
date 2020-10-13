@@ -47,7 +47,7 @@ int main()
     unsigned int tailleSockaddr_in;
     int ret, option, end = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
-	char * msgTmp = (char *)malloc(MAXSTRING);
+	char * msgTmp = (char *)malloc(500);
     char **param = NULL;
     int port;
     char tmp[20];
