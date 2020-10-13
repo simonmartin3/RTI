@@ -550,7 +550,7 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    if (send(hSocketServ, (char*) &container, sizeof(Container), 0) == -1)
+                    if (send(hSocketServ, container, sizeof(Container), 0) == -1)
                     {
                         printf("Erreur dans l'envoi de la liste\n");
                         ret = "false";
