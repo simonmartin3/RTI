@@ -208,9 +208,22 @@ int main()
 
         if(option == 2)
         {
-            Container *tmp;
-            tmp = (struct Container*) msgServeur;
-            printf("%s\n", tmp[0].idContainer);
+            Container *container;
+            container = (struct Container*) msgServeur;
+            int i = srtlen(msgServeur)/sizeof(Container);
+            printf("%d\n", i);
+            for(int j = 0; j < i; j++)
+            {
+                printf("%s - %s - %d - %s - %s - %s - %d - %s\n", 
+                container[j]->idContainer, 
+                container[j]->coordonnees, 
+                container[j]->etat,
+                container[j]->dateReservation,
+                container[j]->dateArrivee,
+                container[j]->destination,
+                container[j]->poids,
+                container[j]->typeRetour);
+            }
         }
 
         param = tokenizer(msgServeur, "#;");
