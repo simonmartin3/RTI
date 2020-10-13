@@ -537,7 +537,8 @@ int main ()
         fseek(fp, 0L, SEEK_END); 
   
     	// calculating the size of the file 
-    	long int res = ftell(fp)/sizeof(Container);
+    	int res = ftell(fp)/sizeof(Container);
+        printf("%d\n", res);
 
         Container* listContainer[res];
         Container* container;
@@ -551,7 +552,6 @@ int main ()
                 if(strcmp(container->destination, param[3]) == 0)
                 {
                     listContainer[i] = container;
-                    printf("%s\n", listContainer[0]->idContainer);
                     printf("%s - %s\n", listContainer[i]->idContainer, container->idContainer);
                     i++;
                 }
