@@ -555,6 +555,11 @@ int main ()
                 }
             }
         }
+
+        for(int j = 0; j < i; j++)
+        {
+        	printf("%s\n", listContainer[j]->idContainer);
+        }
         ret = "OK";
         return ret;
     }
