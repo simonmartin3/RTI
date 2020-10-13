@@ -531,7 +531,7 @@ int main ()
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
         int i=0;
-        char * message;
+        char * message (char *)malloc(ftell(fp));
 
         param = tokenizer(msg, "#;");
 
