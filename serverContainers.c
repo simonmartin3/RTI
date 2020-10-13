@@ -559,7 +559,7 @@ int main ()
 
         for(int j = 0; j < i; j++)
         {
-        	printf("%s\n", listContainer[i].idContainer);
+        	printf("%s\n", &listContainer[i]->idContainer);
         }
         ret = "OK";
         return ret;
