@@ -538,7 +538,6 @@ int main ()
   
     	// calculating the size of the file 
     	int res = ftell(fp)/sizeof(Container);
-        printf("%d\n", res);
 
         Container listContainer[res];
         Container* container;
@@ -551,7 +550,7 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    strcpy(listContainer[i].idContainer, container->idContainer);
+                    memcpy(listContainer[i], container, sizeof(Container));
                     printf("%s - %s\n", listContainer[i].idContainer, container->idContainer);
                     i++;
                 }
