@@ -551,6 +551,7 @@ int main ()
                 if(strcmp(container->destination, param[3]) == 0)
                 {
                     listContainer[i] = container;
+                    printf("%s\n", listContainer[0]->idContainer);
                     printf("%s - %s\n", listContainer[i]->idContainer, container->idContainer);
                     i++;
                 }
