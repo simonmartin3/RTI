@@ -23,6 +23,7 @@ int PORT;
 char FILELOG[20];
 char FILEPARC[20];
 char SEP_CSV[10];
+int hSocketServ;
 
 typedef struct Container Container;
 struct Container
@@ -194,7 +195,6 @@ int main ()
         int retRecv;
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
-        int hSocketServ;
 
         while (1)
         {
@@ -527,7 +527,7 @@ int main ()
     {
         FILE *fp;
 
-        // char * ret = (char *)malloc(MAXSTRING);
+        char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
         int i=0;
 
