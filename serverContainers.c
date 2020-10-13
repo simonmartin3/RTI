@@ -19,28 +19,6 @@
 #define MAXSTRING 100 /* Longueur des messages */
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
 
-pthread_mutex_t mutexIndiceCourant;
-pthread_cond_t condIndiceCourant;
-int indiceCourant=-1;
-pthread_t threadHandle[NB_MAX_CLIENTS]; /* Threads pour clients*/
-void * fctThread(void * param);
-char * getThreadIdentity();
-
-int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
-
-/* My function */
-int fctFile(char *nomFile);
-void createLogin();
-void createFichParc();
-char * checkCommande(char *msg);
-void pressEnter(void);
-char * authentification(char *msg);
-char * createContainer(char *msg);
-char * container(char *msg);
-char * createVehicule(char *msg);
-void displayContainer();
-
-
 int PORT;
 char FILELOG[20];
 char FILEPARC[20];
@@ -67,6 +45,28 @@ struct Vehicule
     char destination[50];
     int  capacite;
 };
+
+pthread_mutex_t mutexIndiceCourant;
+pthread_cond_t condIndiceCourant;
+int indiceCourant=-1;
+pthread_t threadHandle[NB_MAX_CLIENTS]; /* Threads pour clients*/
+void * fctThread(void * param);
+char * getThreadIdentity();
+
+int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
+
+/* My function */
+int fctFile(char *nomFile);
+void createLogin();
+void createFichParc();
+void * checkCommande(char *msg);
+void pressEnter(void);
+char * authentification(char *msg);
+char * createContainer(char *msg);
+char * container(char *msg);
+struct Container * outputVehicule(char *msg);
+void displayContainer();
+
 
 int main ()
 {
@@ -327,7 +327,7 @@ int main ()
 /*                         checkCommande()                        */
 /*----------------------------------------------------------------*/
 
-    char * checkCommande(char *msg)
+    void * checkCommande(char *msg)
     {
         char * ret = (char *)malloc(MAXSTRING);
         switch(msg[0])
@@ -345,7 +345,7 @@ int main ()
                 break;
 
             case '3':
-                ret = createVehicule(msg);
+                ret = outputVehicule(msg);
                 break;
 
             case '6':
@@ -520,10 +520,10 @@ int main ()
     }
 
 /*----------------------------------------------------------------*/
-/*                         createVehicule()                       */
+/*                         outputVehicule()                       */
 /*----------------------------------------------------------------*/
 
-    char * createVehicule(char *msg)
+    char * outputVehicule(char *msg)
     {
         FILE *fp;
 
@@ -551,15 +551,9 @@ int main ()
                 if(strcmp(container->destination, param[3]) == 0)
                 {
                     memcpy(&listContainer[i], container, sizeof(Container));
-                    printf("%s - %s\n", listContainer[i].idContainer, container->idContainer);
                     i++;
                 }
             }
-        }
-
-        for(int j = 0; j < i; j++)
-        {
-        	printf("%s\n", listContainer[j].idContainer);
         }
         ret = "OK";
         return ret;
