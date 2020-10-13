@@ -191,10 +191,8 @@ int main()
                     close(hSocket); /* Fermeture de la socket */
                     exit(1);
                 }
-                else 
-                    printf("Recv socket OK\n");
 
-                printf("Message recu en ACK = %s\n", msgServeur);
+                printf("%s\n", msgServeur);
             }while(strcmp(msgServeur, "true") != 0 && strcmp(msgServeur, "false") != 0);
         }
 

@@ -531,7 +531,7 @@ int main ()
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
         int i=0;
-        char * message = (char *)malloc(500);
+        char * message = (char *)malloc(sizeof(Container));
 
         param = tokenizer(msg, "#;");
 
@@ -564,6 +564,7 @@ int main ()
                         printf("Liste envoyee\n");
                         ret = "true";
                     }
+                    free(message);
                     i++;
                 }
             }
