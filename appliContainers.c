@@ -209,8 +209,8 @@ int main()
         if(option == 2)
         {
             Container *tmp;
-            memcpy(tmp, msgServeur, sizeof(msgServeur));
-            printf("%s\n", tmp[0].idContainer);
+            memcpy(tmp, (struct Container*) msgServeur, sizeof(msgServeur));
+            //printf("%s\n", tmp[0].idContainer);
         }
 
         param = tokenizer(msgServeur, "#;");
