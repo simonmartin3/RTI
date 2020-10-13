@@ -529,11 +529,13 @@ int main ()
 
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
+        int i=0;
 
         param = tokenizer(msg, "#;");
 
         fp = fopen(FILEPARC, "r+b");
 
+        Container listContainer;
         Container* container;
         container = malloc(sizeof(Container));
 
@@ -543,7 +545,9 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
+                    listContainer[i]=container;
                     printf("%s\n", container->idContainer);
+                    i++;
                 }
             }
         }
