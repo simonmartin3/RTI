@@ -540,7 +540,7 @@ int main ()
     	int res = ftell(fp)/sizeof(Container);
         printf("%d\n", res);
 
-        Container* listContainer[res]={};
+        Container listContainer[res];
         Container* container;
         container = malloc(sizeof(Container));
 
@@ -551,7 +551,7 @@ int main ()
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    listContainer[i] = container;
+                    listContainer[i]->idContainer = container->idContainer;
                     printf("%s - %s\n", listContainer[i]->idContainer, container->idContainer);
                     i++;
                 }
