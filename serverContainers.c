@@ -64,7 +64,7 @@ void pressEnter(void);
 char * authentification(char *msg);
 char * createContainer(char *msg);
 char * container(char *msg);
-struct Container * outputVehicule(char *msg);
+struct Container outputVehicule(char *msg);
 void displayContainer();
 
 
@@ -523,11 +523,11 @@ int main ()
 /*                         outputVehicule()                       */
 /*----------------------------------------------------------------*/
 
-    struct Container * outputVehicule(char *msg)
+    struct Container outputVehicule(char *msg)
     {
         FILE *fp;
 
-        char * ret = (char *)malloc(MAXSTRING);
+        // char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
         int i=0;
 
@@ -555,7 +555,7 @@ int main ()
                 }
             }
         }
-        return *listContainer;
+        return listContainer;
     }
 
 /*----------------------------------------------------------------*/
