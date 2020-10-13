@@ -345,7 +345,9 @@ int main ()
                 break;
 
             case '3':
-                ret = outputVehicule(msg);
+                ret = msg[0];
+                strcat(ret, "#");
+                strcat(ret, outputVehicule(msg));
                 break;
 
             case '6':
