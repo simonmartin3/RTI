@@ -543,13 +543,14 @@ int main ()
         Container* container;
         container = malloc(sizeof(Container));
 
+        rewind(fp);
         while(fread(container, sizeof(Container), 1, fp))
         {
             if(strcmp(container->typeRetour, param[1]) == 0)
             {
                 if(strcmp(container->destination, param[3]) == 0)
                 {
-                    //listContainer[i] = container;
+                    listContainer[i] = container;
                     printf("%s\n", container->idContainer);
                     i++;
                 }
