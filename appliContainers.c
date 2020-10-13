@@ -185,16 +185,16 @@ int main()
         {
             do
             {
-                if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+                if (recv(hSocket, msgTmp, MAXSTRING, 0) == -1)
                 {
                     printf("Erreur sur le recv de la socket %d\n", errno);
                     close(hSocket); /* Fermeture de la socket */
                     exit(1);
                 }
 
-                printf("%s\n", msgServeur);
-                msgServeur = "";
-            }while(strcmp(msgServeur, "true") != 0 && strcmp(msgServeur, "false") != 0);
+                printf("%s\n", msgTmp);
+                msgTmp = "";
+            }while(strcmp(msgTmp, "true") != 0 && strcmp(msgTmp, "false") != 0);
         }
 
 
