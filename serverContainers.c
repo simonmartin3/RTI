@@ -330,7 +330,7 @@ int main ()
     void * checkCommande(char *msg)
     {
         char *ret = (char *)malloc(MAXSTRING);
-        Container tmp;
+        Container *tmp;
         switch(msg[0])
         {
             case '0':
@@ -347,7 +347,7 @@ int main ()
 
             case '3':
                 tmp = outputVehicule(msg);
-                return *tmp;
+                return tmp;
                 break;
 
             case '6':
