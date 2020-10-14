@@ -34,7 +34,7 @@ int main()
     struct in_addr adresseIP; /* Adresse Internet au format reseau */
     struct sockaddr_in adresseSocket; /* Structure de type sockaddr - ici, cas de TCP */
     unsigned int tailleSockaddr_in;
-    int ret, option, end = 0; /* valeur de retour */
+    int ret, option, end = 0, endList = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	Message msgSend;
     char **param = NULL;
@@ -200,18 +200,20 @@ int main()
         {
             do
             {
-
                 if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
                 {
                     printf("Erreur sur le recv de la socket %d\n", errno);
                     close(hSocket); /* Fermeture de la socket */
                     exit(1);
                 }
-                else 
-                    printf("%s\n", msgServeur);
-            }while(strcmp(msgServeur, OK) != 0);
-
-
+                else
+                {
+                    if(strcmp(msgServeur, OK) == 0)
+                        endList = 1;
+                    else
+                        printf("%s\n", msgServeur);
+                }
+            }while(endList != 0);
         }
 
 
