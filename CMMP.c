@@ -196,7 +196,7 @@ char ** tokenizer(char *msg, char *ct)
         msg = NULL;
     	}
     
-    tab[i] = NULL;
+    tab[i] = '\0';
   	
   	}	
 	

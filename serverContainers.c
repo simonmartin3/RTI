@@ -379,19 +379,16 @@ int main ()
             printf("Le fichier %s n'existe pas.\n", FILELOG);
             exit(1);
         }
-        else {   
-        	printf("%s\n", msg);
+        else {
 
             param = tokenizer(msg, "-");
 
-            printf("%s\n%s", param[0], param[1]);
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {   
                 id = NULL; 
                 id = tokenizer(identifiant, ";");
                 if(strcmp(id[0], param[0]) == 0)
                 {
-                	id[1][strlen(id[1])-1] = '\0';
                     if(strcmp(id[1], param[1]) == 0)
                     {
                         ret = OK;
