@@ -37,7 +37,6 @@ int main()
     int ret, option, end = 0, endList = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	Message msgSend;
-    char **param = NULL;
     int port;
     char tmp[20];
 
@@ -225,7 +224,7 @@ int main()
         }
         else 
             printf("Recv socket OK\n");
-        
+
         printf("Message recu en ACK = %s\n", msgServeur);
 
         if (strcmp(msgServeur, EOC)==0)
