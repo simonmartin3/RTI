@@ -357,7 +357,7 @@ void pressEnter()
             }
         }
 
-        return listContainer;
+        return *listContainer;
     }
 
 /*----------------------------------------------------------------*/
