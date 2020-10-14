@@ -141,7 +141,7 @@ int main()
                 break;
 
             case 2 :
-                msgSend = outputReady();
+                //msgSend = outputReady();
                 break;
 
             case 5 :
