@@ -289,7 +289,7 @@ int main ()
                             if(ret == OK)
                                 vehicule->capacite--;
                         }
-                        printf("Capacite du vehicule : %d\n", vehicule.capacite);
+                        printf("Capacite du vehicule : %d\n", vehicule->capacite);
                         break;
 
                     case 5 :
