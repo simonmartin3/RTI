@@ -279,17 +279,16 @@ void pressEnter()
 
         while(fread(uploadContainer, sizeof(Container), 1, fp))
         {
-        	i++;
             if(strcmp(uploadContainer->idContainer, msg) == 0)
             {
                 printf("Trouve\n");
                 break;
             }
+            i++;
         }
 
         uploadContainer->poids = poids;
 
-        i--;
         fseek(fp, i*sizeof(Container), SEEK_SET);
 
         if(fwrite(uploadContainer, sizeof(Container), 1, fp) != 0)  
