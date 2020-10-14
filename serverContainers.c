@@ -166,6 +166,7 @@ int main ()
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
         Message msgRecv, msgSend;
+        Container * listSend;
         
 
         while (1)
@@ -224,7 +225,7 @@ int main ()
                         break;
 
 		            case 3:
-		                Container * listSend = outputVehicule(msgRecv.msg, FILEPARC);
+		                listSend = outputVehicule(msgRecv.msg, FILEPARC);
                         //printf("%s\n", listSend[0].idContainer);
                         // if (send(hSocketServ, listSend, sizeof(listSend), 0) == -1)
                         // {
