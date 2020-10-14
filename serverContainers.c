@@ -166,8 +166,9 @@ int main ()
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
         Message msgRecv;
+        Vehicule *vehicule;
         FILE *fp;
-        char **tmp = NULL;        
+        char **tmp = NULL;
 
         while (1)
         {
@@ -231,6 +232,11 @@ int main ()
 
                         Container* container;
                         container = malloc(sizeof(Container));
+
+                        vehicule = malloc(sizeof(Vehicule));
+                        strcpy(vehicule->idVehicule, tmp[1]);
+                        strcpy(vehicule->destination, tmp[2]);
+                        vehicule->capacite, tmp[3];
 
                         rewind(fp);
 

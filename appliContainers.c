@@ -195,6 +195,7 @@ int main()
 
         if(option == 2)
         {
+            system("clear");
             do
             {
                 if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
