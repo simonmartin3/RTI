@@ -32,7 +32,7 @@ struct Message
 };
 
 struct Message login();
-// char * logout();
+struct Message logout();
 // char * inputTruck();
 // char * inputDone();
 // char * outputReady();

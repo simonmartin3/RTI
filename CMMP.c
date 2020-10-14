@@ -40,11 +40,11 @@ struct Message login()
 	return message;
 }
 
-char * logout()
+struct Message logout()
 {
 
 	Message message;
-	
+
 	char *msg = (char *)malloc(MAXSTRING);
 	char user[30], pass[30];
 
