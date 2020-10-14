@@ -27,20 +27,6 @@ void showContainer();
 
 int PORT;
 
-typedef struct Container Container;
-struct Container
-{
-    char idContainer[20];
-    char coordonnees[10];
-    int etat;
-    char dateReservation[20];
-    char dateArrivee[20];
-    char destination[50];
-    int poids;
-    char typeRetour[10];
-
-};
-
 int main()
 {
     int hSocket; /* Handle de la socket */
