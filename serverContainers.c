@@ -223,7 +223,7 @@ int main ()
                         break;
 
 		            case 3:
-		                // ret = outputVehicule(msg);
+		                 ret = outputVehicule(msgRecv.msg, FILEPARC);
 		                break;
 
 		            case 6 :

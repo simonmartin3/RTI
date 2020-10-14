@@ -113,51 +113,54 @@ struct Message inputDone(char * idContainer)
 	return message;
 }
 
-// char * outputReady()
-// {
-// 	int type = OUTPUT_READY;
-// 	char *message = (char *)malloc(MAXSTRING);
-// 	char idVehicule[20], dest[50], capacite[10];
-// 	int typeV, tmp;
+struct Message outputReady()
+{
+	Message message;
 
-// 	do
-//     {
-//         //system("clear");
-//         printf("1 - Bateau\n");
-//         printf("2 - Train\n");
-//         scanf("%d", &typeV);
-//         fflush(stdin);
-//         typeV = (int)typeV;
-//     }while(typeV < 1 || typeV > 2);
+	char *msg = (char *)malloc(MAXSTRING);
+	char idVehicule[20], dest[50], capacite[10];
+	int typeV, tmp;
 
-// 	puts("Entrer l'identifiant :");
-// 	scanf("%s", idVehicule);
+	do
+    {
+        //system("clear");
+        printf("1 - Bateau\n");
+        printf("2 - Train\n");
+        scanf("%d", &typeV);
+        fflush(stdin);
+        typeV = (int)typeV;
+    }while(typeV < 1 || typeV > 2);
+
+	puts("Entrer l'identifiant :");
+	scanf("%s", idVehicule);
 	
-// 	fflush(stdin);
+	fflush(stdin);
 	
-// 	puts("Entrer la destination :");
-// 	scanf("%s", dest);
+	puts("Entrer la destination :");
+	scanf("%s", dest);
 
-// 	puts("Entrer la capacite :");
-// 	scanf("%d", &tmp);
+	puts("Entrer la capacite :");
+	scanf("%d", &tmp);
 	
-// 	fflush(stdin);
+	fflush(stdin);
 
-// 	sprintf(capacite, "%d", tmp);
+	sprintf(capacite, "%d", tmp);
 	
-// 	sprintf(message, "%d", type);
-// 	strcat(message, "#");
-// 	if(typeV == 1)
-// 		strcat(message, "Bateau");
-// 	else
-// 		strcat(message, "Train");
-// 	strcat(message, ";");
-// 	strcat(message, idVehicule);
-// 	strcat(message, ";");
-// 	strcat(message, dest);
-// 	strcat(message, ";");
-// 	strcat(message, capacite);
+	message.typeReq = OUTPUT_READY;
 
-// 	return message;
-// }
+	if(typeV == 1)
+		strcat(msg, "Bateau");
+	else
+		strcat(msg, "Train");
+	strcat(msg, ";");
+	strcat(msg, idVehicule);
+	strcat(msg, ";");
+	strcat(msg, dest);
+	strcat(msg, ";");
+	strcat(msg, capacite);
+
+	strcpy(message.msg, msg);
+
+	return message;
+}
 

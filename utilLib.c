@@ -329,10 +329,9 @@ void pressEnter()
 
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
-        int i=0;
         char * message = (char *)malloc(500);
 
-        param = tokenizer(msg, "#;");
+        param = tokenizer(msg, ";");
 
         fp = fopen(FILEPARC, "r+b");
         fseek(fp, 0L, SEEK_END); 
@@ -347,17 +346,22 @@ void pressEnter()
         rewind(fp);
         while(fread(container, sizeof(Container), 1, fp))
         {
-            if(strcmp(container->typeRetour, param[1]) == 0)
+            if(strcmp(container->typeRetour, param[0]) == 0)
             {
-                if(strcmp(container->destination, param[3]) == 0)
+                if(strcmp(container->destination, param[2]) == 0)
                 {
-                    strcat(message, toString(container));
-                    printf("%s\n", message);
+                    memcpy(listContainer[i], container, sizeof(Container));
                     i++;
                 }
             }
         }
 
+        for(int j = 0; j < i; j++)
+        {
+            printf("%s\n", listContainer[j]->idContainer);
+        }
+
+        ret = OK;
         return ret;
     }
 
