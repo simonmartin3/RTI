@@ -385,26 +385,24 @@ int main ()
             param = tokenizer(msg, "-");
 
             printf("%s\n%s", param[0], param[1]);
-            // while(fgets(identifiant, MAXSTRING, fp) != NULL)
-            // {   
-            //     id = NULL; 
-            //     id = tokenizer(identifiant, ";");
-            //     if(strcmp(id[0], param[1]) == 0)
-            //     {
-            //         if(strcmp(id[1], param[2]) == 0)
-            //         {
-            //             ret = OK;
-            //             break;
-            //         }
-            //         ret = FAIL;
-            //     }
-            //     else {
-            //         ret = FAIL;
-            //     }
-            // }
-            // fclose(fp);
-            // printf("%s\n", ret);
-            ret = OK;
+            while(fgets(identifiant, MAXSTRING, fp) != NULL)
+            {   
+                id = NULL; 
+                id = tokenizer(identifiant, ";");
+                if(strcmp(id[0], param[0]) == 0)
+                {
+                    if(strcmp(id[1], param[1]) == 0)
+                    {
+                        ret = OK;
+                        break;
+                    }
+                    ret = FAIL;
+                }
+                else {
+                    ret = FAIL;
+                }
+            }
+            fclose(fp);
             return ret;
         }
     }
