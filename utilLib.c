@@ -355,7 +355,7 @@ void pressEnter()
                     tmp = toString(container);
                     printf("%s\n", tmp);
 
-                    strcpy(listContainer[i], tmp);
+                    listContainer[i] = tmp;
                     printf("%s\n", listContainer[i]);
                     i++;
                 }
