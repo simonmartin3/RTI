@@ -304,7 +304,7 @@ void pressEnter()
 
         free(uploadContainer);
         fclose(fp);
-        
+
         return ret;
     }
 
@@ -354,7 +354,7 @@ void pressEnter()
 /*                      displayContainer()                        */
 /*----------------------------------------------------------------*/
 
-	void displayContainer(char * FILEPARC)
+	char * displayContainer(char * FILEPARC)
 	{
 		FILE *fp;
 
@@ -380,6 +380,8 @@ void pressEnter()
 
         free(container);
         fclose(fp);
+
+        return OK;
 	}
 
 /*----------------------------------------------------------------*/

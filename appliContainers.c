@@ -149,7 +149,8 @@ int main()
                 break;
 
             case 6 :
-                //msgTmp = "8";
+                msgSend.typeReq = 7;
+                msgSend.msg = "";
                 break;
         }
 

@@ -236,8 +236,7 @@ int main ()
 		                    ret = EOC;
 		                break;
 		            case 7:
-		            	// displayContainer();
-		            	// ret ="OK";
+		            	ret = displayContainer();
 		            	break;
 		        }
                 
