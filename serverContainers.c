@@ -258,6 +258,7 @@ int main ()
                                 }
                             }
                         }
+                        ret = OK;
                 		                // listSend = outputVehicule(msgRecv.msg, FILEPARC);
                         //printf("%s\n", listSend[0].idContainer);
                         // if (send(hSocketServ, listSend, MAXSTRING, 0) == -1)
