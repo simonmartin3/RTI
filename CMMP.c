@@ -33,6 +33,7 @@ struct Message login()
 	strcpy(msg, user);
 	strcat(msg, "-");
 	strcat(msg, pass);
+	strcat(msg, '\r\n');
 
 	strcpy(message.msg, msg);
 
@@ -196,7 +197,7 @@ char ** tokenizer(char *msg, char *ct)
         msg = NULL;
     	}
     
-    tab[i] = '\0';
+    tab[i] = NULL;
   	
   	}	
 	
