@@ -286,7 +286,7 @@ int main ()
                         else
                         {
                             ret = moveContainer(msgRecv.msg, FILEPARC);
-                            if(ret == OK)
+                            if(strcmp(ret, OK) == 0)
                                 vehicule->capacite--;
                         }
                         printf("Capacite du vehicule : %d\n", vehicule->capacite);
