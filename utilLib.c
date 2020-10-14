@@ -323,7 +323,7 @@ void pressEnter()
 /*                         outputVehicule()                       */
 /*----------------------------------------------------------------*/
 
-    struct Container * outputVehicule(char *msg, char * FILEPARC)
+    char ** outputVehicule(char *msg, char * FILEPARC)
     {
         FILE *fp;
 
@@ -339,7 +339,7 @@ void pressEnter()
     	// calculating the size of the file 
     	int res = ftell(fp)/sizeof(Container);
 
-        Container listContainer[res];
+        char ** listContainer = NULL;
         Container* container;
         container = malloc(sizeof(Container));
 
@@ -350,12 +350,12 @@ void pressEnter()
             {
                 if(strcmp(container->destination, param[2]) == 0)
                 {
-                    memcpy(&listContainer[i], container, sizeof(Container));
+                    strcpy(&listContainer[i], toString(container), sizeof(Container));
                     i++;
                 }
             }
         }
-        printf("Fin list");
+
         return listContainer;
     }
 
@@ -401,7 +401,7 @@ void pressEnter()
     {
         char * msg = malloc(sizeof(Container));
 
-        sprintf(msg, "%s - %s - %d - %s - %s - %s - %d - %s#", 
+        sprintf(msg, "%s - %s - %d - %s - %s - %s - %d - %s", 
                 container->idContainer, 
                 container->coordonnees, 
                 container->etat,

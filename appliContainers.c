@@ -198,18 +198,20 @@ int main()
 
         if(option == 2)
         {
-            Container *list;
-            if (recv(hSocket, msgBig, sizeof(msgBig), 0) == -1)
+            do
             {
-                printf("Erreur sur le recv de la socket %d\n", errno);
-                close(hSocket); /* Fermeture de la socket */
-                exit(1);
-            }
-            else 
-                printf("Recv socket OK\n");
 
-            memcpy(&list, msgServeur, sizeof(msgServeur));
-            printf("%s\n", list[0].idContainer);
+                if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+                {
+                    printf("Erreur sur le recv de la socket %d\n", errno);
+                    close(hSocket); /* Fermeture de la socket */
+                    exit(1);
+                }
+                else 
+                    printf("%s\n", msgServeur);
+            while(strcmp(msgServeur, OK) != 0);
+
+
         }
 
 

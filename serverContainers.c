@@ -225,19 +225,7 @@ int main ()
                         break;
 
 		            case 3:
-		                listSend = outputVehicule(msgRecv.msg, FILEPARC);
-                        //printf("%s\n", listSend[0].idContainer);
-                        if (send(hSocketServ, listSend, sizeof(listSend), 0) == -1)
-                        {
-                            printf("Erreur sur le send de la socket %d\n", errno);
-                            close(hSocketServ); /* Fermeture de la socket */
-                            exit(1);
-                        }
-                        else
-                        {
-                            sprintf(buf,"Send container list\n");
-                            affThread(numThr, buf);
-                        }
+		                
 		                break;
 
 		            case 6 :
