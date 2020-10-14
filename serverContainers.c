@@ -385,7 +385,7 @@ int main ()
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {   
                 id = NULL; 
-                id = tokenizer(identifiant, "#;");
+                id = tokenizer(identifiant, ";");
                 if(strcmp(id[0], param[1]) == 0)
                 {
                     if(strcmp(id[1], param[2]) == 0)
