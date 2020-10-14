@@ -244,7 +244,7 @@ int main ()
 
                 switch(msgRecv.typeReq)
 		        {
-		            case '0':
+		            case 0:
 		                ret = authentification(msgRecv.msg);
 		                break;
 
