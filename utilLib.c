@@ -351,7 +351,7 @@ void pressEnter()
             {
                 if(strcmp(container->destination, param[2]) == 0)
                 {
-                    memcpy(listContainer[i], container, sizeof(Container));
+                    memcpy(listContainer[i], &container, sizeof(Container));
                     i++;
                 }
             }
