@@ -34,7 +34,7 @@ struct Message
 struct Message login();
 struct Message logout();
 struct Message inputTruck();
-struct Message inputDone();
+char * inputDone();
 // char * outputReady();
 /*void inputTruck(int*, int*);
 void inputDone(char*, int*);

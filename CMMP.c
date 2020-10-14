@@ -96,19 +96,13 @@ struct Message inputTruck()
 	return message;
 }
 
-struct Message inputDone()
+char * inputDone()
 {
-	Message message;
-
 	char poids[50];
-
-	message.typeReq = INPUT_DONE;
 
 	sprintf(poids, "%d" , rand()%250);
 
-	strcpy(message.msg, poids);
-
-	return message;
+	return poids;
 }
 
 // char * outputReady()

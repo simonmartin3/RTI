@@ -270,7 +270,8 @@ void pressEnter()
 
         char * ret = (char *)malloc(MAXSTRING);
         int i = 0;
-        int poids = rand()%50;
+        char * poids = (char *)malloc(MAXSTRING);
+        poids = inputDone();
 
         fp = fopen(FILEPARC, "r+b");
 
@@ -287,7 +288,7 @@ void pressEnter()
             i++;
         }
 
-        uploadContainer->poids = poids;
+        uploadContainer->poids = atoi(poids);
 
         fseek(fp, i*sizeof(Container), SEEK_SET);
 
