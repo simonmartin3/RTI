@@ -225,7 +225,7 @@ int main ()
                         break;
 
 		            case 3:
-		                memcpy(&listSend, outputVehicule(msgRecv.msg, FILEPARC), 50*sizeof(Container));
+		                listSend = outputVehicule(msgRecv.msg, FILEPARC);
                         printf("%s\n", listSend[0].idContainer);
                         // if (send(hSocketServ, listSend, sizeof(listSend), 0) == -1)
                         // {
