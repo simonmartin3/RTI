@@ -166,6 +166,7 @@ int main ()
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
         Message msgRecv, msgSend;
+        Container listSend;
 
         while (1)
         {
@@ -223,7 +224,18 @@ int main ()
                         break;
 
 		            case 3:
-		                 ret = outputVehicule(msgRecv.msg, FILEPARC);
+		                listSend = outputVehicule(msgRecv.msg, FILEPARC);
+                        if (send(hSocketServ, listSend, sizeof(listSend), 0) == -1)
+                        {
+                            printf("Erreur sur le send de la socket %d\n", errno);
+                            close(hSocketServ); /* Fermeture de la socket */
+                            exit(1);
+                        }
+                        else
+                        {
+                            sprintf(buf,"Send container list\n");
+                            affThread(numThr, buf);
+                        }
 		                break;
 
 		            case 6 :

@@ -323,7 +323,7 @@ void pressEnter()
 /*                         outputVehicule()                       */
 /*----------------------------------------------------------------*/
 
-    char * outputVehicule(char *msg, char * FILEPARC)
+    struct Container outputVehicule(char *msg, char * FILEPARC)
     {
         FILE *fp;
 
@@ -357,21 +357,7 @@ void pressEnter()
             }
         }
 
-        if (send(hSocketServ, listContainer, res*sizeof(Container), 0) == -1)
-        {
-            printf("Erreur sur le send de la socket %d\n", errno);
-            close(hSocketServ); /* Fermeture de la socket */
-            exit(1);
-        }
-        else
-        {
-            sprintf(buf,"Send container list\n");
-            affThread(numThr, buf);
-        }
-
-
-        ret = OK;
-        return ret;
+        return listContainer;
     }
 
 /*----------------------------------------------------------------*/
