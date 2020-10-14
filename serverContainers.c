@@ -381,28 +381,28 @@ int main ()
         }
         else {   
         	printf("%s\n", msg);
-        	ret = OK;
-            // param = tokenizer(msg, ";");
 
-            // while(fgets(identifiant, MAXSTRING, fp) != NULL)
-            // {   
-            //     id = NULL; 
-            //     id = tokenizer(identifiant, ";");
-            //     if(strcmp(id[0], param[1]) == 0)
-            //     {
-            //         if(strcmp(id[1], param[2]) == 0)
-            //         {
-            //             ret = OK;
-            //             break;
-            //         }
-            //         ret = FAIL;
-            //     }
-            //     else {
-            //         ret = FAIL;
-            //     }
-            // }
-            // fclose(fp);
-            // printf("%s\n", ret);
+            param = tokenizer(msg, "-");
+
+            while(fgets(identifiant, MAXSTRING, fp) != NULL)
+            {   
+                id = NULL; 
+                id = tokenizer(identifiant, ";");
+                if(strcmp(id[0], param[1]) == 0)
+                {
+                    if(strcmp(id[1], param[2]) == 0)
+                    {
+                        ret = OK;
+                        break;
+                    }
+                    ret = FAIL;
+                }
+                else {
+                    ret = FAIL;
+                }
+            }
+            fclose(fp);
+            printf("%s\n", ret);
             return ret;
         }
     }
