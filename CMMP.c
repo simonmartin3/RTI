@@ -33,7 +33,7 @@ struct Message login()
 	strcpy(msg, user);
 	strcat(msg, "-");
 	strcat(msg, pass);
-	strcat(msg, '\r\n');
+	strcat(msg, "\r\n");
 
 	strcpy(message.msg, msg);
 
