@@ -165,8 +165,9 @@ int main ()
         int retRecv;
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
+        char * listSend = (char *)malloc(500);
         Message msgRecv, msgSend;
-        Container listSend;
+        
 
         while (1)
         {

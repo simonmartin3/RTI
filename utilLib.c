@@ -327,9 +327,8 @@ void pressEnter()
     {
         FILE *fp;
 
-        char * ret = (char *)malloc(MAXSTRING);
+        char * ret;
         char **param = NULL;
-        char * message = (char *)malloc(500);
         int i = 0;
 
         param = tokenizer(msg, ";");
@@ -340,7 +339,8 @@ void pressEnter()
     	// calculating the size of the file 
     	int res = ftell(fp)/sizeof(Container);
 
-        Container listContainer[res];
+        // Container listContainer[res];
+        ret = (char *)malloc(i*sizeof(Container));
         Container* container;
         container = malloc(sizeof(Container));
 
@@ -351,13 +351,15 @@ void pressEnter()
             {
                 if(strcmp(container->destination, param[2]) == 0)
                 {
-                    memcpy(&listContainer[i], container, sizeof(Container));
+                    // memcpy(&listContainer[i], container, sizeof(Container));
+                    strcat(ret, toString(container));
                     i++;
                 }
             }
         }
 
-        return *listContainer;
+        printf("%s\n", ret);
+        return ret;
     }
 
 /*----------------------------------------------------------------*/
