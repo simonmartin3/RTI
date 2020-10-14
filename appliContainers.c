@@ -211,7 +211,7 @@ int main()
                 
                 if(strcmp(msgServeur, OK) == 0)
                     endList = 1;
-
+                printf("%s\n", msgServeur);
             }while(endList != 1);
         }
 
