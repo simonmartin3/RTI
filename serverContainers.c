@@ -37,19 +37,6 @@ char * getThreadIdentity();
 
 int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 
-/* My function */
-int fctFile(char *nomFile);
-void createLogin();
-void createFichParc();
-char * checkCommande(char *msg);
-void pressEnter(void);
-char * authentification(char *msg);
-char * createContainer(char *msg);
-char * container(char *msg);
-char * outputVehicule(char *msg);
-void displayContainer();
-char * toString(struct Container* container);
-
 
 int main ()
 {
