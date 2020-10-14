@@ -207,11 +207,11 @@ int main()
                     exit(1);
                 }
 
-                printf("%s\n", msgServeur);
-                
                 if(strcmp(msgServeur, OK) == 0)
                     endList = 1;
-                printf("%s\n", msgServeur);
+                else
+                    printf("%s\n", msgServeur);
+
             }while(endList != 1);
         }
 
