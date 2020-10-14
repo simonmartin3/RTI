@@ -178,5 +178,7 @@ struct Message outputOne()
 	message.typeReq = OUTPUT_ONE;
 	strcpy(msg, idVehicule);
 	strcpy(message.msg, msg);
+
+	return message;
 }
 
