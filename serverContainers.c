@@ -167,7 +167,7 @@ int main ()
         char * ret = (char *)malloc(MAXSTRING);
         Message msgRecv, msgSend;
         FILE *fp;
-        char **param = NULL;
+        char **tmp = NULL;
         int i = 0;
         
 
@@ -227,7 +227,7 @@ int main ()
                         break;
 
 		            case 3:
-                        param = tokenizer(msgRecv.msg, ";");
+                        tmp = tokenizer(msgRecv.msg, ";");
                         fp = fopen(FILEPARC, "r+b");
                         fseek(fp, 0L, SEEK_END);
 
@@ -238,9 +238,9 @@ int main ()
                         printf("Entre dans boucle list\n");
                         while(fread(container, sizeof(Container), 1, fp))
                         {
-                            if(strcmp(container->typeRetour, param[0]) == 0)
+                            if(strcmp(container->typeRetour, tmp[0]) == 0)
                             {
-                                if(strcmp(container->destination, param[2]) == 0)
+                                if(strcmp(container->destination, tmp[2]) == 0)
                                 {
                                     ret = toString(container);
                                     sprintf(msgServeur,"%s", ret);
