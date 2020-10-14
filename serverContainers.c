@@ -233,7 +233,7 @@ int main ()
                         container = malloc(sizeof(Container));
 
                         rewind(fp);
-                        printf("Entre dans boucle list\n");
+
                         while(fread(container, sizeof(Container), 1, fp))
                         {
                             if(strcmp(container->typeRetour, tmp[0]) == 0)
@@ -270,19 +270,6 @@ int main ()
                             sprintf(buf,"Send socket connectee OK\n");
                             affThread(numThr, buf);
                         }
-                		                // listSend = outputVehicule(msgRecv.msg, FILEPARC);
-                        //printf("%s\n", listSend[0].idContainer);
-                        // if (send(hSocketServ, listSend, MAXSTRING, 0) == -1)
-                        // {
-                        //     printf("Erreur sur le send de la socket %d\n", errno);
-                        //     close(hSocketServ); /* Fermeture de la socket */
-                        //     exit(1);
-                        // }
-                        // else
-                        // {
-                        //     sprintf(buf,"Send container list\n");
-                        //     affThread(numThr, buf);
-                        // }
 		                break;
 
 		            case 6 :

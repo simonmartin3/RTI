@@ -121,7 +121,7 @@ int main()
     {
         do
         {
-            //system("clear");
+            system("clear");
             printf("1 - Signalement qu'un camion arrive.\n");
             printf("2 - Signalement vehicule disponible.\n");
             printf("3 - Signalement container charge.\n");
@@ -179,9 +179,7 @@ int main()
             printf("%s\n", msgServeur);
 
             if(strcmp(msgServeur, FAIL) != 0)
-            {
-                printf("inputDone\n");
-                
+            {                
                 msgSend = inputDone(msgServeur);
                 memcpy(msgClient, &msgSend, sizeof(struct Message));
 
@@ -213,6 +211,8 @@ int main()
                     printf("%s\n", msgServeur);
 
             }while(endList != 1);
+
+            pressEnter();
         }
 
 
@@ -225,6 +225,7 @@ int main()
         }
         else 
             printf("Recv socket OK\n");
+        
         printf("Message recu en ACK = %s\n", msgServeur);
 
         if (strcmp(msgServeur, EOC)==0)

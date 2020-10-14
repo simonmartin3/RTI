@@ -320,52 +320,6 @@ void pressEnter()
     }
 
 /*----------------------------------------------------------------*/
-/*                         outputVehicule()                       */
-/*----------------------------------------------------------------*/
-
-    char ** outputVehicule(char *msg, char * FILEPARC)
-    {
-        FILE *fp;
-
-        // char * ret;
-        char **param = NULL;
-        int i = 0;
-        char *tmp = (char*)malloc(MAXSTRING);
-
-        param = tokenizer(msg, ";");
-
-        fp = fopen(FILEPARC, "r+b");
-        fseek(fp, 0L, SEEK_END); 
-  
-    	// calculating the size of the file 
-    	int res = ftell(fp)/sizeof(Container);
-
-        char **listContainer;
-        Container* container;
-        container = malloc(sizeof(Container));
-
-        rewind(fp);
-        printf("Entre dans boucle list\n");
-        while(fread(container, sizeof(Container), 1, fp))
-        {
-            if(strcmp(container->typeRetour, param[0]) == 0)
-            {
-                if(strcmp(container->destination, param[2]) == 0)
-                {
-                    tmp = toString(container);
-                    printf("%s\n", tmp);
-
-                    listContainer[i] = tmp;
-                    printf("%s\n", listContainer[i]);
-                    i++;
-                }
-            }
-        }
-        printf("Sors boucle list\n");
-        return listContainer;
-    }
-
-/*----------------------------------------------------------------*/
 /*                      displayContainer()                        */
 /*----------------------------------------------------------------*/
 
