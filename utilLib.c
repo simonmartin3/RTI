@@ -344,13 +344,14 @@ void pressEnter()
         container = malloc(sizeof(Container));
 
         rewind(fp);
+        printf("Entre dans boucle list\n");
         while(fread(container, sizeof(Container), 1, fp))
         {
             if(strcmp(container->typeRetour, param[0]) == 0)
             {
                 if(strcmp(container->destination, param[2]) == 0)
                 {
-                    strcpy(listContainer[i], toString(container));
+                    listContainer[i] = toString(container);
                     i++;
                 }
             }
