@@ -218,7 +218,7 @@ int main ()
 		                ret = createContainer(msgRecv.msg, FILEPARC);
                         if(ret != FAIL)
                         {
-                            ret = uploadContainer(ret, FILEPARC)
+                            ret = uploadContainer(ret, FILEPARC);
                         }
                         break;
 
@@ -235,7 +235,7 @@ int main ()
 		                if(strcmp(ret, OK) == 0)
 		                    ret = EOC;
 		                break;
-		            case 6:
+		            case 7:
 		            	// displayContainer();
 		            	// ret ="OK";
 		            	break;
