@@ -230,7 +230,9 @@ int main ()
 		            case '6':
 		                ret = authentification(msgRecv.msg, FILELOG);
 		                if(strcmp(ret, OK) == 0)
+                        {
 		                    ret = EOC;
+                        }
 		                break;
 		            case '8':
 		            	// displayContainer();
@@ -238,7 +240,7 @@ int main ()
 		            	break;
 		        }
                 
-
+                printf("%s\n", ret);
                 sprintf(msgServeur,"%s", ret);
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
