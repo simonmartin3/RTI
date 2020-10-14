@@ -261,7 +261,7 @@ void pressEnter()
     }
 
 /*----------------------------------------------------------------*/
-/*                      	 container()                          */
+/*                        uploadContainer()                       */
 /*----------------------------------------------------------------*/
 
 	char * uploadContainer(char *msg, char * FILEPARC)
@@ -300,6 +300,62 @@ void pressEnter()
             if(fwrite(uploadContainer, sizeof(Container), 1, fp) != 0)  
             {
                 printf("Le container a bien ete modifie !\n");
+                ret = OK;
+            }
+            else 
+            {    
+                printf("Erreur d'ecriture dans le fichier !\n"); 
+                ret = FAIL;
+            }
+        }
+        else
+        {
+            ret = FAIL;
+        }
+
+        free(uploadContainer);
+        fclose(fp);
+
+        return ret;
+    }
+
+/*----------------------------------------------------------------*/
+/*                        moveContainer()                       */
+/*----------------------------------------------------------------*/
+
+    char * moveContainer(char *msg, char * FILEPARC)
+    {
+        FILE *fp;
+
+        char * ret = (char *)malloc(MAXSTRING);
+        int i = 0, find = 0;
+
+        fp = fopen(FILEPARC, "r+b");
+
+        Container* uploadContainer;
+        uploadContainer = malloc(sizeof(Container));
+
+        while(fread(uploadContainer, sizeof(Container), 1, fp))
+        {
+            if(strcmp(uploadContainer->idContainer, msg) == 0)
+            {
+                printf("Trouve\n");
+                find = 1;
+                break;
+            }
+            i++;
+            find = 0;
+        }
+
+        if(find == 1)
+        {
+            uploadContainer->etat = 0;
+
+            fseek(fp, i*sizeof(Container), SEEK_SET);
+
+            if(fwrite(uploadContainer, sizeof(Container), 1, fp) != 0)  
+            {
+                printf("Le container a bien ete chargé !\n");
                 ret = OK;
             }
             else 

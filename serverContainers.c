@@ -278,6 +278,24 @@ int main ()
                         }
 		                break;
 
+                    case 4 :
+                        if(vehicule->capacite == 0)
+                        {
+                            ret = FAIL;
+                        }
+                        else
+                        {
+                            ret = moveContainer(msgRecv.msg, FILEPARC);
+                            if(ret == OK)
+                                vehicule->capacite--;
+                        }
+                        printf("Capacite du vehicule : %d\n", vehicule.capacite);
+                        break;
+
+                    case 5 :
+
+                        break;
+
 		            case 6 :
 		                ret = authentification(msgRecv.msg, FILELOG);
 		                if(strcmp(ret, OK) == 0)

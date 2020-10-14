@@ -164,3 +164,19 @@ struct Message outputReady()
 	return message;
 }
 
+struct Message outputOne(char * idContainer)
+{
+	Message message;
+
+	char *msg = (char *)malloc(MAXSTRING);
+	char idVehicule[20],
+
+	puts("Entrer l'identifiant :");
+	scanf("%s", idVehicule);
+	fflush(stdin);
+
+	message.typeReq = OUTPUT_ONE;
+	strcpy(msg, idVehicule);
+	strcpy(message.msg, msg);
+}
+

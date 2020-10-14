@@ -143,6 +143,10 @@ int main()
                 msgSend = outputReady();
                 break;
 
+            case 3 :
+                msgSend =  
+                break;
+
             case 5 :
                 msgSend = logout();
                 break;
