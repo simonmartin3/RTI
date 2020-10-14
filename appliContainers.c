@@ -178,6 +178,8 @@ int main()
 
             memcpy(&msgRecv, msgServeur, sizeof(struct Message));
 
+            printf("%s\n", msgRecv.msg);
+
             if(strcmp(msgRecv.msg, FAIL) != 0)
             {
                 msgSend = inputDone(msgRecv.msg);
