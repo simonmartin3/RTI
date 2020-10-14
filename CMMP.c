@@ -9,8 +9,6 @@
 #define OUTPUT_DONE		5
 #define LOGOUT 			6
 
-#define SERVEURCONF "serveur.conf"
-
 struct Message login()
 {
 	Message message;

@@ -1,6 +1,7 @@
 #include "utilLib.h"
 
 #define MAXSTRING	100
+#define SERVEURCONF "serveur.conf"
 #define OK "true"
 #define FAIL "false"
 
