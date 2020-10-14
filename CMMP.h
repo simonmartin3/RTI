@@ -22,6 +22,8 @@
 #include <time.h>
 #include <pthread.h>
 
+#define MAXSTRING	100
+
 typedef struct Message Message;
 struct Message
 {
