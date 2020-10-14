@@ -380,7 +380,7 @@ int main ()
         }
         else {   
 
-            param = tokenizer(msg, SEP_CSV);
+            param = tokenizer(msg, ";");
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {   
