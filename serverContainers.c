@@ -236,7 +236,7 @@ int main ()
 		                    ret = EOC;
 		                break;
 		            case 7:
-		            	ret = displayContainer();
+		            	ret = displayContainer(FILEPARC);
 		            	break;
 		        }
                 
