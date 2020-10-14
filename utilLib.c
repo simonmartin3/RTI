@@ -286,7 +286,7 @@ void pressEnter()
             }
         }
 
-        uploadContainer->poids = rand()%250;
+        uploadContainer->poids = 50;
 
         i--;
         fseek(fp, i*sizeof(Container), SEEK_SET);
