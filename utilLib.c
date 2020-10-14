@@ -330,6 +330,7 @@ void pressEnter()
         // char * ret;
         char **param = NULL;
         int i = 0;
+        char *tmp = (char*)malloc(MAXSTRING);
 
         param = tokenizer(msg, ";");
 
@@ -351,7 +352,10 @@ void pressEnter()
             {
                 if(strcmp(container->destination, param[2]) == 0)
                 {
-                    strcpy(listContainer[i], toString(container));
+                    tmp = toString(container);
+                    printf("%s\n", tmp);
+
+                    strcpy(listContainer[i], tmp);
                     printf("%s\n", listContainer[i]);
                     i++;
                 }
