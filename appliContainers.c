@@ -150,7 +150,7 @@ int main()
 
             case 6 :
                 msgSend.typeReq = 7;
-                msgSend.msg = "";
+                strcpy(msgSend.msg, "");
                 break;
         }
 
