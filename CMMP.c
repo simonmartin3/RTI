@@ -213,34 +213,34 @@ void pressEnter()
 /*             	             searchConfig()    	                  */
 /*----------------------------------------------------------------*/
 
-	// char * searchConfig(char *config)
-	// {
-	// 	FILE *fp;
+	char * searchConfig(char *config)
+	{
+		FILE *fp;
 
-	// 	char tmp[MAXSTRING] = "";
-	// 	char * ret = (char *)malloc(MAXSTRING);
- //        char **param = NULL;
+		char tmp[MAXSTRING] = "";
+		char * ret = (char *)malloc(MAXSTRING);
+        char **param = NULL;
 
- //        fp = fopen(SERVEURCONF, "r");
+        fp = fopen(SERVEURCONF, "r");
 		
-	// 	if(fp == (FILE*) NULL)
-	// 	{
-	// 		printf("Le fichier %s n'existe pas.\n", SERVEURCONF);
-	// 		exit(1);
-	// 	}
-	// 	else {
-	// 		printf("Ouverture du fichier conf.\n");
+		if(fp == (FILE*) NULL)
+		{
+			printf("Le fichier %s n'existe pas.\n", SERVEURCONF);
+			exit(1);
+		}
+		else {
+			printf("Ouverture du fichier conf.\n");
 
-	// 		while(fgets(tmp, MAXSTRING, fp) != NULL)
-	//         {   
-	//             param = tokenizer(tmp, "=");
+			while(fgets(tmp, MAXSTRING, fp) != NULL)
+	        {   
+	            param = tokenizer(tmp, "=");
 
-	//             if(strcmp(param[0], config) == 0)
-	//             {
-	//                 ret = param[1];
-	//                 break;
-	//             }
-	//         }
-	// 	}
- //        return ret;
-	// }
+	            if(strcmp(param[0], config) == 0)
+	            {
+	                ret = param[1];
+	                break;
+	            }
+	        }
+		}
+        return ret;
+	}

@@ -38,7 +38,7 @@ struct Message login();
 // char * outputReady();
 char ** tokenizer(char *msg, char *ct);
 void pressEnter();
-// char * searchConfig(char *config);
+char * searchConfig(char *config);
 /*void inputTruck(int*, int*);
 void inputDone(char*, int*);
 void outputReady(int*, char*, int*);
