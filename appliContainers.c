@@ -137,7 +137,7 @@ int main()
         switch(option)
         {
             case 1 :
-                msgTmp = inputTruck();
+                msgSend = inputTruck();
                 break;
 
             case 2 :
