@@ -216,15 +216,11 @@ int main ()
 
 		            case 1:
 		                ret = createContainer(msgRecv.msg, FILEPARC);
-                        if(ret != FAIL)
-                        {
-                            ret = uploadContainer(ret, FILEPARC);
-                        }
                         break;
 
-		            case 2:
-		                // ret = container(msg);
-		                break;
+                    case 2:
+                        ret = uploadContainer(msgRecv.msg, FILEPARC);
+                        break;
 
 		            case 3:
 		                // ret = outputVehicule(msg);

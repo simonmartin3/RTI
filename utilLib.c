@@ -270,8 +270,9 @@ void pressEnter()
 
         char * ret = (char *)malloc(MAXSTRING);
         int i = 0;
-        char * poids = (char *)malloc(MAXSTRING);
-        sprintf(poids, "%d" , rand()%250);
+        char **param = NULL;
+
+        param = tokenizer(msg, ";");
 
         fp = fopen(FILEPARC, "r+b");
 
@@ -280,7 +281,7 @@ void pressEnter()
 
         while(fread(uploadContainer, sizeof(Container), 1, fp))
         {
-            if(strcmp(uploadContainer->idContainer, msg) == 0)
+            if(strcmp(uploadContainer->idContainer, param[0]) == 0)
             {
                 printf("Trouve\n");
                 break;
@@ -288,7 +289,7 @@ void pressEnter()
             i++;
         }
 
-        uploadContainer->poids = atoi(poids);
+        uploadContainer->poids = atoi(param[1]);
 
         i--;
         fseek(fp, i*sizeof(Container), SEEK_SET);
