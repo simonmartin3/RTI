@@ -1,6 +1,8 @@
 #include "utilLib.h"
 
 #define MAXSTRING	100
+#define OK "true"
+#define FAIL "false"
 
 /*----------------------------------------------------------------*/
 /*             	               fctFile()    	                  */

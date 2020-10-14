@@ -16,6 +16,28 @@
 #include <time.h>
 #include <pthread.h>
 
+typedef struct Container Container;
+struct Container
+{
+    char idContainer[20];
+    char coordonnees[10];
+    int  etat;
+    char dateReservation[20];
+    char dateArrivee[20];
+    char destination[50];
+    int  poids;
+    char typeRetour[10];
+
+};
+
+typedef struct Vehicule Vehicule;
+struct Vehicule
+{
+    char idVehicule[20];
+    char destination[50];
+    int  capacite;
+};
+
 int fctFile(char *nomFile);
 void createLogin(char * FILELOG);
 void createFichParc(char * FILEPARC);
