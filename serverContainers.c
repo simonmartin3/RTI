@@ -17,6 +17,8 @@
 #define EOC "END_OF_CONNEXION"
 #define DOC "DENY_OF_CONNEXION"
 #define MAXSTRING 100 /* Longueur des messages */
+#define OK "true"
+#define FAIL "false"
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
 
 int PORT;
@@ -387,7 +389,7 @@ int main ()
         }
         else {   
 
-            param = tokenizer(msg, "#;");
+            param = tokenizer(msg, SEP_CSV);
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {   
@@ -397,13 +399,13 @@ int main ()
                 {
                     if(strcmp(id[1], param[2]) == 0)
                     {
-                        find = "true";
+                        find = OK;
                         break;
                     }
-                    find = "false";
+                    find = FAIL;
                 }
                 else {
-                    find = "false";
+                    find = FAIL;
                 }
             }
             fclose(fp);

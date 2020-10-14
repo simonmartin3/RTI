@@ -17,6 +17,8 @@
 
 #define MAXSTRING 100 /* Longeur des messages */
 #define EOC "END_OF_CONNEXION"
+#define OK "true"
+#define FAIL "false"
 #define FILELOG "login.csv"
 #define FILEPARC "FICH_PARC"
 
@@ -127,7 +129,7 @@ int main()
             printf("Recv socket OK\n");
 
         printf("Message recu en ACK = %s\n", msgServeur);
-    }while(strcmp(msgServeur, "true") != 0);
+    }while(strcmp(msgServeur, OK) != 0);
 
 /* 7.Choix d'une action du client */
     // do
