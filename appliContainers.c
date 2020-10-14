@@ -16,7 +16,7 @@
 #include "utilLib.h"
 #include "CMMP.h"
 
-#define MAXSTRING 100 /* Longeur des messages */
+#define MAXSTRING 200 /* Longeur des messages */
 #define EOC "END_OF_CONNEXION"
 #define OK "true"
 #define FAIL "false"
@@ -35,7 +35,7 @@ int main()
     struct sockaddr_in adresseSocket; /* Structure de type sockaddr - ici, cas de TCP */
     unsigned int tailleSockaddr_in;
     int ret, option, end = 0; /* valeur de retour */
-    char msgClient[500], msgServeur[MAXSTRING];
+    char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	Message msgSend, msgRecv;
     char **param = NULL;
     int port;
@@ -198,6 +198,7 @@ int main()
 
         if(option == 2)
         {
+            Container *list;
             if (recv(hSocket, msgServeur, 500, 0) == -1)
             {
                 printf("Erreur sur le recv de la socket %d\n", errno);
@@ -207,7 +208,8 @@ int main()
             else 
                 printf("Recv socket OK\n");
 
-            printf("%s\n", msgServeur);
+            memcpy(&list, msgServeur, sizeof(msgServeur));
+            printf("%s\n", list[0].idContainer);
         }
 
 
