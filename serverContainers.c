@@ -166,7 +166,7 @@ int main ()
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
         Message msgRecv;
-        Vehicule *vehicule;
+        Vehicule *vehicule = NULL;
         FILE *fp;
         char **tmp = NULL;
 
