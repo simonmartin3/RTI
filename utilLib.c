@@ -330,6 +330,7 @@ void pressEnter()
         char * ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
         char * message = (char *)malloc(500);
+        int i = 0;
 
         param = tokenizer(msg, ";");
 
@@ -358,7 +359,7 @@ void pressEnter()
 
         for(int j = 0; j < i; j++)
         {
-            printf("%s\n", listContainer[j]->idContainer);
+            printf("%s\n", &listContainer[j].idContainer);
         }
 
         ret = OK;
