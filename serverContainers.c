@@ -256,6 +256,7 @@ int main ()
                                 }
                             }
                         }
+                        sleep(1);
                         ret = OK;
                 		                // listSend = outputVehicule(msgRecv.msg, FILEPARC);
                         //printf("%s\n", listSend[0].idContainer);
