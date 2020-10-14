@@ -224,7 +224,7 @@ int main ()
                         break;
 
 		            case 3:
-		                struct Container * listSend = outputVehicule(msgRecv.msg, FILEPARC);
+		                Container * listSend = outputVehicule(msgRecv.msg, FILEPARC);
                         //printf("%s\n", listSend[0].idContainer);
                         // if (send(hSocketServ, listSend, sizeof(listSend), 0) == -1)
                         // {
