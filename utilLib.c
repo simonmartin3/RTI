@@ -356,7 +356,7 @@ void pressEnter()
                 }
             }
         }
-
+        printf("Sors boucle list\n");
         return listContainer;
     }
 
