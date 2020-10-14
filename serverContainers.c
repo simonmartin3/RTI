@@ -245,6 +245,7 @@ int main ()
                 switch(msgRecv.typeReq)
 		        {
 		            case 0:
+		            	printf("Authentification\n");
 		                ret = authentification(msgRecv.msg);
 		                break;
 
