@@ -236,7 +236,6 @@ int main ()
 		            	break;
 		        }
                 
-                printf("%s\n", ret);
                 sprintf(msgServeur,"%s", ret);
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)

@@ -176,13 +176,11 @@ int main()
             else 
                 printf("Recv socket OK\n");
 
-            memcpy(&msgRecv, msgServeur, sizeof(struct Message));
+            printf("%s\n", msgServeur);
 
-            printf("%s\n", msgRecv.msg);
-
-            if(strcmp(msgRecv.msg, FAIL) != 0)
+            if(strcmp(msgServeur, FAIL) != 0)
             {
-                msgSend = inputDone(msgRecv.msg);
+                msgSend = inputDone(msgServeur);
 
                 if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
                 {
