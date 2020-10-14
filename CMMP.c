@@ -164,7 +164,7 @@ struct Message outputReady()
 	return message;
 }
 
-struct Message outputOne(char * idContainer)
+struct Message outputOne()
 {
 	Message message;
 
