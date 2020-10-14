@@ -268,7 +268,7 @@
 /*                      displayContainer()                        */
 /*----------------------------------------------------------------*/
 
-	void displayContainer()
+	void displayContainer(char * FILEPARC)
 	{
 		FILE *fp;
 
