@@ -355,7 +355,7 @@ void pressEnter()
                 }
             }
         }
-
+        printf("Fin list");
         return listContainer;
     }
 
