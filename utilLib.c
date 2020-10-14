@@ -351,7 +351,7 @@ void pressEnter()
             {
                 if(strcmp(container->destination, param[2]) == 0)
                 {
-                    memcpy(listContainer[i], &container, sizeof(Container));
+                    memcpy(&listContainer[i], container, sizeof(Container));
                     i++;
                 }
             }
@@ -359,7 +359,7 @@ void pressEnter()
 
         for(int j = 0; j < i; j++)
         {
-            printf("%s\n", &listContainer[j].idContainer);
+            printf("%s\n", listContainer[j].idContainer);
         }
 
         ret = OK;
