@@ -256,8 +256,20 @@ int main ()
                                 }
                             }
                         }
-                        sleep(1);
                         ret = OK;
+                        sprintf(msgServeur,"%s", ret);
+                
+                        if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
+                        {
+                            printf("Erreur sur le send de la socket %d\n", errno);
+                            close(hSocketServ); /* Fermeture de la socket */
+                            exit(1);
+                        }
+                        else
+                        {
+                            sprintf(buf,"Send socket connectee OK\n");
+                            affThread(numThr, buf);
+                        }
                 		                // listSend = outputVehicule(msgRecv.msg, FILEPARC);
                         //printf("%s\n", listSend[0].idContainer);
                         // if (send(hSocketServ, listSend, MAXSTRING, 0) == -1)
