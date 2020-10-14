@@ -270,6 +270,7 @@ void pressEnter()
 
         char * ret = (char *)malloc(MAXSTRING);
         int i = 0;
+        int poids = rand()%50;
 
         fp = fopen(FILEPARC, "r+b");
 
@@ -286,7 +287,7 @@ void pressEnter()
             }
         }
 
-        uploadContainer->poids = 50;
+        uploadContainer->poids = poids;
 
         i--;
         fseek(fp, i*sizeof(Container), SEEK_SET);
