@@ -334,7 +334,7 @@ int main ()
 
     char * checkCommande(char *msg)
     {
-        
+        char *ret = (char *)malloc(MAXSTRING);
         switch(msg[0])
         {
             case '0':
