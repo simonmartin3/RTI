@@ -226,7 +226,7 @@ int main ()
 
 		            case 3:
 		                listSend = outputVehicule(msgRecv.msg, FILEPARC);
-                        printf("%s\n", listSend[0]->idContainer);
+                        printf("%s\n", listSend[0].idContainer);
                         // if (send(hSocketServ, listSend, sizeof(listSend), 0) == -1)
                         // {
                         //     printf("Erreur sur le send de la socket %d\n", errno);
