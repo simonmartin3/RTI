@@ -210,7 +210,7 @@ int main ()
 
                 switch(msgRecv.typeReq)
 		        {
-		            case 0:
+		            case 0 :
 		            	printf("Authentification\n");
 		                ret = authentification(msgRecv.msg, FILELOG);
 		                break;
@@ -227,7 +227,7 @@ int main ()
 		                // ret = outputVehicule(msg);
 		                break;
 
-		            case '6':
+		            case 6 :
 		                ret = authentification(msgRecv.msg, FILELOG);
 		                if(strcmp(ret, OK) == 0)
                         {
