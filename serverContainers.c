@@ -90,11 +90,12 @@ int main ()
     memcpy(tmp, searchConfig("PORT_SERVEUR"), sizeof(tmp));
     PORT = atoi(tmp);
 
-
     memcpy(FILELOG, searchConfig("FILELOG"), sizeof(FILELOG));
     FILELOG[strlen(FILELOG)-1] = '\0';
+
     memcpy(FILEPARC, searchConfig("FILEPARC"), sizeof(FILEPARC));
     FILEPARC[strlen(FILEPARC)-1] = '\0';
+
     memcpy(SEP_CSV, searchConfig("SEP_CSV"), sizeof(SEP_CSV));
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
@@ -196,6 +197,7 @@ int main ()
         int retRecv;
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
+        Message msg;
 
         while (1)
         {
@@ -234,10 +236,12 @@ int main ()
                 {
                     finDialogue=1; break;
                 }
+                memcpy(&msg, msgClient, sizeof(struct Message));
+                printf("%s\n", msg.msg);
+                //ret = checkCommande(msgClient);
 
-                ret = checkCommande(msgClient);
-
-                sprintf(msgServeur,"%s", ret);
+                //sprintf(msgServeur,"%s", ret);
+                sprintf(msgServeur,"%s", "OK");
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
                 {
@@ -330,7 +334,7 @@ int main ()
 
     char * checkCommande(char *msg)
     {
-        char *ret = (char *)malloc(MAXSTRING);
+        
         switch(msg[0])
         {
             case '0':
@@ -338,25 +342,25 @@ int main ()
                 break;
 
             case '1':
-                ret = createContainer(msg);
+                //ret = createContainer(msg);
                 break;
 
             case '2':
-                ret = container(msg);
+                // ret = container(msg);
                 break;
 
             case '3':
-                ret = outputVehicule(msg);
+                // ret = outputVehicule(msg);
                 break;
 
             case '6':
-                ret = authentification(msg);
-                if(strcmp(ret, "true") == 0)
-                    ret = EOC;
+                // ret = authentification(msg);
+                // if(strcmp(ret, "true") == 0)
+                //     ret = EOC;
                 break;
             case '8':
-            	displayContainer();
-            	ret ="OK";
+            	// displayContainer();
+            	// ret ="OK";
             	break;
         }
         return ret;

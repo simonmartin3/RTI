@@ -46,8 +46,8 @@ int main()
     struct sockaddr_in adresseSocket; /* Structure de type sockaddr - ici, cas de TCP */
     unsigned int tailleSockaddr_in;
     int ret, option, end = 0; /* valeur de retour */
-    char msgClient[MAXSTRING], msgServeur[MAXSTRING];
-	char * msgTmp = (char *)malloc(500);
+    char msgClient[500], msgServeur[MAXSTRING];
+	Message msgSend;
     char **param = NULL;
     int port;
     char tmp[20];
@@ -55,8 +55,6 @@ int main()
 /* Ouverture fichier config */
     memcpy(tmp, searchConfig("PORT_SERVEUR"), sizeof(tmp));
     port = atoi(tmp);
-    
-
     
 /* 1. Création de la socket */
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -103,9 +101,9 @@ int main()
 /* 5.Envoi d'un message client */
     do
     {
-    	msgTmp = login();
+    	msgSend = login();
 
-    	strcpy(msgClient, msgTmp);
+    	memcpy(msgClient, &msgSend, sizeof(struct Message));
 
         if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
         {
@@ -132,66 +130,66 @@ int main()
     }while(strcmp(msgServeur, "true") != 0);
 
 /* 7.Choix d'une action du client */
-    do
-    {
-        do
-        {
-            //system("clear");
-            printf("1 - Signalement qu'un camion arrive.\n");
-            printf("2 - Signalement vehicule disponible.\n");
-            printf("3 - Signalement container charge.\n");
-            printf("4 - Signalement maximum container.\n");
-            printf("5 - LOGOUT.\n");
-            printf("6 - Afficher containers\n");
-            printf("Veuillez selectionner une option :");
-            scanf("%d", &option);
-            fflush(stdin);
-            option = (int)option;
-        }while(option < 1 || option > 7);
+    // do
+    // {
+    //     do
+    //     {
+    //         //system("clear");
+    //         printf("1 - Signalement qu'un camion arrive.\n");
+    //         printf("2 - Signalement vehicule disponible.\n");
+    //         printf("3 - Signalement container charge.\n");
+    //         printf("4 - Signalement maximum container.\n");
+    //         printf("5 - LOGOUT.\n");
+    //         printf("6 - Afficher containers\n");
+    //         printf("Veuillez selectionner une option :");
+    //         scanf("%d", &option);
+    //         fflush(stdin);
+    //         option = (int)option;
+    //     }while(option < 1 || option > 7);
 
-        switch(option)
-        {
-            case 1 :
-                msgTmp = inputTruck();
-                break;
+    //     switch(option)
+    //     {
+    //         case 1 :
+    //             msgTmp = inputTruck();
+    //             break;
 
-            case 2 :
-                msgTmp = outputReady();
-                break;
+    //         case 2 :
+    //             msgTmp = outputReady();
+    //             break;
 
-            case 5 :
-                msgTmp = logout();
-                break;
+    //         case 5 :
+    //             msgTmp = logout();
+    //             break;
 
-            case 6 :
-                msgTmp = "8";
-                break;
-        }
+    //         case 6 :
+    //             msgTmp = "8";
+    //             break;
+    //     }
 
-        strcpy(msgClient, msgTmp);
+    //     strcpy(msgClient, msgTmp);
         
-        if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
-        {
-            printf("Erreur sur le send de la socket %d\n", errno);
-            close(hSocket); /* Fermeture de la socket */
-            exit(1);
-        }
-        else 
-            printf("Send socket OK\n");
+    //     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
+    //     {
+    //         printf("Erreur sur le send de la socket %d\n", errno);
+    //         close(hSocket); /* Fermeture de la socket */
+    //         exit(1);
+    //     }
+    //     else 
+    //         printf("Send socket OK\n");
 
-        printf("Message envoye = %s\n", msgClient);
+    //     printf("Message envoye = %s\n", msgClient);
 
-        if(option == 2)
-        {
-            if (recv(hSocket, msgTmp, MAXSTRING, 0) == -1)
-                {
-                    printf("Erreur sur le recv de la socket %d\n", errno);
-                    close(hSocket); /* Fermeture de la socket */
-                    exit(1);
-                }
+    //     if(option == 2)
+    //     {
+    //         if (recv(hSocket, msgTmp, MAXSTRING, 0) == -1)
+    //             {
+    //                 printf("Erreur sur le recv de la socket %d\n", errno);
+    //                 close(hSocket); /* Fermeture de la socket */
+    //                 exit(1);
+    //             }
 
-                printf("%s\n", msgTmp);
-        }
+    //             printf("%s\n", msgTmp);
+    //     }
 
 
     /* 8. Reception de l'ACK du serveur au client */
@@ -205,56 +203,56 @@ int main()
             printf("Recv socket OK\n");
         printf("Message recu en ACK = %s\n", msgServeur);
 
-        if (strcmp(msgServeur, EOC)==0)
-        {
-            if (send(hSocket, EOC, MAXSTRING, 0) == -1) /* pas message urgent */
-            {
-                printf("Erreur sur le send de la socket %d\n", errno);
-                close(hSocket); /* Fermeture de la socket */
-                exit(1);
-            }
-            else 
-                printf("Send socket OK\n");
+        // if (strcmp(msgServeur, EOC)==0)
+        // {
+        //     if (send(hSocket, EOC, MAXSTRING, 0) == -1) /* pas message urgent */
+        //     {
+        //         printf("Erreur sur le send de la socket %d\n", errno);
+        //         close(hSocket); /* Fermeture de la socket */
+        //         exit(1);
+        //     }
+        //     else 
+        //         printf("Send socket OK\n");
 
-            end=1;
-        }
+        //     end=1;
+        // }
 
-        param = tokenizer(msgServeur, "#;");
+        // param = tokenizer(msgServeur, "#;");
 
-        if (strcmp(param[0], "1") ==0)
-        {
-            msgTmp = inputDone();
-            strcat(msgTmp, ";");
-            strcat(msgTmp, param[2]);
+        // if (strcmp(param[0], "1") ==0)
+        // {
+        //     msgTmp = inputDone();
+        //     strcat(msgTmp, ";");
+        //     strcat(msgTmp, param[2]);
 
-            strcpy(msgClient, msgTmp);
+        //     strcpy(msgClient, msgTmp);
 
-            if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
-            {
-                printf("Erreur sur le send de la socket %d\n", errno);
-                close(hSocket); /* Fermeture de la socket */
-                exit(1);
-            }
-            else 
-                printf("Send socket OK\n");
+        //     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
+        //     {
+        //         printf("Erreur sur le send de la socket %d\n", errno);
+        //         close(hSocket); /* Fermeture de la socket */
+        //         exit(1);
+        //     }
+        //     else 
+        //         printf("Send socket OK\n");
 
-            do
-            {
-                if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
-                {
-                    printf("Erreur sur le recv de la socket %d\n", errno);
-                    close(hSocket); /* Fermeture de la socket */
-                    exit(1);
-                }
-                else 
-                    printf("Recv socket OK\n");
+        //     do
+        //     {
+        //         if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+        //         {
+        //             printf("Erreur sur le recv de la socket %d\n", errno);
+        //             close(hSocket); /* Fermeture de la socket */
+        //             exit(1);
+        //         }
+        //         else 
+        //             printf("Recv socket OK\n");
 
-                printf("Message recu en ACK = %s\n", msgServeur);
+        //         printf("Message recu en ACK = %s\n", msgServeur);
 
-            }while(strcmp(msgServeur, "OK") != 0);
-        }
+        //     }while(strcmp(msgServeur, "OK") != 0);
+        // }
 
-    }while(end != 1);
+    // }while(end != 1);
 
 /* 9. Fermeture de la socket */
     close(hSocket); /* Fermeture de la socket */

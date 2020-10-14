@@ -11,10 +11,18 @@
 
 #define SERVEURCONF "serveur.conf"
 
-char * login()
+typedef struct Message Message;
+struct Message
 {
-	int type = LOGIN;
-	char *message = (char *)malloc(MAXSTRING);
+    int typeReq;
+    char msg[MAXSTRING];
+};
+
+struct Message * login()
+{
+	Message message;
+
+	char *msg = (char *)malloc(MAXSTRING);
 	char user[30], pass[30];
 
 	puts("Entrer l'user :");
@@ -27,134 +35,134 @@ char * login()
 	
 	fflush(stdin);
 
-	sprintf(message, "%d", type);
+	message.typeReq = LOGIN;
 
-	strcat(message, "#");
-	strcat(message, user);
-	strcat(message, ";");
-	strcat(message, pass);
-	strcat(message, "\r\n");
+	strcpy(msg, user);
+	strcat(msg, "-");
+	strcat(msg, pass);
 
-	return message;
-}
-
-char * logout()
-{
-	int type = LOGOUT;
-	char *message = (char *)malloc(MAXSTRING);
-	char user[30], pass[30];
-
-	puts("Entrer l'user :");
-	scanf("%s", user);
-	
-	fflush(stdin);
-	
-	puts("Entrer le password :");
-	scanf("%s", pass);
-	
-	fflush(stdin);
-
-	sprintf(message, "%d", type);
-
-	strcat(message, "#");
-	strcat(message, user);
-	strcat(message, ";");
-	strcat(message, pass);
-	strcat(message, "\r\n");
+	strcpy(Message.msg, msg);
 
 	return message;
 }
 
-char * inputTruck()
-{
-	int type = INPUT_TRUCK;
-	char *message = (char *)malloc(MAXSTRING);
-	char immatriculation[20], idContainer[20];
+// char * logout()
+// {
+// 	int type = LOGOUT;
+// 	char *message = (char *)malloc(MAXSTRING);
+// 	char user[30], pass[30];
 
-	puts("Entrer l'immatriculation :");
-	scanf("%s", immatriculation);
+// 	puts("Entrer l'user :");
+// 	scanf("%s", user);
 	
-	fflush(stdin);
+// 	fflush(stdin);
 	
-	puts("Entrer l'identifiant du container' :");
-	scanf("%s", idContainer);
+// 	puts("Entrer le password :");
+// 	scanf("%s", pass);
 	
-	fflush(stdin);
+// 	fflush(stdin);
 
-	sprintf(message, "%d", type);
+// 	sprintf(message, "%d", type);
 
-	strcat(message, "#");
-	strcat(message, immatriculation);
-	strcat(message, ";");
-	strcat(message, idContainer);
+// 	strcat(message, "#");
+// 	strcat(message, user);
+// 	strcat(message, ";");
+// 	strcat(message, pass);
+// 	strcat(message, "\r\n");
 
-	return message;
-}
+// 	return message;
+// }
 
-char * inputDone()
-{
-	int type = INPUT_DONE;
-	char *message = (char *)malloc(MAXSTRING);
-	char random[50];
+// char * inputTruck()
+// {
+// 	int type = INPUT_TRUCK;
+// 	char *message = (char *)malloc(MAXSTRING);
+// 	char immatriculation[20], idContainer[20];
 
-	sprintf(message, "%d", type);
-
-	strcat(message, "#");
-
-	sprintf(random, "%d" , rand()%250);
-
-	strcat(message, random);
-
-	return message;
-}
-
-char * outputReady()
-{
-	int type = OUTPUT_READY;
-	char *message = (char *)malloc(MAXSTRING);
-	char idVehicule[20], dest[50], capacite[10];
-	int typeV, tmp;
-
-	do
-    {
-        //system("clear");
-        printf("1 - Bateau\n");
-        printf("2 - Train\n");
-        scanf("%d", &typeV);
-        fflush(stdin);
-        typeV = (int)typeV;
-    }while(typeV < 1 || typeV > 2);
-
-	puts("Entrer l'identifiant :");
-	scanf("%s", idVehicule);
+// 	puts("Entrer l'immatriculation :");
+// 	scanf("%s", immatriculation);
 	
-	fflush(stdin);
+// 	fflush(stdin);
 	
-	puts("Entrer la destination :");
-	scanf("%s", dest);
-
-	puts("Entrer la capacite :");
-	scanf("%d", &tmp);
+// 	puts("Entrer l'identifiant du container' :");
+// 	scanf("%s", idContainer);
 	
-	fflush(stdin);
+// 	fflush(stdin);
 
-	sprintf(capacite, "%d", tmp);
+// 	sprintf(message, "%d", type);
+
+// 	strcat(message, "#");
+// 	strcat(message, immatriculation);
+// 	strcat(message, ";");
+// 	strcat(message, idContainer);
+
+// 	return message;
+// }
+
+// char * inputDone()
+// {
+// 	int type = INPUT_DONE;
+// 	char *message = (char *)malloc(MAXSTRING);
+// 	char random[50];
+
+// 	sprintf(message, "%d", type);
+
+// 	strcat(message, "#");
+
+// 	sprintf(random, "%d" , rand()%250);
+
+// 	strcat(message, random);
+
+// 	return message;
+// }
+
+// char * outputReady()
+// {
+// 	int type = OUTPUT_READY;
+// 	char *message = (char *)malloc(MAXSTRING);
+// 	char idVehicule[20], dest[50], capacite[10];
+// 	int typeV, tmp;
+
+// 	do
+//     {
+//         //system("clear");
+//         printf("1 - Bateau\n");
+//         printf("2 - Train\n");
+//         scanf("%d", &typeV);
+//         fflush(stdin);
+//         typeV = (int)typeV;
+//     }while(typeV < 1 || typeV > 2);
+
+// 	puts("Entrer l'identifiant :");
+// 	scanf("%s", idVehicule);
 	
-	sprintf(message, "%d", type);
-	strcat(message, "#");
-	if(typeV == 1)
-		strcat(message, "Bateau");
-	else
-		strcat(message, "Train");
-	strcat(message, ";");
-	strcat(message, idVehicule);
-	strcat(message, ";");
-	strcat(message, dest);
-	strcat(message, ";");
-	strcat(message, capacite);
+// 	fflush(stdin);
+	
+// 	puts("Entrer la destination :");
+// 	scanf("%s", dest);
 
-	return message;
-}
+// 	puts("Entrer la capacite :");
+// 	scanf("%d", &tmp);
+	
+// 	fflush(stdin);
+
+// 	sprintf(capacite, "%d", tmp);
+	
+// 	sprintf(message, "%d", type);
+// 	strcat(message, "#");
+// 	if(typeV == 1)
+// 		strcat(message, "Bateau");
+// 	else
+// 		strcat(message, "Train");
+// 	strcat(message, ";");
+// 	strcat(message, idVehicule);
+// 	strcat(message, ";");
+// 	strcat(message, dest);
+// 	strcat(message, ";");
+// 	strcat(message, capacite);
+
+// 	return message;
+// }
 
 
 char ** tokenizer(char *msg, char *ct)
@@ -212,34 +220,34 @@ void pressEnter()
 /*             	             searchConfig()    	                  */
 /*----------------------------------------------------------------*/
 
-	char * searchConfig(char *config)
-	{
-		FILE *fp;
+	// char * searchConfig(char *config)
+	// {
+	// 	FILE *fp;
 
-		char tmp[MAXSTRING] = "";
-		char * ret = (char *)malloc(MAXSTRING);
-        char **param = NULL;
+	// 	char tmp[MAXSTRING] = "";
+	// 	char * ret = (char *)malloc(MAXSTRING);
+ //        char **param = NULL;
 
-        fp = fopen(SERVEURCONF, "r");
+ //        fp = fopen(SERVEURCONF, "r");
 		
-		if(fp == (FILE*) NULL)
-		{
-			printf("Le fichier %s n'existe pas.\n", SERVEURCONF);
-			exit(1);
-		}
-		else {
-			printf("Ouverture du fichier conf.\n");
+	// 	if(fp == (FILE*) NULL)
+	// 	{
+	// 		printf("Le fichier %s n'existe pas.\n", SERVEURCONF);
+	// 		exit(1);
+	// 	}
+	// 	else {
+	// 		printf("Ouverture du fichier conf.\n");
 
-			while(fgets(tmp, MAXSTRING, fp) != NULL)
-	        {   
-	            param = tokenizer(tmp, "=");
+	// 		while(fgets(tmp, MAXSTRING, fp) != NULL)
+	//         {   
+	//             param = tokenizer(tmp, "=");
 
-	            if(strcmp(param[0], config) == 0)
-	            {
-	                ret = param[1];
-	                break;
-	            }
-	        }
-		}
-        return ret;
-	}
+	//             if(strcmp(param[0], config) == 0)
+	//             {
+	//                 ret = param[1];
+	//                 break;
+	//             }
+	//         }
+	// 	}
+ //        return ret;
+	// }
