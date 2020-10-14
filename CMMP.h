@@ -22,6 +22,13 @@
 #include <time.h>
 #include <pthread.h>
 
+typedef struct Message Message;
+struct Message
+{
+    int typeReq;
+    char msg[MAXSTRING];
+};
+
 struct Message login();
 // char * logout();
 // char * inputTruck();

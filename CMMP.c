@@ -11,13 +11,6 @@
 
 #define SERVEURCONF "serveur.conf"
 
-typedef struct Message Message;
-struct Message
-{
-    int typeReq;
-    char msg[MAXSTRING];
-};
-
 struct Message login()
 {
 	Message message;
