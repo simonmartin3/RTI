@@ -40,32 +40,32 @@ struct Message login()
 	return message;
 }
 
-// char * logout()
-// {
-// 	int type = LOGOUT;
-// 	char *message = (char *)malloc(MAXSTRING);
-// 	char user[30], pass[30];
+char * logout()
+{
+	char *msg = (char *)malloc(MAXSTRING);
+	char user[30], pass[30];
 
-// 	puts("Entrer l'user :");
-// 	scanf("%s", user);
+	puts("Entrer l'user :");
+	scanf("%s", user);
 	
-// 	fflush(stdin);
+	fflush(stdin);
 	
-// 	puts("Entrer le password :");
-// 	scanf("%s", pass);
+	puts("Entrer le password :");
+	scanf("%s", pass);
 	
-// 	fflush(stdin);
+	fflush(stdin);
 
-// 	sprintf(message, "%d", type);
+	message.typeReq = LOGOUT;
 
-// 	strcat(message, "#");
-// 	strcat(message, user);
-// 	strcat(message, ";");
-// 	strcat(message, pass);
-// 	strcat(message, "\r\n");
+	strcpy(msg, user);
+	strcat(msg, "-");
+	strcat(msg, pass);
+	strcat(msg, "\r\n");
 
-// 	return message;
-// }
+	strcpy(message.msg, msg);
+
+	return message;
+}
 
 // char * inputTruck()
 // {

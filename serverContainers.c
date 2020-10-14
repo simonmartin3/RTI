@@ -228,9 +228,9 @@ int main ()
 		                break;
 
 		            case '6':
-		                // ret = authentification(msg);
-		                // if(strcmp(ret, "true") == 0)
-		                //     ret = EOC;
+		                ret = authentification(msgRecv.msg, FILELOG);
+		                if(strcmp(ret, OK) == 0)
+		                    ret = EOC;
 		                break;
 		            case '8':
 		            	// displayContainer();
