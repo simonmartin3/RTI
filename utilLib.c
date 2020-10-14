@@ -350,7 +350,7 @@ void pressEnter()
             {
                 if(strcmp(container->destination, param[2]) == 0)
                 {
-                    strcpy(&listContainer[i], toString(container), sizeof(Container));
+                    strcpy(listContainer[i], toString(container));
                     i++;
                 }
             }
