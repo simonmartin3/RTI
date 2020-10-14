@@ -323,11 +323,11 @@ void pressEnter()
 /*                         outputVehicule()                       */
 /*----------------------------------------------------------------*/
 
-    char * outputVehicule(char *msg, char * FILEPARC)
+    struct Container outputVehicule(char *msg, char * FILEPARC)
     {
         FILE *fp;
 
-        char * ret;
+        // char * ret;
         char **param = NULL;
         int i = 0;
 
@@ -339,8 +339,7 @@ void pressEnter()
     	// calculating the size of the file 
     	int res = ftell(fp)/sizeof(Container);
 
-        // Container listContainer[res];
-        ret = (char *)malloc(i*sizeof(Container));
+        Container listContainer[res];
         Container* container;
         container = malloc(sizeof(Container));
 
@@ -351,15 +350,13 @@ void pressEnter()
             {
                 if(strcmp(container->destination, param[2]) == 0)
                 {
-                    // memcpy(&listContainer[i], container, sizeof(Container));
-                    strcat(ret, toString(container));
+                    memcpy(&listContainer[i], container, sizeof(Container));
                     i++;
                 }
             }
         }
 
-        printf("%s\n", ret);
-        return ret;
+        return *listContainer;
     }
 
 /*----------------------------------------------------------------*/
