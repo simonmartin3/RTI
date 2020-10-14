@@ -209,7 +209,10 @@ int main()
 
                 printf("%s\n", msgServeur);
                 
-            }while(strcmp(msgServeur, OK) != 0);
+                if(strcmp(msgServeur, OK) == 0)
+                    endList = 1;
+
+            }while(endList != 1);
         }
 
 
