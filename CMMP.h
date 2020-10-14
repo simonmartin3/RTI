@@ -33,8 +33,8 @@ struct Message
 
 struct Message login();
 struct Message logout();
-// char * inputTruck();
-// char * inputDone();
+struct Message inputTruck();
+struct Message inputDone();
 // char * outputReady();
 /*void inputTruck(int*, int*);
 void inputDone(char*, int*);

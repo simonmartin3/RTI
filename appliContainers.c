@@ -36,7 +36,7 @@ int main()
     unsigned int tailleSockaddr_in;
     int ret, option, end = 0; /* valeur de retour */
     char msgClient[500], msgServeur[MAXSTRING];
-	Message msgSend;
+	Message msgSend, msgRecv;
     char **param = NULL;
     int port;
     char tmp[20];
@@ -137,7 +137,7 @@ int main()
         switch(option)
         {
             case 1 :
-                //msgTmp = inputTruck();
+                msgTmp = inputTruck();
                 break;
 
             case 2 :
@@ -164,6 +164,36 @@ int main()
         else 
             printf("Send socket OK\n");
 
+        // if(option == 1)
+        // {
+        //     if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+        //     {
+        //         printf("Erreur sur le recv de la socket %d\n", errno);
+        //         close(hSocket); /* Fermeture de la socket */
+        //         exit(1);
+        //     }
+        //     else 
+        //         printf("Recv socket OK\n");
+
+        //     memcpy(&msgRecv, msgServeur, sizeof(struct Message));
+
+        //     if(strcmp(msgRecv.msg, FAIL) != 0)
+        //     {
+        //         msgSend = inputDone();
+        //         memcpy(msgClient, &msgSend, sizeof(struct Message));
+        //         strcat(msgClient, ";");
+        //         strcat(msgClient, msgRecv.msg);
+
+        //         if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
+        //         {
+        //             printf("Erreur sur le send de la socket %d\n", errno);
+        //             close(hSocket); /* Fermeture de la socket */
+        //             exit(1);
+        //         }
+        //         else 
+        //             printf("Send socket OK\n");
+        //     }
+        // }
         // if(option == 2)
         // {
         //     if (recv(hSocket, msgTmp, MAXSTRING, 0) == -1)

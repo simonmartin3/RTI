@@ -169,7 +169,7 @@ void pressEnter()
         }
         else {
 
-            param = tokenizer(msg, "-");
+            param = tokenizer(msg, ";");
 
             while(fgets(identifiant, MAXSTRING, fp) != NULL)
             {   
@@ -208,12 +208,12 @@ void pressEnter()
         struct tm *info;
 
 
-        param = tokenizer(msg, "#;");
+        param = tokenizer(msg, ";");
 
         Container* newContainer;
         newContainer = malloc(sizeof(Container));
 
-        strcpy(newContainer->idContainer, param[2]);
+        strcpy(newContainer->idContainer, param[1]);
         
         sprintf(random, "%d" , rand()%50);
         strcpy(newContainer->coordonnees, random);
@@ -246,14 +246,13 @@ void pressEnter()
         if(fwrite(newContainer, sizeof(Container), 1, fp) != 0)  
         {
             printf("Le container a bien ete ajoute !\n");
-            strcpy(ret, param[0]);
-            strcat(ret, "#");
-            strcat(ret, newContainer->coordonnees);
-            strcat(ret, ";");
-            strcat(ret, newContainer->idContainer);
+            ret = newContainer->idContainer;
         }
         else 
+        {    
             printf("Erreur d'ecriture dans le fichier !\n"); 
+            ret = FAIL;
+        }
 
         free(newContainer);
         fclose(fp);
@@ -265,15 +264,12 @@ void pressEnter()
 /*                      	 container()                          */
 /*----------------------------------------------------------------*/
 
-	char * container(char *msg, char * FILEPARC)
+	char * uploadContainer(char *msg, char * FILEPARC)
 	{
         FILE *fp;
 
         char * ret = (char *)malloc(MAXSTRING);
-        char **param = NULL;
         int i = 0;
-
-        param = tokenizer(msg, "#;");
 
         fp = fopen(FILEPARC, "r+b");
 
@@ -283,26 +279,32 @@ void pressEnter()
         while(fread(uploadContainer, sizeof(Container), 1, fp))
         {
         	i++;
-            if(strcmp(uploadContainer->idContainer, param[2]) == 0)
+            if(strcmp(uploadContainer->idContainer, msg) == 0)
             {
                 printf("Trouve\n");
                 break;
             }
         }
 
-
-        uploadContainer->poids = atoi(param[1]);
+        uploadContainer->poids = rand()%250;
 
         i--;
         fseek(fp, i*sizeof(Container), SEEK_SET);
-        fwrite(uploadContainer, sizeof(Container), 1, fp);
 
-        printf("Container upload\n");
+        if(fwrite(uploadContainer, sizeof(Container), 1, fp) != 0)  
+        {
+            printf("Le container a bien ete modifie !\n");
+            ret = OK;
+        }
+        else 
+        {    
+            printf("Erreur d'ecriture dans le fichier !\n"); 
+            ret = FAIL;
+        }
 
         free(uploadContainer);
         fclose(fp);
-
-        ret = "OK";
+        
         return ret;
     }
 

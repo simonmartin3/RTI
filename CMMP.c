@@ -29,7 +29,7 @@ struct Message login()
 	message.typeReq = LOGIN;
 
 	strcpy(msg, user);
-	strcat(msg, "-");
+	strcat(msg, ";");
 	strcat(msg, pass);
 	strcat(msg, "\r\n");
 
@@ -59,7 +59,7 @@ struct Message logout()
 	message.typeReq = LOGOUT;
 
 	strcpy(msg, user);
-	strcat(msg, "-");
+	strcat(msg, ";");
 	strcat(msg, pass);
 	strcat(msg, "\r\n");
 
@@ -68,48 +68,48 @@ struct Message logout()
 	return message;
 }
 
-// char * inputTruck()
-// {
-// 	int type = INPUT_TRUCK;
-// 	char *message = (char *)malloc(MAXSTRING);
-// 	char immatriculation[20], idContainer[20];
+struct Message inputTruck()
+{
+	Message message;
 
-// 	puts("Entrer l'immatriculation :");
-// 	scanf("%s", immatriculation);
+	char *msg = (char *)malloc(MAXSTRING);
+	char immatriculation[20], idContainer[20];
+
+	puts("Entrer l'immatriculation :");
+	scanf("%s", immatriculation);
 	
-// 	fflush(stdin);
+	fflush(stdin);
 	
-// 	puts("Entrer l'identifiant du container' :");
-// 	scanf("%s", idContainer);
+	puts("Entrer l'identifiant du container' :");
+	scanf("%s", idContainer);
 	
-// 	fflush(stdin);
+	fflush(stdin);
 
-// 	sprintf(message, "%d", type);
+	message.typeReq = INPUT_TRUCK;
 
-// 	strcat(message, "#");
-// 	strcat(message, immatriculation);
-// 	strcat(message, ";");
-// 	strcat(message, idContainer);
+	strcpy(msg, immatriculation);
+	strcat(msg, ";");
+	strcat(msg, idContainer);
 
-// 	return message;
-// }
+	strcpy(message.msg, msg);
 
-// char * inputDone()
-// {
-// 	int type = INPUT_DONE;
-// 	char *message = (char *)malloc(MAXSTRING);
-// 	char random[50];
+	return message;
+}
 
-// 	sprintf(message, "%d", type);
+struct Message inputDone()
+{
+	Message message;
 
-// 	strcat(message, "#");
+	char poids[50];
 
-// 	sprintf(random, "%d" , rand()%250);
+	message.typeReq = INPUT_DONE;
 
-// 	strcat(message, random);
+	sprintf(poids, "%d" , rand()%250);
 
-// 	return message;
-// }
+	strcpy(message.msg, poids);
+
+	return message;
+}
 
 // char * outputReady()
 // {

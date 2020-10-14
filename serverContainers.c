@@ -211,30 +211,31 @@ int main ()
                 switch(msgRecv.typeReq)
 		        {
 		            case 0 :
-		            	printf("Authentification\n");
 		                ret = authentification(msgRecv.msg, FILELOG);
 		                break;
 
-		            case '1':
-		                //ret = createContainer(msg);
-		                break;
+		            case 1:
+		                ret = createContainer(msgRecv.msg, FILEPARC);
+                        if(ret != FAIL)
+                        {
+                            ret = uploadContainer(ret, FILEPARC)
+                        }
+                        break;
 
-		            case '2':
+		            case 2:
 		                // ret = container(msg);
 		                break;
 
-		            case '3':
+		            case 3:
 		                // ret = outputVehicule(msg);
 		                break;
 
 		            case 6 :
 		                ret = authentification(msgRecv.msg, FILELOG);
 		                if(strcmp(ret, OK) == 0)
-                        {
 		                    ret = EOC;
-                        }
 		                break;
-		            case '8':
+		            case 6:
 		            	// displayContainer();
 		            	// ret ="OK";
 		            	break;
