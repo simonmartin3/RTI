@@ -351,7 +351,8 @@ void pressEnter()
             {
                 if(strcmp(container->destination, param[2]) == 0)
                 {
-                    memcpy(&listContainer[i], toString(container), MAXSTRING);
+                    strcpy(listContainer[i], toString(container), MAXSTRING);
+                    printf("%s\n", listContainer[i]->idContainer);
                     i++;
                 }
             }
