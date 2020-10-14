@@ -271,7 +271,7 @@ void pressEnter()
         char * ret = (char *)malloc(MAXSTRING);
         int i = 0;
         char * poids = (char *)malloc(MAXSTRING);
-        poids = inputDone();
+        sprintf(poids, "%d" , rand()%250);
 
         fp = fopen(FILEPARC, "r+b");
 
