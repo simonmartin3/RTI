@@ -357,10 +357,18 @@ void pressEnter()
             }
         }
 
-        for(int j = 0; j < i; j++)
+        if (send(hSocketServ, listContainer, res*sizeof(Container), 0) == -1)
         {
-            printf("%s\n", listContainer[j].idContainer);
+            printf("Erreur sur le send de la socket %d\n", errno);
+            close(hSocketServ); /* Fermeture de la socket */
+            exit(1);
         }
+        else
+        {
+            sprintf(buf,"Send container list\n");
+            affThread(numThr, buf);
+        }
+
 
         ret = OK;
         return ret;
