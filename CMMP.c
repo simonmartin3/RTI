@@ -42,6 +42,9 @@ struct Message login()
 
 char * logout()
 {
+
+	Message message;
+	
 	char *msg = (char *)malloc(MAXSTRING);
 	char user[30], pass[30];
 
