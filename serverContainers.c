@@ -391,6 +391,7 @@ int main ()
                 id = tokenizer(identifiant, ";");
                 if(strcmp(id[0], param[0]) == 0)
                 {
+                	id[1][strlen(id[1])-1] = '\0';
                     if(strcmp(id[1], param[1]) == 0)
                     {
                         ret = OK;
