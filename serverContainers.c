@@ -279,7 +279,7 @@ int main ()
 		                break;
 
                     case 4 :
-                        if(vehicule->capacite == 0)
+                        if(vehicule == NULL || vehicule->capacite == 0)
                         {
                             ret = FAIL;
                         }
