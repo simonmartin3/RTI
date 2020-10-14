@@ -351,7 +351,7 @@ void pressEnter()
             {
                 if(strcmp(container->destination, param[2]) == 0)
                 {
-                    listContainer[i] = toString(container);
+                    memcpy(&listContainer[i], toString(container), MAXSTRING);
                     i++;
                 }
             }
