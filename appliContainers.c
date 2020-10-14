@@ -144,7 +144,7 @@ int main()
                 break;
 
             case 3 :
-                msgSend =  
+                msgSend = outputOne(); 
                 break;
 
             case 5 :
