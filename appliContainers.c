@@ -35,8 +35,8 @@ int main()
     struct sockaddr_in adresseSocket; /* Structure de type sockaddr - ici, cas de TCP */
     unsigned int tailleSockaddr_in;
     int ret, option, end = 0; /* valeur de retour */
-    char msgClient[MAXSTRING], msgServeur[MAXSTRING], msgBig[300];
-	Message msgSend, msgRecv;
+    char msgClient[MAXSTRING], msgServeur[MAXSTRING];
+	Message msgSend;
     char **param = NULL;
     int port;
     char tmp[20];

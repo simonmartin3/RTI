@@ -165,11 +165,9 @@ int main ()
         int retRecv;
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
-        Message msgRecv, msgSend;
+        Message msgRecv;
         FILE *fp;
-        char **tmp = NULL;
-        int i = 0;
-        
+        char **tmp = NULL;        
 
         while (1)
         {
