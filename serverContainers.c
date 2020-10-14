@@ -166,7 +166,9 @@ int main ()
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
         Message msgRecv, msgSend;
-        char ** listSend = NULL;
+        FILE *fp;
+        char **param = NULL;
+        int i = 0;
         
 
         while (1)
@@ -225,7 +227,38 @@ int main ()
                         break;
 
 		            case 3:
-		                listSend = outputVehicule(msgRecv.msg, FILEPARC);
+                        param = tokenizer(msgRecv.msg, ";");
+                        fp = fopen(FILEPARC, "r+b");
+                        fseek(fp, 0L, SEEK_END);
+
+                        Container* container;
+                        container = malloc(sizeof(Container));
+
+                        rewind(fp);
+                        printf("Entre dans boucle list\n");
+                        while(fread(container, sizeof(Container), 1, fp))
+                        {
+                            if(strcmp(container->typeRetour, param[0]) == 0)
+                            {
+                                if(strcmp(container->destination, param[2]) == 0)
+                                {
+                                    ret = toString(container);
+                                    sprintf(msgServeur,"%s", ret);
+                                    if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
+                                    {
+                                        printf("Erreur sur le send de la socket %d\n", errno);
+                                        close(hSocketServ); /* Fermeture de la socket */
+                                        exit(1);
+                                    }
+                                    else
+                                    {
+                                        sprintf(buf,"Send container list\n");
+                                        affThread(numThr, buf);
+                                    }
+                                }
+                            }
+                        }
+                		                // listSend = outputVehicule(msgRecv.msg, FILEPARC);
                         //printf("%s\n", listSend[0].idContainer);
                         // if (send(hSocketServ, listSend, MAXSTRING, 0) == -1)
                         // {

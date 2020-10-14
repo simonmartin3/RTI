@@ -340,7 +340,7 @@ void pressEnter()
     	// calculating the size of the file 
     	int res = ftell(fp)/sizeof(Container);
 
-        char ** listContainer = NULL;
+        char **listContainer;
         Container* container;
         container = malloc(sizeof(Container));
 
