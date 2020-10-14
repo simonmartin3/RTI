@@ -295,7 +295,6 @@ void pressEnter()
         {
             uploadContainer->poids = atoi(param[1]);
 
-            i--;
             fseek(fp, i*sizeof(Container), SEEK_SET);
 
             if(fwrite(uploadContainer, sizeof(Container), 1, fp) != 0)  
