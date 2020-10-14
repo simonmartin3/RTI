@@ -41,9 +41,9 @@ struct Message * login()
 	strcat(msg, "-");
 	strcat(msg, pass);
 
-	strcpy(Message.msg, msg);
+	strcpy(message.msg, msg);
 
-	return message;
+	return *message;
 }
 
 // char * logout()
