@@ -47,5 +47,8 @@ char * container(char *msg, char * FILEPARC);
 char * outputVehicule(char *msg, char * FILEPARC);
 void displayContainer(char * FILEPARC);
 char * toString(struct Container * container);
+char ** tokenizer(char *msg, char *ct);
+void pressEnter();
+char * searchConfig(char *config);
 
 #endif

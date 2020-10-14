@@ -5,6 +5,100 @@
 #define FAIL "false"
 
 /*----------------------------------------------------------------*/
+/*                            tokenizer()                         */
+/*----------------------------------------------------------------*/
+char ** tokenizer(char *msg, char *ct)
+{
+    char **tab = NULL;
+    
+    if (msg != NULL && ct != NULL)
+    {
+        int i;
+        char *cs = NULL;
+        size_t size = 1;
+
+        /* (1) */
+        for (i = 0; (cs = strtok (msg, ct)); i++)
+        {
+            if (size <= i + 1)
+            {
+                void *tmp = NULL;
+
+                /* (2) */
+                size <<= 1;
+                tmp = realloc (tab, sizeof (*tab) * size);
+                if (tmp != NULL)
+                {
+                   tab = tmp;
+                }
+                else
+                {
+                   fprintf (stderr, "Memoire insuffisante\n");
+                   free (tab);
+                   tab = NULL;
+                   exit (EXIT_FAILURE);
+                }
+            }
+
+        /* (3) */
+        tab[i] = cs;
+        msg = NULL;
+        }
+    
+    tab[i] = NULL;
+    
+    }   
+    
+    return tab;
+}
+
+/*----------------------------------------------------------------*/
+/*                            pressEnter()                        */
+/*----------------------------------------------------------------*/
+
+void pressEnter()
+{
+    printf("Press enter to continue...");
+    getchar();
+}
+
+/*----------------------------------------------------------------*/
+/*                           searchConfig()                       */
+/*----------------------------------------------------------------*/
+
+    char * searchConfig(char *config)
+    {
+        FILE *fp;
+
+        char tmp[MAXSTRING] = "";
+        char * ret = (char *)malloc(MAXSTRING);
+        char **param = NULL;
+
+        fp = fopen(SERVEURCONF, "r");
+        
+        if(fp == (FILE*) NULL)
+        {
+            printf("Le fichier %s n'existe pas.\n", SERVEURCONF);
+            exit(1);
+        }
+        else {
+            printf("Ouverture du fichier conf.\n");
+
+            while(fgets(tmp, MAXSTRING, fp) != NULL)
+            {   
+                param = tokenizer(tmp, "=");
+
+                if(strcmp(param[0], config) == 0)
+                {
+                    ret = param[1];
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
+
+/*----------------------------------------------------------------*/
 /*             	               fctFile()    	                  */
 /*----------------------------------------------------------------*/
 
