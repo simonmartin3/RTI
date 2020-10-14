@@ -199,7 +199,7 @@ int main ()
         int retRecv;
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
-        Message msg;
+        Message msgRecv, msgSend;
 
         while (1)
         {
@@ -238,12 +238,41 @@ int main ()
                 {
                     finDialogue=1; break;
                 }
-                memcpy(&msg, msgClient, sizeof(struct Message));
-                printf("%s\n", msg.msg);
-                //ret = checkCommande(msgClient);
+                
 
-                //sprintf(msgServeur,"%s", ret);
-                sprintf(msgServeur,"%s", "OK");
+                memcpy(&msgRecv, msgClient, sizeof(struct Message));
+
+                switch(msgRecv.typeReq)
+		        {
+		            case '0':
+		                ret = authentification(msgRecv);
+		                break;
+
+		            case '1':
+		                //ret = createContainer(msg);
+		                break;
+
+		            case '2':
+		                // ret = container(msg);
+		                break;
+
+		            case '3':
+		                // ret = outputVehicule(msg);
+		                break;
+
+		            case '6':
+		                // ret = authentification(msg);
+		                // if(strcmp(ret, "true") == 0)
+		                //     ret = EOC;
+		                break;
+		            case '8':
+		            	// displayContainer();
+		            	// ret ="OK";
+		            	break;
+		        }
+                
+
+                sprintf(msgServeur,"%s", ret);
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
                 {
