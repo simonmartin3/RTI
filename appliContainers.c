@@ -206,14 +206,10 @@ int main()
                     close(hSocket); /* Fermeture de la socket */
                     exit(1);
                 }
-                else
-                {
-                    if(strcmp(msgServeur, OK) == 0)
-                        endList = 1;
-                    else
-                        printf("%s\n", msgServeur);
-                }
-            }while(endList != 0);
+
+                printf("%s\n", msgServeur);
+                
+            }while(strcmp(msgServeur, OK) != 0);
         }
 
 
