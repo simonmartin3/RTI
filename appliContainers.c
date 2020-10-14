@@ -198,7 +198,7 @@ int main()
 
         if(option == 2)
         {
-            if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+            if (recv(hSocket, msgServeur, 500, 0) == -1)
             {
                 printf("Erreur sur le recv de la socket %d\n", errno);
                 close(hSocket); /* Fermeture de la socket */
@@ -207,7 +207,7 @@ int main()
             else 
                 printf("Recv socket OK\n");
 
-            printf("%d\n", strlen(msgServeur));
+            printf("%s\n", msgServeur);
         }
 
 
