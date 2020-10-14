@@ -22,7 +22,7 @@
 #include <time.h>
 #include <pthread.h>
 
-struct Message * login();
+struct Message login();
 // char * logout();
 // char * inputTruck();
 // char * inputDone();

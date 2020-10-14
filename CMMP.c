@@ -18,7 +18,7 @@ struct Message
     char msg[MAXSTRING];
 };
 
-struct Message * login()
+struct Message login()
 {
 	Message message;
 
@@ -43,7 +43,7 @@ struct Message * login()
 
 	strcpy(message.msg, msg);
 
-	return *message;
+	return message;
 }
 
 // char * logout()
