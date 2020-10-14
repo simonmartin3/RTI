@@ -166,7 +166,7 @@ int main ()
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
         Message msgRecv, msgSend;
-        char ** listSend;
+        char ** listSend = NULL;
         
 
         while (1)
