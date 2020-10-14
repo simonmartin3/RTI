@@ -360,44 +360,6 @@ int main ()
 	}
 
 /*----------------------------------------------------------------*/
-/*                         checkCommande()                        */
-/*----------------------------------------------------------------*/
-
-    char * checkCommande(char *msg)
-    {
-        char *ret = (char *)malloc(MAXSTRING);
-        switch(msg[0])
-        {
-            case '0':
-                ret = authentification(msg);
-                break;
-
-            case '1':
-                //ret = createContainer(msg);
-                break;
-
-            case '2':
-                // ret = container(msg);
-                break;
-
-            case '3':
-                // ret = outputVehicule(msg);
-                break;
-
-            case '6':
-                // ret = authentification(msg);
-                // if(strcmp(ret, "true") == 0)
-                //     ret = EOC;
-                break;
-            case '8':
-            	// displayContainer();
-            	// ret ="OK";
-            	break;
-        }
-        return ret;
-    }
-
-/*----------------------------------------------------------------*/
 /*                         authentification()                        */
 /*----------------------------------------------------------------*/
 
@@ -405,7 +367,7 @@ int main ()
     {
         FILE *fp;
         char identifiant[MAXSTRING] = "";
-        char *find = (char *)malloc(MAXSTRING);
+        char *ret = (char *)malloc(MAXSTRING);
         char **param = NULL;
         char **id = NULL;
 
@@ -428,17 +390,18 @@ int main ()
                 {
                     if(strcmp(id[1], param[2]) == 0)
                     {
-                        find = OK;
+                        ret = OK;
                         break;
                     }
-                    find = FAIL;
+                    ret = FAIL;
                 }
                 else {
-                    find = FAIL;
+                    ret = FAIL;
                 }
             }
             fclose(fp);
-            return find;
+            printf("%s\n", ret);
+            return ret;
         }
     }
 
