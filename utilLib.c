@@ -269,7 +269,7 @@ void pressEnter()
         FILE *fp;
 
         char * ret = (char *)malloc(MAXSTRING);
-        int i = 0;
+        int i = 0, find = 0;
         char **param = NULL;
 
         param = tokenizer(msg, ";");
@@ -284,24 +284,33 @@ void pressEnter()
             if(strcmp(uploadContainer->idContainer, param[0]) == 0)
             {
                 printf("Trouve\n");
+                find = 1;
                 break;
             }
             i++;
+            find = 0;
         }
 
-        uploadContainer->poids = atoi(param[1]);
-
-        i--;
-        fseek(fp, i*sizeof(Container), SEEK_SET);
-
-        if(fwrite(uploadContainer, sizeof(Container), 1, fp) != 0)  
+        if(find == 1)
         {
-            printf("Le container a bien ete modifie !\n");
-            ret = OK;
+            uploadContainer->poids = atoi(param[1]);
+
+            i--;
+            fseek(fp, i*sizeof(Container), SEEK_SET);
+
+            if(fwrite(uploadContainer, sizeof(Container), 1, fp) != 0)  
+            {
+                printf("Le container a bien ete modifie !\n");
+                ret = OK;
+            }
+            else 
+            {    
+                printf("Erreur d'ecriture dans le fichier !\n"); 
+                ret = FAIL;
+            }
         }
-        else 
-        {    
-            printf("Erreur d'ecriture dans le fichier !\n"); 
+        else
+        {
             ret = FAIL;
         }
 

@@ -180,7 +180,10 @@ int main()
 
             if(strcmp(msgServeur, FAIL) != 0)
             {
+                printf("inputDone\n");
+                
                 msgSend = inputDone(msgServeur);
+                memcpy(msgClient, &msgSend, sizeof(struct Message));
 
                 if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
                 {
