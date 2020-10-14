@@ -323,7 +323,7 @@ void pressEnter()
 /*                         outputVehicule()                       */
 /*----------------------------------------------------------------*/
 
-    struct Container outputVehicule(char *msg, char * FILEPARC)
+    char * outputVehicule(char *msg, char * FILEPARC)
     {
         FILE *fp;
 
