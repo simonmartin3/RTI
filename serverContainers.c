@@ -236,7 +236,7 @@ int main ()
                         vehicule = malloc(sizeof(Vehicule));
                         strcpy(vehicule->idVehicule, tmp[1]);
                         strcpy(vehicule->destination, tmp[2]);
-                        vehicule->capacite, tmp[3];
+                        vehicule->capacite = atoi(tmp[3]);
 
                         rewind(fp);
 
