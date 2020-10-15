@@ -123,8 +123,8 @@ int main ()
 /* 6. Lancement des threads */
     for (i=0; i<NB_MAX_CLIENTS; i++)
     {
-/*        ret = pthread_create(&threadHandle[i],NULL,fctThread, (void*)i);*/
-        ret = pthread_create(&threadHandle[i],NULL,fctThread, &i);
+        ret = pthread_create(&threadHandle[i],NULL,fctThread, (void*)i);
+        // ret = pthread_create(&threadHandle[i],NULL,fctThread, &i);
         printf("Thread secondaire %d lance !\n", i);
         ret = pthread_detach(threadHandle[i]);
     }
@@ -210,8 +210,10 @@ int main ()
         /* 1. Attente d'un client à traiter */
             pthread_mutex_lock(&mutexIndiceCourant);
             while (indiceCourant == -1)
-            pthread_cond_wait(&condIndiceCourant, &mutexIndiceCourant);
-            iCliTraite = indiceCourant; indiceCourant=-1;
+                pthread_cond_wait(&condIndiceCourant, &mutexIndiceCourant);
+            
+            iCliTraite = indiceCourant;
+            indiceCourant=-1;
             hSocketServ = hSocketConnectee[iCliTraite];
             pthread_mutex_unlock(&mutexIndiceCourant);
             sprintf(buf,"Je m'occupe du numero %d ...", iCliTraite);
@@ -391,8 +393,8 @@ int main ()
         unsigned long numSequence;
         char *buf = (char *)malloc(30);
         //numSequence = pthread_getsequence_np(pthread_self());
-		numSequence = pthreadID;
-        pthreadID++;
+		numSequence = 2;
+        //pthreadID++;
         sprintf(buf, "%d.%lu", getpid(), numSequence);
         return buf;
     }
