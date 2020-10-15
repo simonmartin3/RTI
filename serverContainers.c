@@ -177,6 +177,8 @@ int main ()
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
         Message msgRecv;
+        Container* container;
+        Vehicule *newVehicule;
         
         FILE *fp;
         char **tmp = NULL;
@@ -238,14 +240,10 @@ int main ()
 
 		            case 3:
                         
-                        
-
-                        Container* container;
                         container = malloc(sizeof(Container));
-                        Vehicule *newVehicule;
                         newVehicule = malloc(sizeof(Vehicule));
 
-                        tmp = tokenizer(tmpMessage, ";");
+                        tmp = tokenizer(msgRecv.msg, ";");
 
                         strcpy(newVehicule->typeVehicule, tmp[0]);
                         strcpy(newVehicule->idVehicule, tmp[1]);
