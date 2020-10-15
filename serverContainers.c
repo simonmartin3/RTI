@@ -245,7 +245,7 @@ int main ()
                         Container* container;
                         container = malloc(sizeof(Container));
 
-                        tmpMessage = msgRecv.msg;
+                        memcpy(tmpMessage, msgRecv.msg, sizeof(tmpMessage));
 
                         printf("Cretation vehicule\n");
                         printf("%s\n", msgRecv.msg);
