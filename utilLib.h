@@ -41,7 +41,7 @@ struct Vehicule
 
 int fctFile(char *nomFile);
 void createLogin(char * FILELOG);
-void createFichParc(char * FILEPARC);
+void createFich(char * nameFile);
 char * authentification(char *msg, char * FILELOG);
 char * createContainer(char *msg, char * FILEPARC);
 char * uploadContainer(char *msg, char * FILEPARC);
