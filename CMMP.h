@@ -37,7 +37,7 @@ struct Message inputTruck();
 struct Message inputDone(char * idContainer);
 struct Message outputReady();
 struct Message outputOne();
-// void outputDone(int*, int*);
+struct Message outputDone(char * idVehicule);
 // void logout(char*, char*);
 
 #endif

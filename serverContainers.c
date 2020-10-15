@@ -309,11 +309,12 @@ int main ()
 		                break;
 
                     case 4 :
-                            ret = moveContainer(msgRecv.msg, FILEPARC);
+                            ret = moveContainer(msgRecv.msg, FILEPARC, FILEVEHICULE);
                         break;
 
                     case 5 :
-
+                            printf("Le vehicule %s est plein\n", msgRecv.msg);
+                            ret = OK;
                         break;
 
 		            case 6 :

@@ -124,14 +124,13 @@ int main()
             printf("1 - Signalement qu'un camion arrive.\n");
             printf("2 - Signalement vehicule disponible.\n");
             printf("3 - Signalement container charge.\n");
-            printf("4 - Signalement maximum container.\n");
-            printf("5 - LOGOUT.\n");
-            printf("6 - Afficher containers\n");
+            printf("4 - LOGOUT.\n");
+            printf("5 - Afficher containers\n");
             printf("Veuillez selectionner une option :");
             scanf("%d", &option);
             fflush(stdin);
             option = (int)option;
-        }while(option < 1 || option > 7);
+        }while(option < 1 || option > 6);
 
         switch(option)
         {
@@ -147,11 +146,11 @@ int main()
                 msgSend = outputOne(); 
                 break;
 
-            case 5 :
+            case 4 :
                 msgSend = logout();
                 break;
 
-            case 6 :
+            case 5 :
                 msgSend.typeReq = 7;
                 strcpy(msgSend.msg, "");
                 break;
@@ -217,6 +216,37 @@ int main()
             }while(endList != 1);
 
             pressEnter();
+        }
+
+        if(option == 3)
+        {
+            if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+            {
+                printf("Erreur sur le recv de la socket %d\n", errno);
+                close(hSocket); /* Fermeture de la socket */
+                exit(1);
+            }
+            else 
+                printf("Recv socket OK\n");
+
+            printf("%s\n", msgServeur);
+
+            if(strcmp(msgServeur, OK) != 0 && strcmp(msgServeur, FAIL) != 0)
+            {       
+                msgSend = outputDone(msgServeur);
+                memcpy(msgClient, &msgSend, sizeof(struct Message));
+
+                if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
+                {
+                    printf("Erreur sur le send de la socket %d\n", errno);
+                    close(hSocket); /* Fermeture de la socket */
+                    exit(1);
+                }
+                else 
+                    printf("Send socket OK\n");
+
+                printf("Le vehicule %s est plein\n", msgServeur);
+            }
         }
 
 

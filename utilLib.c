@@ -323,17 +323,20 @@ void pressEnter()
 /*                        moveContainer()                       */
 /*----------------------------------------------------------------*/
 
-    char * moveContainer(char *msg, char * FILEPARC)
+    char * moveContainer(char *msg, char * FILEPARC, char * FILEVEHICULE)
     {
-        FILE *fp;
+        FILE *fp, *fp2;
 
         char * ret = (char *)malloc(MAXSTRING);
-        int i = 0, find = 0;
+        int i = 0, j = 0, findC = 0, findV = 0;
 
         fp = fopen(FILEPARC, "r+b");
+        fp2 = fopen(FILEVEHICULE, "r+b");
 
         Container* uploadContainer;
         uploadContainer = malloc(sizeof(Container));
+        Vehicule *uploadVehicule;
+        uploadVehicule = malloc(sizeof(Vehicule));
 
         while(fread(uploadContainer, sizeof(Container), 1, fp))
         {
@@ -344,23 +347,69 @@ void pressEnter()
                 break;
             }
             i++;
-            find = 0;
+            findC = 0;
         }
 
         if(find == 1)
         {
-            uploadContainer->etat = 0;
 
-            fseek(fp, i*sizeof(Container), SEEK_SET);
-
-            if(fwrite(uploadContainer, sizeof(Container), 1, fp) != 0)  
+            while(fread(uploadVehicule, sizeof(Vehicule), 1, fp2))
             {
-                printf("Le container a bien ete chargé !\n");
-                ret = OK;
+                if(strcmp(uploadVehicule->typeVehicule, uploadContainer->typeRetour) == 0)
+                {
+                    if(strcmp(uploadVehicule->destination, uploadContainer->destination) == 0)
+                    {
+                        
+                        printf("Trouve\n");
+                        find = 1;
+                        break;
+                    }
+                }
+                j++;
+                findV = 0
             }
-            else 
-            {    
-                printf("Erreur d'ecriture dans le fichier !\n"); 
+
+            if(findV == 1)
+            {
+                if(uploadVehicule->capacite != 0)
+                {
+                    uploadVehicule->capacite--;
+
+                    fseek(fp2, i*sizeof(Vehicule), SEEK_SET);
+
+                    if(fwrite(uploadVehicule, sizeof(Vehicule), 1, fp) != 0)  
+                    {
+                        printf("Le vehicule a bien ete chargé !\n");
+                        ret = OK;
+                    }
+                    else 
+                    {    
+                        printf("Erreur d'ecriture dans le fichier !\n"); 
+                        ret = FAIL;
+                    }
+
+                    uploadContainer->etat = 0;
+
+                    fseek(fp, i*sizeof(Container), SEEK_SET);
+
+                    if(fwrite(uploadContainer, sizeof(Container), 1, fp) != 0)  
+                    {
+                        printf("Le container a bien ete chargé !\n");
+                        ret = OK;
+                    }
+                    else 
+                    {    
+                        printf("Erreur d'ecriture dans le fichier !\n"); 
+                        ret = FAIL;
+                    }
+                }
+                else
+                {
+                    strcpy(ret, uploadVehicule->idVehicule);
+                }
+            }
+            else
+            {
                 ret = FAIL;
             }
         }
@@ -388,8 +437,7 @@ void pressEnter()
 
         param = tokenizer(msg, ";");
 
-        Vehicule *newVehicule;
-        newVehicule = malloc(sizeof(Vehicule));
+        
 
         printf("%s-%s-%s-%s\n", param[0], param[1], param[2], param[3]);
         pressEnter();
@@ -398,7 +446,6 @@ void pressEnter()
         strcpy(newVehicule->idVehicule, param[1]);
         strcpy(newVehicule->destination, param[2]);
         newVehicule->capacite = atoi(param[3]);      
-        pressEnter();
 
         fp = fopen(FILEVEHICULE, "a+b");
 

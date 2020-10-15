@@ -182,3 +182,14 @@ struct Message outputOne()
 	return message;
 }
 
+struct Message onputDone(char * idVehicule)
+{
+	Message message;
+
+	message.typeReq = OUTPUT_DONE;
+
+	strcpy(message.msg, idVehicule);
+
+	return message;
+}
+
