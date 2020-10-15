@@ -391,12 +391,15 @@ void pressEnter()
         Vehicule *newVehicule;
         newVehicule = malloc(sizeof(Vehicule));
 
-        printf("strcpy\n");
+        printf("%s\n" msg);
+        pressEnter();
 
         strcpy(newVehicule->typeVehicule, param[0]);
         strcpy(newVehicule->idVehicule, param[1]);
         strcpy(newVehicule->destination, param[2]);
         newVehicule->capacite = atoi(param[3]);      
+
+        pressEnter();
 
         fp = fopen(FILEVEHICULE, "a+b");
 
