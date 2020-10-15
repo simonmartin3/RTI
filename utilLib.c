@@ -343,14 +343,14 @@ void pressEnter()
             if(strcmp(uploadContainer->idContainer, msg) == 0)
             {
                 printf("Trouve\n");
-                find = 1;
+                findC = 1;
                 break;
             }
             i++;
             findC = 0;
         }
 
-        if(find == 1)
+        if(findC == 1)
         {
 
             while(fread(uploadVehicule, sizeof(Vehicule), 1, fp2))
@@ -361,7 +361,7 @@ void pressEnter()
                     {
                         
                         printf("Trouve\n");
-                        find = 1;
+                        findC = 1;
                         break;
                     }
                 }
