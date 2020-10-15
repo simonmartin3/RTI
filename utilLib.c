@@ -246,7 +246,7 @@ void pressEnter()
         if(fwrite(newContainer, sizeof(Container), 1, fp) != 0)  
         {
             printf("Le container a bien ete ajoute !\n");
-            ret = newContainer->idContainer;
+            ret = param[1];
         }
         else 
         {    
