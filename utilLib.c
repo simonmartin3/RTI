@@ -377,7 +377,7 @@ void pressEnter()
 
                     fseek(fp2, j*sizeof(Vehicule), SEEK_SET);
 
-                    if(fwrite(uploadVehicule, sizeof(Vehicule), 1, fp) != 0)  
+                    if(fwrite(uploadVehicule, sizeof(Vehicule), 1, fp2) != 0)  
                     {
                         printf("Le vehicule a bien ete chargé !\n");
                         ret = OK;
