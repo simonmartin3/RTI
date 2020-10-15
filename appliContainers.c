@@ -126,11 +126,12 @@ int main()
             printf("3 - Signalement container charge.\n");
             printf("4 - LOGOUT.\n");
             printf("5 - Afficher containers\n");
+            printf("6 - Afficher vehicule\n");
             printf("Veuillez selectionner une option :");
             scanf("%d", &option);
             fflush(stdin);
             option = (int)option;
-        }while(option < 1 || option > 6);
+        }while(option < 1 || option > 7);
 
         switch(option)
         {
@@ -152,6 +153,10 @@ int main()
 
             case 5 :
                 msgSend.typeReq = 7;
+                strcpy(msgSend.msg, "");
+                break;
+            case 6 :
+                msgSend.typeReq = 8;
                 strcpy(msgSend.msg, "");
                 break;
         }

@@ -375,7 +375,7 @@ void pressEnter()
                 {
                     uploadVehicule->capacite--;
 
-                    fseek(fp2, i*sizeof(Vehicule), SEEK_SET);
+                    fseek(fp2, j*sizeof(Vehicule), SEEK_SET);
 
                     if(fwrite(uploadVehicule, sizeof(Vehicule), 1, fp) != 0)  
                     {
@@ -457,6 +457,35 @@ void pressEnter()
 
         return OK;
 	}
+
+/*----------------------------------------------------------------*/
+/*                      displayVehicule()                        */
+/*----------------------------------------------------------------*/
+
+    char * displayVehicule(char * FILEVEHICULE)
+    {
+        FILE *fp;
+
+        fp = fopen(FILEVEHICULE, "rb");
+
+        Vehicule* vehicule;
+        vehicule = malloc(sizeof(Vehicule));
+        
+        printf("Afficher vehicule\n");
+
+        while(fread(vehicule, sizeof(Vehicule), 1, fp))
+        {
+            printf("%s - %s - %d\n", 
+                vehicule->idvehicule, 
+                vehicule->destination,
+                vehicule->capacite);
+        }
+
+        free(vehicule);
+        fclose(fp);
+
+        return OK;
+    }
 
 /*----------------------------------------------------------------*/
 /*                              toString()                        */

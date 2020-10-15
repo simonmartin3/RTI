@@ -325,6 +325,10 @@ int main ()
 		            case 7:
 		            	ret = displayContainer(FILEPARC);
 		            	break;
+
+                    case 8:
+                        ret = displayVehicule(FILEVEHICULE);
+                        break;
 		        }
                 
                 sprintf(msgServeur,"%s", ret);
