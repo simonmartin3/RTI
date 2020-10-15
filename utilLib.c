@@ -361,7 +361,7 @@ void pressEnter()
                     {
                         
                         printf("Trouve\n");
-                        findC = 1;
+                        findV = 1;
                         break;
                     }
                 }
