@@ -213,12 +213,12 @@ int main()
                     exit(1);
                 }
 
-                if(strcmp(msgServeur, OK) == 0)
-                    endList = 1;
-                else
+                // if(strcmp(msgServeur, OK) == 0)
+                //     endList = 1;
+                // else
                     printf("%s\n", msgServeur);
 
-            }while(endList != 1);
+            }while(strcmp(msgServeur, OK) != 0);
 
             pressEnter();
         }
@@ -250,7 +250,8 @@ int main()
                 else 
                     printf("Send socket OK\n");
 
-                printf("Le vehicule %s est plein\n", msgServeur);
+                printf("Aucun vehicule dispo\n");
+                pressEnter();
             }
             else
             {
