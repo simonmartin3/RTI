@@ -391,7 +391,7 @@ void pressEnter()
         Vehicule *newVehicule;
         newVehicule = malloc(sizeof(Vehicule));
 
-        printf("%s\n", msg);
+        printf("%s-%s-%s-%d\n", param[0], param[1], param[2], param[3]);
         pressEnter();
 
         strcpy(newVehicule->typeVehicule, param[0]);
@@ -402,7 +402,6 @@ void pressEnter()
         pressEnter();
 
         fp = fopen(FILEVEHICULE, "a+b");
-
 
         //Ajout login dans fichier        
         if(fwrite(newVehicule, sizeof(Vehicule), 1, fp) != 0)  
