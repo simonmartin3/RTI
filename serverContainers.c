@@ -16,7 +16,7 @@
 #include "utilLib.h"
 #include "CMMP.h"
 
-#define NB_MAX_CLIENTS 2 /* Nombre maximum de clients connectes */
+#define NB_MAX_CLIENTS 3 /* Nombre maximum de clients connectes */
 #define EOC "END_OF_CONNEXION"
 #define DOC "DENY_OF_CONNEXION"
 #define MAXSTRING 100 /* Longueur des messages */
