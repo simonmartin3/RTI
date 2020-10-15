@@ -366,7 +366,7 @@ void pressEnter()
                     }
                 }
                 j++;
-                findV = 0
+                findV = 0;
             }
 
             if(findV == 1)
@@ -419,49 +419,6 @@ void pressEnter()
         }
 
         free(uploadContainer);
-        fclose(fp);
-
-        return ret;
-    }
-
-/*----------------------------------------------------------------*/
-/*                        createVehicule()                        */
-/*----------------------------------------------------------------*/
-
-    char * createVehicule(char *msg, char * FILEVEHICULE)
-    {
-        FILE *fp;
-
-        char * ret = (char *)malloc(MAXSTRING);
-        char **param = NULL;
-
-        param = tokenizer(msg, ";");
-
-        
-
-        printf("%s-%s-%s-%s\n", param[0], param[1], param[2], param[3]);
-        pressEnter();
-
-        strcpy(newVehicule->typeVehicule, param[0]);
-        strcpy(newVehicule->idVehicule, param[1]);
-        strcpy(newVehicule->destination, param[2]);
-        newVehicule->capacite = atoi(param[3]);      
-
-        fp = fopen(FILEVEHICULE, "a+b");
-
-        //Ajout login dans fichier        
-        if(fwrite(newVehicule, sizeof(Vehicule), 1, fp) != 0)  
-        {
-            printf("Le container a bien ete ajoute !\n");
-            ret = OK;
-        }
-        else 
-        {    
-            printf("Erreur d'ecriture dans le fichier !\n"); 
-            ret = FAIL;
-        }
-
-        free(newVehicule);
         fclose(fp);
 
         return ret;
