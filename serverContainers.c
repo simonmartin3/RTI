@@ -10,6 +10,7 @@
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
 #include <time.h>
+#include <signal.h>
 #include "socketLib.h"
 #include "utilLib.h"
 #include "CMMP.h"

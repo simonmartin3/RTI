@@ -12,6 +12,7 @@
 #include <netinet/in.h> /* conversions adresse reseau-format dot et local/ reseau */
 #include <netinet/tcp.h> /* pour la conversion adresse reseau-format dot */
 #include <arpa/inet.h> /* pour la conversion adresse reseau-format dot */
+#include <signal.h>
 #include "socketLib.h"
 #include "utilLib.h"
 #include "CMMP.h"
@@ -23,7 +24,8 @@
 #define FILELOG "login.csv"
 #define FILEPARC "FICH_PARC"
 
-void showContainer();
+void HandlerSIGUSR1(int);
+void HandlerSIGUSR2(int);
 
 int PORT;
 
@@ -326,4 +328,14 @@ int main()
     return 0;
 }
 
+void HandlerSIGUSR1(int sig)
+{
+    printf("Interrupt\n");
+}
+
+void HandlerSIGUSR2(int sig)
+{
+    printf("Stop\n");
+    exit(1);
+}
 
