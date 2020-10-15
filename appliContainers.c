@@ -120,7 +120,7 @@ int main()
     {
         do
         {
-            system("clear");
+            //system("clear");
             printf("1 - Signalement qu'un camion arrive.\n");
             printf("2 - Signalement vehicule disponible.\n");
             printf("3 - Signalement container charge.\n");
