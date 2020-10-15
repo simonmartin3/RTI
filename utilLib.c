@@ -391,7 +391,7 @@ void pressEnter()
         Vehicule *newVehicule;
         newVehicule = malloc(sizeof(Vehicule));
 
-        printf("%s\n" msg);
+        printf("%s\n", msg);
         pressEnter();
 
         strcpy(newVehicule->typeVehicule, param[0]);
