@@ -161,6 +161,10 @@ int main ()
             indiceCourant=j;
             pthread_mutex_unlock(&mutexIndiceCourant);
             pthread_cond_signal(&condIndiceCourant);
+            for(i=0; i< NB_MAX_CLIENTS; i++)
+            {
+                pthread_kill(threadHandle[i], SIGUSR1);
+            }
         }
     }while (1);
 
