@@ -391,6 +391,7 @@ void pressEnter()
         Vehicule *newVehicule;
         newVehicule = malloc(sizeof(Vehicule));
 
+        strcpy(newVehicule->typeVehicule, param[0]);
         strcpy(newVehicule->idVehicule, param[1]);
         strcpy(newVehicule->destination, param[2]);
         newVehicule->capacite = atoi(param[3]);      

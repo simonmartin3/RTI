@@ -33,6 +33,7 @@ struct Container
 typedef struct Vehicule Vehicule;
 struct Vehicule
 {
+    char typeVehicule[20];
     char idVehicule[20];
     char destination[50];
     int  capacite;
@@ -45,7 +46,7 @@ char * authentification(char *msg, char * FILELOG);
 char * createContainer(char *msg, char * FILEPARC);
 char * uploadContainer(char *msg, char * FILEPARC);
 char * moveContainer(char *msg, char * FILEPARC);
-char * createVehicule(char *msg, char * FILEPARC);
+char * createVehicule(char *msg, char * FILEVEHICULE);
 char * displayContainer(char * FILEPARC);
 char * toString(struct Container * container);
 char ** tokenizer(char *msg, char *ct);
