@@ -50,7 +50,6 @@ int main ()
 	struct sockaddr_in adresseSocket;
 	//int tailleSockaddr_in;
 	//int ret, * retThread;
-	int ret;
     char msgServeur[MAXSTRING];
     char tmp[20];
     pthreadID = 0;
@@ -149,6 +148,7 @@ int main ()
         int retRecv;
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
+        int retFile;
 
         char FILELOG[20];
         char FILEPARC[20];
@@ -176,22 +176,22 @@ int main ()
         SEP_CSV[strlen(SEP_CSV)-1] = '\0';
 
     /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
-        ret = fctFile(FILELOG);
-        if(ret != 0)
+        retFile = fctFile(FILELOG);
+        if(retFile != 0)
         {
             puts("Création du fichier.");
             createLogin(FILELOG);
         }
         
-        ret = fctFile(FILEPARC);
-        if(ret != 0)
+        retFile = fctFile(FILEPARC);
+        if(retFile != 0)
         {
             puts("Création du fichier.");
             createFich(FILEPARC);
         }
 
-        ret = fctFile(FILEVEHICULE);
-        if(ret != 0)
+        retFile = fctFile(FILEVEHICULE);
+        if(retFile != 0)
         {
             puts("Création du fichier.");
             createFich(FILEVEHICULE);
