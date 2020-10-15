@@ -24,12 +24,7 @@
 #define FAIL "false"
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
 
-int pthreadID;
 int PORT;
-char FILELOG[20];
-char FILEPARC[20];
-char SEP_CSV[10];
-char FILEVEHICULE[30];
 int hSocketServ;
 
 pthread_mutex_t mutexIndiceCourant;
@@ -64,40 +59,6 @@ int main ()
 
     memcpy(tmp, searchConfig("PORT_SERVEUR"), sizeof(tmp));
     PORT = atoi(tmp);
-
-    memcpy(FILELOG, searchConfig("FILELOG"), sizeof(FILELOG));
-    FILELOG[strlen(FILELOG)-1] = '\0';
-
-    memcpy(FILEPARC, searchConfig("FILEPARC"), sizeof(FILEPARC));
-    FILEPARC[strlen(FILEPARC)-1] = '\0';
-
-    memcpy(FILEVEHICULE, searchConfig("FILEVEHICULE"), sizeof(FILEVEHICULE));
-    FILEVEHICULE[strlen(FILEVEHICULE)-1] = '\0';
-
-    memcpy(SEP_CSV, searchConfig("SEP_CSV"), sizeof(SEP_CSV));
-    SEP_CSV[strlen(SEP_CSV)-1] = '\0';
-
-/* Ouverture et/ou création du fichier login.csv & FICH_PARC */
-    ret = fctFile(FILELOG);
-    if(ret != 0)
-    {
-        puts("Création du fichier.");
-        createLogin(FILELOG);
-    }
-    
-    ret = fctFile(FILEPARC);
-    if(ret != 0)
-    {
-        puts("Création du fichier.");
-        createFich(FILEPARC);
-    }
-
-    ret = fctFile(FILEVEHICULE);
-    if(ret != 0)
-    {
-        puts("Création du fichier.");
-        createFich(FILEVEHICULE);
-    }
 
 /* 1. Initialisations */
     puts("* Thread principal serveur demarre *");
@@ -188,12 +149,53 @@ int main ()
         int retRecv;
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
+
+        char FILELOG[20];
+        char FILEPARC[20];
+        char SEP_CSV[10];
+        char FILEVEHICULE[30];
+
         Message msgRecv;
         Container* container;
         Vehicule *newVehicule;
         
         FILE *fp;
         char **tmp = NULL;
+
+
+        memcpy(FILELOG, searchConfig("FILELOG"), sizeof(FILELOG));
+        FILELOG[strlen(FILELOG)-1] = '\0';
+
+        memcpy(FILEPARC, searchConfig("FILEPARC"), sizeof(FILEPARC));
+        FILEPARC[strlen(FILEPARC)-1] = '\0';
+
+        memcpy(FILEVEHICULE, searchConfig("FILEVEHICULE"), sizeof(FILEVEHICULE));
+        FILEVEHICULE[strlen(FILEVEHICULE)-1] = '\0';
+
+        memcpy(SEP_CSV, searchConfig("SEP_CSV"), sizeof(SEP_CSV));
+        SEP_CSV[strlen(SEP_CSV)-1] = '\0';
+
+    /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
+        ret = fctFile(FILELOG);
+        if(ret != 0)
+        {
+            puts("Création du fichier.");
+            createLogin(FILELOG);
+        }
+        
+        ret = fctFile(FILEPARC);
+        if(ret != 0)
+        {
+            puts("Création du fichier.");
+            createFich(FILEPARC);
+        }
+
+        ret = fctFile(FILEVEHICULE);
+        if(ret != 0)
+        {
+            puts("Création du fichier.");
+            createFich(FILEVEHICULE);
+        }
 
 
         /* Armement signaux */
