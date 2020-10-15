@@ -302,7 +302,7 @@ int main()
 
             printf("Message recu en ACK = %s\n", msgServeur);
 
-            if (strcmp(msgServeur, EOC)==0)
+            if (strcmp(msgServeur, OK)==0)
             {
                 if (send(hSocket, EOC, MAXSTRING, 0) == -1) /* pas message urgent */
                 {
