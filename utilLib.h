@@ -47,6 +47,7 @@ char * createContainer(char *msg, char * FILEPARC);
 char * uploadContainer(char *msg, char * FILEPARC);
 char * moveContainer(char *msg, char * FILEPARC, char * FILEVEHICULE);
 char * displayContainer(char * FILEPARC);
+char * displayVehicule(char * FILEVEHICULE);
 char * toString(struct Container * container);
 char ** tokenizer(char *msg, char *ct);
 void pressEnter();
