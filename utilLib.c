@@ -139,11 +139,11 @@ void pressEnter()
 /*             	          createFichParc()    	                  */
 /*----------------------------------------------------------------*/
 
-	void createFich(char * FILE)
+	void createFich(char * nameFile)
 	{
 		FILE *fichFile;
 
-		fichFile = fopen(FILE, "wb");
+		fichFile = fopen(nameFile, "wb");
 		
 		fclose(fichFile);
 	}
