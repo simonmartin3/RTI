@@ -398,7 +398,6 @@ void pressEnter()
         strcpy(newVehicule->idVehicule, param[1]);
         strcpy(newVehicule->destination, param[2]);
         newVehicule->capacite = atoi(param[3]);      
-
         pressEnter();
 
         fp = fopen(FILEVEHICULE, "a+b");

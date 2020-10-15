@@ -26,7 +26,7 @@ int PORT;
 char FILELOG[20];
 char FILEPARC[20];
 char SEP_CSV[10];
-char FILEVEHICULE[20];
+char FILEVEHICULE[30];
 int hSocketServ;
 
 pthread_mutex_t mutexIndiceCourant;
@@ -247,6 +247,8 @@ int main ()
                         printf("Cretation vehicule\n");
                         printf("%s\n", msgRecv.msg);
                         createVehicule(msgRecv.msg, FILEVEHICULE);
+                        printf("%s\n", msgRecv.msg);
+                        pressEnter();
                         
                         tmp = tokenizer(msgRecv.msg, ";");
                         rewind(fp);
