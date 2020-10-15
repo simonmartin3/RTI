@@ -16,7 +16,7 @@
 #include "utilLib.h"
 #include "CMMP.h"
 
-#define NB_MAX_CLIENTS 3 /* Nombre maximum de clients connectes */
+#define NB_MAX_CLIENTS 2 /* Nombre maximum de clients connectes */
 #define EOC "END_OF_CONNEXION"
 #define DOC "DENY_OF_CONNEXION"
 #define MAXSTRING 100 /* Longueur des messages */
@@ -25,7 +25,6 @@
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
 
 int PORT;
-int hSocketServ;
 
 pthread_mutex_t mutexIndiceCourant;
 pthread_mutex_t mutexFile;
@@ -148,6 +147,7 @@ int main ()
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
         int retFile;
+        int hSocketServ;
 
         char FILELOG[20];
         char FILEPARC[20];
