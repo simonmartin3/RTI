@@ -57,7 +57,7 @@ void ListenAccept(int * hSocketService, int * hSocketEcoute, struct sockaddr * a
 
 	/* Acceptation d'une connexion*/
 		
-		if((*hSocketService = accept(*hSocketEcoute, adresseSocket, &tailleSockaddr_in))==-1)
+		if((*hSocketService = accept(*hSocketEcoute, adresseSocket, tailleSockaddr_in))==-1)
 		{
 			printf("Erreur sur l'accept de la socket %d\n", errno);
 			close(*hSocketEcoute);
