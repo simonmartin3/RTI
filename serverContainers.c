@@ -251,8 +251,6 @@ int main ()
 		            case 1:
                         pthread_mutex_lock(&mutexFile);
                         ret = createContainer(msgRecv.msg, FILEPARC);
-                        printf("Valeur retour create %s\n", ret);
-                        
                         break;
 
                     case 2:
