@@ -53,7 +53,6 @@ int main ()
     char msgServeur[MAXSTRING];
     char tmp[20];
 
-
 /* Ouverture du fichier de configuration */
 
     memcpy(tmp, searchConfig("PORT_SERVEUR"), sizeof(tmp));
@@ -72,25 +71,25 @@ int main ()
     SEP_CSV[strlen(SEP_CSV)-1] = '\0';
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
-	ret = fctFile(FILELOG);
-	if(ret != 0)
-	{
-		puts("Création du fichier.");
-		createLogin(FILELOG);
-	}
-	
-	ret = fctFile(FILEPARC);
-	if(ret != 0)
-	{
-		puts("Création du fichier.");
-		createFichParc(FILEPARC);
-	}
+    ret = fctFile(FILELOG);
+    if(ret != 0)
+    {
+        puts("Création du fichier.");
+        createLogin(FILELOG);
+    }
+    
+    ret = fctFile(FILEPARC);
+    if(ret != 0)
+    {
+        puts("Création du fichier.");
+        createFich(FILEPARC);
+    }
 
     ret = fctFile(FILEVEHICULE);
     if(ret != 0)
     {
         puts("Création du fichier.");
-        createFichParc(FILEVEHICULE);
+        createFich(FILEVEHICULE);
     }
 
 /* 1. Initialisations */
@@ -245,6 +244,7 @@ int main ()
                         Container* container;
                         container = malloc(sizeof(Container));
 
+                        printf("Cretation vehicule\n");
                         createVehicule(msgRecv.msg, FILEVEHICULE);
 
                         rewind(fp);

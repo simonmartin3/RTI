@@ -139,13 +139,13 @@ void pressEnter()
 /*             	          createFichParc()    	                  */
 /*----------------------------------------------------------------*/
 
-	void createFichParc(char * FILEPARC)
+	void createFich(char * FILE)
 	{
-		FILE *fichParcFile;
+		FILE *fichFile;
 
-		fichParcFile = fopen(FILEPARC, "wb");
+		fichFile = fopen(FILE, "wb");
 		
-		fclose(fichParcFile);
+		fclose(fichFile);
 	}
 
 /*----------------------------------------------------------------*/
@@ -390,6 +390,8 @@ void pressEnter()
 
         Vehicule *newVehicule;
         newVehicule = malloc(sizeof(Vehicule));
+
+        printf("strcpy\n");
 
         strcpy(newVehicule->typeVehicule, param[0]);
         strcpy(newVehicule->idVehicule, param[1]);
