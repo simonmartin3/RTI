@@ -30,6 +30,7 @@ char FILEVEHICULE[30];
 int hSocketServ;
 
 pthread_mutex_t mutexIndiceCourant;
+pthread_mutex_t mutexFile;
 pthread_cond_t condIndiceCourant;
 int indiceCourant=-1;
 pthread_t threadHandle[NB_MAX_CLIENTS]; /* Threads pour clients*/
@@ -96,6 +97,7 @@ int main ()
     puts("* Thread principal serveur demarre *");
     printf("identite = %d.%u\n", getpid(), pthread_self());
     pthread_mutex_init(&mutexIndiceCourant, NULL);
+    pthread_mutex_init(&mutexFile, NULL);
     pthread_cond_init(&condIndiceCourant, NULL);
     /* Si la socket n'est pas utilisee, le descripteur est a -1 */
     for (i=0; i<NB_MAX_CLIENTS; i++) 
@@ -231,15 +233,19 @@ int main ()
 		                break;
 
 		            case 1:
-		                ret = createContainer(msgRecv.msg, FILEPARC);
+                        pthread_mutex_lock(&mutexFile);
+                        ret = createContainer(msgRecv.msg, FILEPARC);
+                        pthread_mutex_unlock(&mutexFile);
                         break;
 
                     case 2:
+                        pthread_mutex_lock(&mutexFile);
                         ret = uploadContainer(msgRecv.msg, FILEPARC);
+                        pthread_mutex_unlock(&mutexFile);
                         break;
 
 		            case 3:
-                        
+                        pthread_mutex_lock(&mutexFile);
                         container = malloc(sizeof(Container));
                         newVehicule = malloc(sizeof(Vehicule));
 
@@ -306,10 +312,13 @@ int main ()
                             sprintf(buf,"Send socket connectee OK\n");
                             affThread(numThr, buf);
                         }
+                        pthread_mutex_unlock(&mutexFile);
 		                break;
 
                     case 4 :
+                        pthread_mutex_lock(&mutexFile);
                             ret = moveContainer(msgRecv.msg, FILEPARC, FILEVEHICULE);
+                        pthread_mutex_unlock(&mutexFile);
                         break;
 
                     case 5 :
