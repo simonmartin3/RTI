@@ -303,6 +303,20 @@ int main()
             }
         }
 
+        if(option == 5 || option == 6)
+        {
+            if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+            {
+                printf("Erreur sur le recv de la socket %d\n", errno);
+                close(hSocket); /* Fermeture de la socket */
+                exit(1);
+            }
+            else 
+                printf("Recv socket OK\n");
+
+            printf("Message recu en ACK = %s\n", msgServeur);
+        }
+
 
     /* 8. Reception de l'ACK du serveur au client */
         
