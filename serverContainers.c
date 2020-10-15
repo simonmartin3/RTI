@@ -49,10 +49,9 @@ int main ()
 	//struct in_addr adresseIP;
 	struct sockaddr_in adresseSocket;
 	//int tailleSockaddr_in;
-	//int ret, * retThread;
+	int ret;
     char msgServeur[MAXSTRING];
     char tmp[20];
-    pthreadID = 0;
 
 /* Ouverture du fichier de configuration */
 
