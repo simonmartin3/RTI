@@ -45,6 +45,7 @@ char * authentification(char *msg, char * FILELOG);
 char * createContainer(char *msg, char * FILEPARC);
 char * uploadContainer(char *msg, char * FILEPARC);
 char * moveContainer(char *msg, char * FILEPARC);
+char * createVehicule(char *msg, char * FILEPARC);
 char * displayContainer(char * FILEPARC);
 char * toString(struct Container * container);
 char ** tokenizer(char *msg, char *ct);

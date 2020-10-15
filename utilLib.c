@@ -376,6 +376,47 @@ void pressEnter()
     }
 
 /*----------------------------------------------------------------*/
+/*                        createVehicule()                        */
+/*----------------------------------------------------------------*/
+
+    char * createVehicule(char *msg, char * FILEVEHICULE)
+    {
+        FILE *fp;
+
+        char * ret = (char *)malloc(MAXSTRING);
+        char **param = NULL;
+
+        param = tokenizer(msg, ";");
+
+        Vehicule *newVehicule;
+        newVehicule = malloc(sizeof(Vehicule));
+
+        strcpy(newVehicule->idVehicule, tmp[1]);
+        strcpy(newVehicule->destination, tmp[2]);
+        newVehicule->capacite = atoi(tmp[3]);      
+
+        fp = fopen(FILEVEHICULE, "a+b");
+
+
+        //Ajout login dans fichier        
+        if(fwrite(newVehicule, sizeof(Vehicule), 1, fp) != 0)  
+        {
+            printf("Le container a bien ete ajoute !\n");
+            ret = OK;
+        }
+        else 
+        {    
+            printf("Erreur d'ecriture dans le fichier !\n"); 
+            ret = FAIL;
+        }
+
+        free(newVehicule);
+        fclose(fp);
+
+        return ret;
+    }
+
+/*----------------------------------------------------------------*/
 /*                      displayContainer()                        */
 /*----------------------------------------------------------------*/
 

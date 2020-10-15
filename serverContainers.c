@@ -26,6 +26,7 @@ int PORT;
 char FILELOG[20];
 char FILEPARC[20];
 char SEP_CSV[10];
+char FILEVEHICULE[20];
 int hSocketServ;
 
 pthread_mutex_t mutexIndiceCourant;
@@ -64,7 +65,11 @@ int main ()
     memcpy(FILEPARC, searchConfig("FILEPARC"), sizeof(FILEPARC));
     FILEPARC[strlen(FILEPARC)-1] = '\0';
 
+    memcpy(FILEVEHICULE, searchConfig("FILEVEHICULE"), sizeof(FILEVEHICULE));
+    FILEVEHICULE[strlen(FILEVEHICULE)-1] = '\0';
+
     memcpy(SEP_CSV, searchConfig("SEP_CSV"), sizeof(SEP_CSV));
+    SEP_CSV[strlen(SEP_CSV)-1] = '\0';
 
 /* Ouverture et/ou création du fichier login.csv & FICH_PARC */
 	ret = fctFile(FILELOG);
@@ -80,6 +85,13 @@ int main ()
 		puts("Création du fichier.");
 		createFichParc(FILEPARC);
 	}
+
+    ret = fctFile(FILEVEHICULE);
+    if(ret != 0)
+    {
+        puts("Création du fichier.");
+        createFichParc(FILEVEHICULE);
+    }
 
 /* 1. Initialisations */
     puts("* Thread principal serveur demarre *");
@@ -166,7 +178,7 @@ int main ()
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
         Message msgRecv;
-        Vehicule *vehicule = NULL;
+        
         FILE *fp;
         char **tmp = NULL;
 
@@ -233,10 +245,7 @@ int main ()
                         Container* container;
                         container = malloc(sizeof(Container));
 
-                        vehicule = malloc(sizeof(Vehicule));
-                        strcpy(vehicule->idVehicule, tmp[1]);
-                        strcpy(vehicule->destination, tmp[2]);
-                        vehicule->capacite = atoi(tmp[3]);
+                        createVehicule(msgRecv.msg, FILEVEHICULE);
 
                         rewind(fp);
 
@@ -279,17 +288,7 @@ int main ()
 		                break;
 
                     case 4 :
-                        if(vehicule == NULL || vehicule->capacite == 0)
-                        {
-                            ret = FAIL;
-                        }
-                        else
-                        {
                             ret = moveContainer(msgRecv.msg, FILEPARC);
-                            if(strcmp(ret, OK) == 0)
-                                vehicule->capacite--;
-                        }
-                        printf("Capacite du vehicule : %d\n", vehicule->capacite);
                         break;
 
                     case 5 :
