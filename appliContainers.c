@@ -13,6 +13,7 @@
 #include <netinet/tcp.h> /* pour la conversion adresse reseau-format dot */
 #include <arpa/inet.h> /* pour la conversion adresse reseau-format dot */
 #include <signal.h>
+#include <pthread.h>
 #include "socketLib.h"
 #include "utilLib.h"
 #include "CMMP.h"
