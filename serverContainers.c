@@ -237,7 +237,7 @@ int main ()
                         break;
 
 		            case 3:
-                        tmp = tokenizer(msgRecv.msg, ";");
+                        
                         fp = fopen(FILEPARC, "r+b");
                         fseek(fp, 0L, SEEK_END);
 
@@ -246,7 +246,8 @@ int main ()
 
                         printf("Cretation vehicule\n");
                         createVehicule(msgRecv.msg, FILEVEHICULE);
-
+                        
+                        tmp = tokenizer(msgRecv.msg, ";");
                         rewind(fp);
 
                         while(fread(container, sizeof(Container), 1, fp))
