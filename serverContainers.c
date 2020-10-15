@@ -226,6 +226,9 @@ int main ()
 
                 memcpy(&msgRecv, msgClient, sizeof(struct Message));
 
+                printf("%s\n", msgRecv.msg);
+                pressEnter();
+
                 switch(msgRecv.typeReq)
 		        {
 		            case 0 :
