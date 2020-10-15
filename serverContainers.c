@@ -278,7 +278,7 @@ int main ()
                         //Ajout login dans fichier        
                         if(fwrite(newVehicule, sizeof(Vehicule), 1, fp) != 0)  
                         {
-                            printf("Le container a bien ete ajoute !\n");
+                            printf("Le vehicule a bien ete ajoute !\n");
                             ret = OK;
                         }
                         else 
