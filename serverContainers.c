@@ -245,6 +245,7 @@ int main ()
                         container = malloc(sizeof(Container));
 
                         printf("Cretation vehicule\n");
+                        printf("%s\n", msgRecv.msg);
                         createVehicule(msgRecv.msg, FILEVEHICULE);
                         
                         tmp = tokenizer(msgRecv.msg, ";");
