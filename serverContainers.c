@@ -301,7 +301,7 @@ int main ()
                                 }
                             }
                         }
-                        ret = OK;
+                        //ret = OK;
                         sprintf(msgServeur,"%s", ret);
                 
                         if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)

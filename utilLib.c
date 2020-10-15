@@ -207,7 +207,6 @@ void pressEnter()
         time_t rawtime;
         struct tm *info;
 
-
         param = tokenizer(msg, ";");
 
         Container* newContainer;
