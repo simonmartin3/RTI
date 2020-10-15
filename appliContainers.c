@@ -252,6 +252,17 @@ int main()
 
                 printf("Le vehicule %s est plein\n", msgServeur);
             }
+            else
+            {
+                if(strcmp(msgServeur, OK) == 0)
+                {
+                    printf("Le container a bien ete charge\n");
+                }
+                else
+                {
+                    printf("Erreur lors du chargement\n");
+                }
+            }
         }
 
 

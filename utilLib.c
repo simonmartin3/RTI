@@ -373,7 +373,7 @@ void pressEnter()
             {
                 if(uploadVehicule->capacite != 0)
                 {
-                    uploadVehicule->capacite--;
+                    uploadVehicule->capacite = uploadVehicule->capacite-1;
 
                     fseek(fp2, j*sizeof(Vehicule), SEEK_SET);
 
@@ -419,7 +419,9 @@ void pressEnter()
         }
 
         free(uploadContainer);
+        free(uploadVehicule);
         fclose(fp);
+        fclose(fp2);
 
         return ret;
     }
