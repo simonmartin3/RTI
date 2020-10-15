@@ -387,8 +387,8 @@ int main ()
     {
         unsigned long numSequence;
         char *buf = (char *)malloc(30);
-        //numSequence = pthread_getsequence_np( pthread_self( ) );
-		numSequence = 2;
+        numSequence = pthread_getsequence_np(pthread_self());
+		//numSequence = 2;
         sprintf(buf, "%d.%lu", getpid(), numSequence);
         return buf;
     }
