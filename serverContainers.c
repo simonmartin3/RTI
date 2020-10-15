@@ -176,7 +176,6 @@ int main ()
         int retRecv;
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
-        char * tmpMessage = (char *)malloc(MAXSTRING);
         Message msgRecv;
         
         FILE *fp;
@@ -239,21 +238,38 @@ int main ()
 
 		            case 3:
                         
-                        fp = fopen(FILEPARC, "r+b");
-                        fseek(fp, 0L, SEEK_END);
+                        
 
                         Container* container;
                         container = malloc(sizeof(Container));
-
-                        memcpy(tmpMessage, msgRecv.msg, sizeof(tmpMessage));
-
-                        printf("Cretation vehicule\n");
-                        printf("%s\n", msgRecv.msg);
-                        createVehicule(msgRecv.msg, FILEVEHICULE);
-                        printf("%s\n", tmpMessage);
-                        pressEnter();
+                        Vehicule *newVehicule;
+                        newVehicule = malloc(sizeof(Vehicule));
 
                         tmp = tokenizer(tmpMessage, ";");
+
+                        strcpy(newVehicule->typeVehicule, tmp[0]);
+                        strcpy(newVehicule->idVehicule, tmp[1]);
+                        strcpy(newVehicule->destination, tmp[2]);
+                        newVehicule->capacite = atoi(tmp[3]);   
+
+                        fp = fopen(FILEVEHICULE, "a+b");
+
+                        //Ajout login dans fichier        
+                        if(fwrite(newVehicule, sizeof(Vehicule), 1, fp) != 0)  
+                        {
+                            printf("Le container a bien ete ajoute !\n");
+                            ret = OK;
+                        }
+                        else 
+                        {    
+                            printf("Erreur d'ecriture dans le fichier !\n"); 
+                            ret = FAIL;
+                        }
+                        
+                        fclose(fp);
+
+                        fp = fopen(FILEPARC, "r+b");
+                        fseek(fp, 0L, SEEK_END);
                         rewind(fp);
 
                         while(fread(container, sizeof(Container), 1, fp))
