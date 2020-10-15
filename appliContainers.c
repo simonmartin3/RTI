@@ -222,12 +222,12 @@ int main()
                     exit(1);
                 }
 
-                // if(strcmp(msgServeur, OK) == 0)
-                //     endList = 1;
-                // else
+                if(strcmp(msgServeur, OK) == 0)
+                    endList = 1;
+                else
                     printf("%s\n", msgServeur);
 
-            }while(strcmp(msgServeur, OK) != 0);
+            }while(endList != 1);
 
             pressEnter();
         }

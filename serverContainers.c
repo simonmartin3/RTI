@@ -223,11 +223,7 @@ int main ()
                     finDialogue=1; break;
                 }
                 
-
                 memcpy(&msgRecv, msgClient, sizeof(struct Message));
-
-                printf("%s\n", msgRecv.msg);
-                pressEnter();
 
                 switch(msgRecv.typeReq)
 		        {
@@ -302,7 +298,7 @@ int main ()
                                 }
                             }
                         }
-                        //ret = OK;
+                        ret = OK;
                         sprintf(msgServeur,"%s", ret);
                 
                         if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
@@ -327,7 +323,7 @@ int main ()
 
                     case 5 :
                             printf("Le vehicule %s est plein\n", msgRecv.msg);
-                            //ret = OK;
+                            ret = OK;
                         break;
 
 		            case 6 :
@@ -345,7 +341,6 @@ int main ()
 		        }
                 
                 sprintf(msgServeur,"%s", ret);
-                printf("%s\n", msgServeur);
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
                 {
