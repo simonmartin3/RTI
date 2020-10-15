@@ -245,7 +245,7 @@ void pressEnter()
         if(fwrite(newContainer, sizeof(Container), 1, fp) != 0)  
         {
             printf("Le container a bien ete ajoute !\n");
-            ret = param[1];
+            ret = newContainer->idContainer;
         }
         else 
         {    
@@ -253,7 +253,7 @@ void pressEnter()
             ret = FAIL;
         }
 
-        free(newContainer);
+        //free(newContainer);
         fclose(fp);
 
         return ret;
