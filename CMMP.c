@@ -182,7 +182,7 @@ struct Message outputOne()
 	return message;
 }
 
-struct Message onputDone(char * idVehicule)
+struct Message outputDone(char * idVehicule)
 {
 	Message message;
 
