@@ -120,7 +120,7 @@ int main()
     {
         do
         {
-            //system("clear");
+            system("clear");
             printf("1 - Signalement qu'un camion arrive.\n");
             printf("2 - Signalement vehicule disponible.\n");
             printf("3 - Signalement container charge.\n");
@@ -316,45 +316,6 @@ int main()
 
             printf("Message recu en ACK = %s\n", msgServeur);
         }
-
-
-    /* 8. Reception de l'ACK du serveur au client */
-        
-
-        // param = tokenizer(msgServeur, "#;");
-
-        // if (strcmp(param[0], "1") ==0)
-        // {
-        //     msgTmp = inputDone();
-        //     strcat(msgTmp, ";");
-        //     strcat(msgTmp, param[2]);
-
-        //     strcpy(msgClient, msgTmp);
-
-        //     if (send(hSocket, msgClient, MAXSTRING, 0) == -1) /* pas message urgent */
-        //     {
-        //         printf("Erreur sur le send de la socket %d\n", errno);
-        //         close(hSocket); /* Fermeture de la socket */
-        //         exit(1);
-        //     }
-        //     else 
-        //         printf("Send socket OK\n");
-
-        //     do
-        //     {
-        //         if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
-        //         {
-        //             printf("Erreur sur le recv de la socket %d\n", errno);
-        //             close(hSocket); /* Fermeture de la socket */
-        //             exit(1);
-        //         }
-        //         else 
-        //             printf("Recv socket OK\n");
-
-        //         printf("Message recu en ACK = %s\n", msgServeur);
-
-        //     }while(strcmp(msgServeur, "OK") != 0);
-        // }
 
     }while(end != 1);
 

@@ -476,7 +476,8 @@ void pressEnter()
 
         while(fread(vehicule, sizeof(Vehicule), 1, fp))
         {
-            printf("%s - %s - %d\n", 
+            printf("%s -%s - %s - %d\n",
+                vehicule->typeVehicule, 
                 vehicule->idVehicule, 
                 vehicule->destination,
                 vehicule->capacite);

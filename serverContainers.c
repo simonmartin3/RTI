@@ -39,6 +39,8 @@ char * getThreadIdentity();
 
 int hSocketConnectee[NB_MAX_CLIENTS]; /* Sockets pour clients*/
 
+void HandlerSIGUSR1(int);
+void HandlerSIGUSR2(int);
 
 int main ()
 {
@@ -184,6 +186,20 @@ int main ()
         
         FILE *fp;
         char **tmp = NULL;
+
+
+        /* Armement signaux */
+        struct sigaction Interrupt;
+        Interrupt.sa_handler = HandlerSIGUSR1;
+        Interrupt.sa_flags = 0;
+        sigemptyset(&Interrupt.sa_mask);
+        sigaction (SIGUSR1, &Interrupt, NULL);
+
+        struct sigaction Stop;
+        Stop.sa_handler = HandlerSIGUSR2;
+        Stop.sa_flags = 0;
+        sigemptyset(&Stop.sa_mask);
+        sigaction (SIGUSR2, &Stop, NULL);
 
         while (1)
         {
@@ -377,3 +393,14 @@ int main ()
         sprintf(buf, "%d.%lu", getpid(), numSequence);
         return buf;
     }
+
+void HandlerSIGUSR1(int sig)
+{
+    printf("Interrupt\n");
+}
+
+void HandlerSIGUSR2(int sig)
+{
+    printf("Stop\n");
+    exit(1);
+}
