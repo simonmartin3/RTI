@@ -327,7 +327,7 @@ int main ()
 
                     case 5 :
                             printf("Le vehicule %s est plein\n", msgRecv.msg);
-                            ret = OK;
+                            //ret = OK;
                         break;
 
 		            case 6 :
@@ -345,6 +345,7 @@ int main ()
 		        }
                 
                 sprintf(msgServeur,"%s", ret);
+                printf("%s\n", msgServeur);
                 
                 if (send(hSocketServ, msgServeur, MAXSTRING, 0) == -1)
                 {
