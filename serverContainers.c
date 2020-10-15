@@ -176,6 +176,7 @@ int main ()
         int retRecv;
         char * numThr = getThreadIdentity();
         char * ret = (char *)malloc(MAXSTRING);
+        char * tmpMessage = (char *)malloc(MAXSTRING);
         Message msgRecv;
         
         FILE *fp;
@@ -244,13 +245,15 @@ int main ()
                         Container* container;
                         container = malloc(sizeof(Container));
 
+                        tmpMessage = msgRecv.msg;
+
                         printf("Cretation vehicule\n");
                         printf("%s\n", msgRecv.msg);
                         createVehicule(msgRecv.msg, FILEVEHICULE);
-                        printf("%s\n", msgRecv.msg);
+                        printf("%s\n", tmpMessage);
                         pressEnter();
-                        
-                        tmp = tokenizer(msgRecv.msg, ";");
+
+                        tmp = tokenizer(tmpMessage, ";");
                         rewind(fp);
 
                         while(fread(container, sizeof(Container), 1, fp))
