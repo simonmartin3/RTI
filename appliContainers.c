@@ -33,19 +33,18 @@ int PORT;
 int main()
 {
     int hSocket; /* Handle de la socket */
-    struct hostent * infosHost; /*Infos sur le host : pour gethostbyname */
-    struct in_addr adresseIP; /* Adresse Internet au format reseau */
+    //struct hostent * infosHost; /*Infos sur le host : pour gethostbyname */
+    //struct in_addr adresseIP; /* Adresse Internet au format reseau */
     struct sockaddr_in adresseSocket; /* Structure de type sockaddr - ici, cas de TCP */
     unsigned int tailleSockaddr_in;
     int ret, option, end = 0, endList = 0; /* valeur de retour */
     char msgClient[MAXSTRING], msgServeur[MAXSTRING];
 	Message msgSend;
-    int port;
     char tmp[20];
 
 /* Ouverture fichier config */
     memcpy(tmp, searchConfig("PORT_CLIENT"), sizeof(tmp));
-    port = atoi(tmp);
+    PORT = atoi(tmp);
     
 /* 1. Création de la socket */
     hSocket = SocketInit(&adresseSocket, "solaris11DM2017", PORT);
