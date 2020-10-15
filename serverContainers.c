@@ -256,10 +256,11 @@ int main ()
 		            case 1:
                         pthread_mutex_lock(&mutexFile);
                         ret = createContainer(msgRecv.msg, FILEPARC);
+                        pthread_mutex_unlock(&mutexFile);
                         break;
 
                     case 2:
-                        
+                        pthread_mutex_lock(&mutexFile);
                         ret = uploadContainer(msgRecv.msg, FILEPARC);
                         pthread_mutex_unlock(&mutexFile);
                         break;
