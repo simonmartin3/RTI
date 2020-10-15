@@ -24,6 +24,7 @@
 #define FAIL "false"
 #define affThread(num, msg) printf("th_%s> %s\n", num, msg)
 
+int pthreadID;
 int PORT;
 char FILELOG[20];
 char FILEPARC[20];
@@ -57,6 +58,7 @@ int main ()
 	int ret;
     char msgServeur[MAXSTRING];
     char tmp[20];
+    pthreadID = 0;
 
 /* Ouverture du fichier de configuration */
 
@@ -388,8 +390,9 @@ int main ()
     {
         unsigned long numSequence;
         char *buf = (char *)malloc(30);
-        numSequence = pthread_getsequence_np(pthread_self());
-		//numSequence = 2;
+        //numSequence = pthread_getsequence_np(pthread_self());
+		numSequence = pthreadID;
+        pthreadID++;
         sprintf(buf, "%d.%lu", getpid(), numSequence);
         return buf;
     }
