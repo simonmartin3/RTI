@@ -379,7 +379,7 @@ void pressEnter()
 
                     if(fwrite(uploadVehicule, sizeof(Vehicule), 1, fp2) != 0)  
                     {
-                        printf("Le vehicule a bien ete chargé !\n");
+                        printf("Le vehicule a bien ete modifie !\n");
                         ret = OK;
                     }
                     else 

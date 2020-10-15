@@ -265,32 +265,37 @@ int main()
             }
         }
 
-
-    /* 8. Reception de l'ACK du serveur au client */
-        if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
+        if(option == 4)
         {
-            printf("Erreur sur le recv de la socket %d\n", errno);
-            close(hSocket); /* Fermeture de la socket */
-            exit(1);
-        }
-        else 
-            printf("Recv socket OK\n");
-
-        printf("Message recu en ACK = %s\n", msgServeur);
-
-        if (strcmp(msgServeur, EOC)==0)
-        {
-            if (send(hSocket, EOC, MAXSTRING, 0) == -1) /* pas message urgent */
+            if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
             {
-                printf("Erreur sur le send de la socket %d\n", errno);
+                printf("Erreur sur le recv de la socket %d\n", errno);
                 close(hSocket); /* Fermeture de la socket */
                 exit(1);
             }
             else 
-                printf("Send socket OK\n");
+                printf("Recv socket OK\n");
 
-            end=1;
+            printf("Message recu en ACK = %s\n", msgServeur);
+
+            if (strcmp(msgServeur, EOC)==0)
+            {
+                if (send(hSocket, EOC, MAXSTRING, 0) == -1) /* pas message urgent */
+                {
+                    printf("Erreur sur le send de la socket %d\n", errno);
+                    close(hSocket); /* Fermeture de la socket */
+                    exit(1);
+                }
+                else 
+                    printf("Send socket OK\n");
+
+                end=1;
+            }
         }
+
+
+    /* 8. Reception de l'ACK du serveur au client */
+        
 
         // param = tokenizer(msgServeur, "#;");
 
