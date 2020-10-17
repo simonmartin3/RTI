@@ -59,6 +59,7 @@ char ** tokenizer(char *msg, char *ct)
 
 void pressEnter()
 {
+    fflush(stdin);
     printf("Press enter to continue...");
     getchar();
 }

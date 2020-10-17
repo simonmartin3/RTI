@@ -67,7 +67,7 @@ int main ()
     for (i=0; i<NB_MAX_CLIENTS; i++) 
 		hSocketConnectee[i] = -1;
 
-	hSocketEcoute = SocketInit(&adresseSocket, "solaris11DM2017", PORT);
+	hSocketEcoute = SocketInit(&adresseSocket, "ubuntu", PORT);
 
 /* 4. Le système prend connaissance de l'adresse et du port de la socket */
 	if (bind(hSocketEcoute, (struct sockaddr *)&adresseSocket, sizeof(struct sockaddr_in)) == -1)

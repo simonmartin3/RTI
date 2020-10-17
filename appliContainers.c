@@ -47,7 +47,7 @@ int main()
     PORT = atoi(tmp);
     
 /* 1. Création de la socket */
-    hSocket = SocketInit(&adresseSocket, "solaris11DM2017", PORT);
+    hSocket = SocketInit(&adresseSocket, "ubuntu", PORT);
 
 /* 4. Tentative de connexion */
     tailleSockaddr_in = sizeof(struct sockaddr_in);
@@ -188,6 +188,7 @@ int main()
         if(option == 2)
         {
             system("clear");
+            fflush(stdin);
             do
             {
                 if (recv(hSocket, msgServeur, MAXSTRING, 0) == -1)
